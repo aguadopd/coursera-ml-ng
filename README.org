@@ -1,0 +1,5 @@
+Notas y ejercicios de mi paso por el curso de *Machine Learning* de Andrew Ng en Coursera. https://www.coursera.org/learn/machine-learning
+
+* Log simple
+
+- [2020-03-29 dom] Comienzo. Creo carpetas para ir guardando las cosas.
