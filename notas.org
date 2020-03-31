@@ -1,0 +1,65 @@
+#+author: Pablo Aguado
+#+title: Notas del curso Machine Learning de Andrew Ng en Coursera
+#+description: Mis notas.
+
+#+STARTUP: indent content align entitiespretty
+
+
+* Info
+
+- https://www.coursera.org/learn/machine-learning
+- [[https://www.coursera.org/learn/machine-learning/discussions/all/threads/v2YppY8FEeWIeBJxvl1elQ][Important notes for new ML students]]
+  - Hay más /test cases/ en los Recursos del curso.
+  - *Hay que usar Octave > 4.0.0*
+  - [[https://learner.coursera.help/hc/en-us/articles/209818863-Coursera-Honor-Code][Cousera Honor Code]]
+
+* Ideas
+
+Ideas mías a lo largo del curso.
+
+1. Probar [[https://github.com/google-research/google-research/blob/master/automl_zero/README.md][AutoML-Zero]].
+2. Buscar clusters en espacios transformados y muy transformados. Ej: Fourier, Fourier de Fourier, Cepstrum...
+
+
+* Semana 1
+
+Intro, regresión lineal, repaso de Álgebra.
+
+
+- [[https://www.coursera.org/learn/machine-learning/discussions/weeks/1/threads/hAp4LT1SEeaL_xIEq4QdBw][FAQ de la semana 1]]
+
+** Video: Welcome
+
+** Video: What is Machine Learning
+
+- Los algoritmos más importantes son el aprendizaje supervisado y el aprendizaje no supervisado. Es esta además la clasificación más general de algoritmos.
+  - Otros son el aprendizaje por refuerzo y los sistemas de recomendación.
+- Hay que aprender las herramientas, pero *es muy importante saber cómo y cuándo usarlas*.
+- Sea una máquina que debe hacer una tarea T, con un desempeño P y que la exponemos a experiencias (instancias) E de esa tarea T. Se dice que la computadora aprende si su desempeño P en la tarea T /aumenta proporcionalmente a la cantidad de experiencias E/.
+- Otra definición de aprendizaje automático es la capacidad (de la computadora) de aprender a resolver problemas para los que no fue programada. ~
+
+** Reading: What is Machine Learning?
+
+**  Video: Supervised Learning
+
+- En el aprendizaje supervisado, le mostramos al programa ejemplos de entradas y sus correspondientes salidas/respuestas correctas. Ya sabemos cómo son las respuestas corectas; tenemos la idea de que hay una relación entre las entradas y las salidas.
+- Los problemas de aprendizaje supervisado se clasifican en problemas de regresión y de clasificación:
+  - Problema de *regresión* si el conjunto imagen es continuo. La salida es una variable numérica.
+  - Problema de *clasificación* si el conjunto imagen es discreto. La salida es una variable categórica.
+- Los algoritmos de Máquinas de Vector Soporte permiten /*infinitos*/ valores de entrada.
+
+****** TODO Leer https://stats.stackexchange.com/questions/22381/why-not-approach-classification-through-regression
+
+****** TODO Leer https://datascience.stackexchange.com/questions/25298/how-to-know-when-to-treat-a-problem-as-a-classification-task-or-a-regression-tas
+
+** Video: Unsupervised Learning
+
+- En el aprendizaje no supervisado, le damos datos al programa con la intención de encontrar estructuras subyacentes, patrones.
+- Un ejemplo típico es el /clustering/ o agrupamiento de datos.
+- En el ejemplo de sonido Cocktail Party, según [[https://www.coursera.org/learn/machine-learning/discussions/weeks/1/threads/hAp4LT1SEeaL_xIEq4QdBw][FAQ de la semana 1]], lo que usan es /Principal Component Analysis, PCA, a mathematical trick that takes two sets of correlated data, and returns two new sets of data that are not correlated./ No lo había visto así antes, creo...
+
+* Semana 2
+
+* Semana 3
+
+* Semana 4

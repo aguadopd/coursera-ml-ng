@@ -3,6 +3,7 @@ Notas y ejercicios de mi paso por el curso de *Machine Learning* de Andrew Ng en
 * Log simple
 
 - [2020-03-29 dom] Comienzo. Creo carpetas para ir guardando las cosas.
+- [2020-03-30 lun 00:00+03:00] Comienzo notas y semana 1.
 
 
 ---------------
