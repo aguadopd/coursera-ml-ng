@@ -28,9 +28,10 @@ Intro, regresión lineal, repaso de Álgebra.
 
 - [[https://www.coursera.org/learn/machine-learning/discussions/weeks/1/threads/hAp4LT1SEeaL_xIEq4QdBw][FAQ de la semana 1]]
 
-** Video: Welcome
+** Introduction
+*** Video: Welcome
 
-** Video: What is Machine Learning
+*** Video: What is Machine Learning
 
 - Los algoritmos más importantes son el aprendizaje supervisado y el aprendizaje no supervisado. Es esta además la clasificación más general de algoritmos.
   - Otros son el aprendizaje por refuerzo y los sistemas de recomendación.
@@ -38,11 +39,11 @@ Intro, regresión lineal, repaso de Álgebra.
 - Sea una máquina que debe hacer una tarea T, con un desempeño P y que la exponemos a experiencias (instancias) E de esa tarea T. Se dice que la computadora aprende si su desempeño P en la tarea T /aumenta proporcionalmente a la cantidad de experiencias E/.
 - Otra definición de aprendizaje automático es la capacidad (de la computadora) de aprender a resolver problemas para los que no fue programada. ~
 
-** Reading: What is Machine Learning?
+*** Reading: What is Machine Learning?
 
-**  Video: Supervised Learning
+*** Video: Supervised Learning
 
-- En el aprendizaje supervisado, le mostramos al programa ejemplos de entradas y sus correspondientes salidas/respuestas correctas. Ya sabemos cómo son las respuestas corectas; tenemos la idea de que hay una relación entre las entradas y las salidas.
+- En el aprendizaje supervisado, le mostramos al programa ejemplos de entradas y sus correspondientes salidas/respuestas correctas. Ya sabemos cómo son las respuestas corectas; tenemos la idea de que hay una relación entre las entradas y las salidas. Dado un conjunto de entradas y salidas, intentamos obtener un modelo que permita predecir/inferir las salidas a nuevos datos de entrada.
 - Los problemas de aprendizaje supervisado se clasifican en problemas de regresión y de clasificación:
   - Problema de *regresión* si el conjunto imagen es continuo. La salida es una variable numérica.
   - Problema de *clasificación* si el conjunto imagen es discreto. La salida es una variable categórica.
@@ -52,11 +53,90 @@ Intro, regresión lineal, repaso de Álgebra.
 
 ****** TODO Leer https://datascience.stackexchange.com/questions/25298/how-to-know-when-to-treat-a-problem-as-a-classification-task-or-a-regression-tas
 
-** Video: Unsupervised Learning
+*** Video: Unsupervised Learning
 
 - En el aprendizaje no supervisado, le damos datos al programa con la intención de encontrar estructuras subyacentes, patrones.
 - Un ejemplo típico es el /clustering/ o agrupamiento de datos.
 - En el ejemplo de sonido Cocktail Party, según [[https://www.coursera.org/learn/machine-learning/discussions/weeks/1/threads/hAp4LT1SEeaL_xIEq4QdBw][FAQ de la semana 1]], lo que usan es /Principal Component Analysis, PCA, a mathematical trick that takes two sets of correlated data, and returns two new sets of data that are not correlated./ No lo había visto así antes, creo...
+
+** Model and cost function
+
+Vemos la regresión lineal como primer algoritmo de aprendizaje supervisado.
+
+*** Video: Model representation
+
+Un poco de nomenclatura:
+
+- $m$: cantidad de ejemplos de entrenamiento.
+- $\vec{x}$: entradas / descriptores / /features/
+- $\vec{y}$: salidas. $\hat{\vec{y}}$ son las salidas estimadas.
+- $h_\sigma$: función de hipótesis, de estimación. Tiene parámetros $\vec{\sigma}$. Entonces tenemos que \( \hat{y}^{(i)} = h_\sigma(x^{(i)}) = h(x,\sigma) \)
+- $x^{(i)}$: entrada $i$-ésima del vector de entradas, con índices empezando en 1.
+  - $(x^{}^{}^{(i)},y^{}^{}^{(i)})$ es un ejemplo de entrenamiento.
+- Para regresión lineal de una variable tenemos entonces 
+\[ \hat{y}^{(i)} = h_\sigma(x^{(i)}) = \sigma_0 + \sigma_1 * x^{(i)} \]
+
+*** Reading: Model representation
+
+- $X$: el espacio de los valores de entrada.
+- $Y$: el espacio de los valores de salida.
+- El objetivo del aprendizaje supervisado es encontrar una función $h: X \rightarrow Y$ que sea buena prediciendo salidas a partir de entradas.
+ 
+*** Video: Cost function
+
+Formalizamos el problema del aprendizaje como la minimización de una función de costo $J(\vec{\sigma})$. La función de costo habitual y recomendada para problemas de regresión lineal es el *error cuadrático medio* ([[https://en.wikipedia.org/wiki/Mean_squared_error][/Mean Squared Error/]] o /Mean Squared Deviation/).
+
+Para un predictor como lo es $h_\sigma$, el MSE se define como
+\[ MSE = \frac{1}{N} (\sum_{1}^{N}Y_i - \hat{Y}_i )^2\]
+
+En nuestro caso vamos a definir a la función de costo para este problema de regresión lineal univariable como
+
+\[ J(\sigma_0 , \sigma_1) = \frac{1}{2m} \sum_{i=1}^m( h_\sigma(x^{(i)}) - y^{(i)} )^2  \]
+\[ J(\sigma_0 , \sigma_1) =  \frac{1}{2m} \sum_{i=1}^m( \sigma_0 + \sigma_1 * x^{(i)} - y^{(i)} )^2 \]
+
+- El factor $1/2$ es para ahorrar cálculos, puesto que en redes neuronales al hacer /backpropagation/ o /gradient descent/ hay que derivar esta función de error y entonces con este $1/2$ simplificamos el $2$ de la derivada del cuadrado.
+
+La optimización es entonces encontrar los parámetros $\sigma$ que minimizan la función de costo:
+\[ \underset{\sigma_0 , \sigma_1}{\text{min}}  J(\sigma_0 , \sigma_1)\]
+
+*** Reading: Cost function
+
+*** Video: Cost function intuition I
+
+*** Reading: Cost function intuition I
+
+*** Video: Cost function intuition II
+
+*** Reading: Cost function intuition II
+
+De [[https://es.wikipedia.org/wiki/Isol%C3%ADnea][isolíneas / curvas de nivel]].
+
+
+** Parameter learning
+
+*** Video: Gradient descent
+
+El descenso por el gradiente es un algoritmo de optimización que vamos a usar (entre otras cosas) para minimizar la función de costo.
+
+Hacer \[ \vec{\sigma}[n+1] := \vec{\sigma}[n] - \alpha \frac{\delta J(\vec{\sigma})}{\delta\sigma}  \]
+
+Hasta que \[  \vec{\sigma}[n+1] - \vec{\sigma}[n] < \epsilon \]
+
+- Nomenclatura: usamos $:=$ como operador de asignación.
+
+Para calcular la derivada hacemos derivadas parciales. Actualizamos los parámetros simultáneamente en cada paso. Si actualizamos de a uno estamos haciendo otro algoritmo, que probablemente también converja pero es distinto.
+
+*** Reading: Gradient descent
+
+*** Video: Gradien descent intuition
+
+*** Reading: Gradient descent intuition
+
+*** Video: Gradient descent for linear regression
+
+*** Reading: Gradient descent for linear regression
+
+** Linear Algebra review
 
 * Semana 2
 
