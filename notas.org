@@ -70,11 +70,11 @@ Un poco de nomenclatura:
 - $m$: cantidad de ejemplos de entrenamiento.
 - $\vec{x}$: entradas / descriptores / /features/
 - $\vec{y}$: salidas. $\hat{\vec{y}}$ son las salidas estimadas.
-- $h_\sigma$: función de hipótesis, de estimación. Tiene parámetros $\vec{\sigma}$. Entonces tenemos que \( \hat{y}^{(i)} = h_\sigma(x^{(i)}) = h(x,\sigma) \)
+- $h_\theta$: función de hipótesis, de estimación. Tiene parámetros $\vec{\theta}$. Entonces tenemos que \( \hat{y}^{(i)} = h_\theta(x^{(i)}) = h(x,\theta) \)
 - $x^{(i)}$: entrada $i$-ésima del vector de entradas, con índices empezando en 1.
   - $(x^{}^{}^{(i)},y^{}^{}^{(i)})$ es un ejemplo de entrenamiento.
 - Para regresión lineal de una variable tenemos entonces 
-\[ \hat{y}^{(i)} = h_\sigma(x^{(i)}) = \sigma_0 + \sigma_1 * x^{(i)} \]
+\[ \hat{y}^{(i)} = h_\theta(x^{(i)}) = \theta_0 + \theta_1 * x^{(i)} \]
 
 *** Reading: Model representation
 
@@ -84,20 +84,20 @@ Un poco de nomenclatura:
  
 *** Video: Cost function
 
-Formalizamos el problema del aprendizaje como la minimización de una función de costo $J(\vec{\sigma})$. La función de costo habitual y recomendada para problemas de regresión lineal es el *error cuadrático medio* ([[https://en.wikipedia.org/wiki/Mean_squared_error][/Mean Squared Error/]] o /Mean Squared Deviation/).
+Formalizamos el problema del aprendizaje como la minimización de una función de costo $J(\vec{\theta})$. La función de costo habitual y recomendada para problemas de regresión lineal es el *error cuadrático medio* ([[https://en.wikipedia.org/wiki/Mean_squared_error][/Mean Squared Error/]] o /Mean Squared Deviation/).
 
-Para un predictor como lo es $h_\sigma$, el MSE se define como
+Para un predictor como lo es $h_\theta$, el MSE se define como
 \[ MSE = \frac{1}{N} (\sum_{1}^{N}Y_i - \hat{Y}_i )^2\]
 
 En nuestro caso vamos a definir a la función de costo para este problema de regresión lineal univariable como
 
-\[ J(\sigma_0 , \sigma_1) = \frac{1}{2m} \sum_{i=1}^m( h_\sigma(x^{(i)}) - y^{(i)} )^2  \]
-\[ J(\sigma_0 , \sigma_1) =  \frac{1}{2m} \sum_{i=1}^m( \sigma_0 + \sigma_1 * x^{(i)} - y^{(i)} )^2 \]
+\[ J(\theta_0 , \theta_1) = \frac{1}{2m} \sum_{i=1}^m( h_\theta(x^{(i)}) - y^{(i)} )^2  \]
+\[ J(\theta_0 , \theta_1) =  \frac{1}{2m} \sum_{i=1}^m( \theta_0 + \theta_1 * x^{(i)} - y^{(i)} )^2 \]
 
 - El factor $1/2$ es para ahorrar cálculos, puesto que en redes neuronales al hacer /backpropagation/ o /gradient descent/ hay que derivar esta función de error y entonces con este $1/2$ simplificamos el $2$ de la derivada del cuadrado.
 
-La optimización es entonces encontrar los parámetros $\sigma$ que minimizan la función de costo:
-\[ \underset{\sigma_0 , \sigma_1}{\text{min}}  J(\sigma_0 , \sigma_1)\]
+La optimización es entonces encontrar los parámetros $\theta$ que minimizan la función de costo:
+\[ \underset{\theta_0 , \theta_1}{\text{min}}  J(\theta_0 , \theta_1)\]
 
 *** Reading: Cost function
 
@@ -118,21 +118,62 @@ De [[https://es.wikipedia.org/wiki/Isol%C3%ADnea][isolíneas / curvas de nivel]]
 
 El descenso por el gradiente es un algoritmo de optimización que vamos a usar (entre otras cosas) para minimizar la función de costo.
 
-Hacer \[ \vec{\sigma}[n+1] := \vec{\sigma}[n] - \alpha \frac{\delta J(\vec{\sigma})}{\delta\sigma}  \]
+Hacer \[ \vec{\theta}[n+1] := \vec{\theta}[n] - \alpha \frac{\delta J(\vec{\theta})}{\delta\theta}  \]
 
-Hasta que \[  \vec{\sigma}[n+1] - \vec{\sigma}[n] < \epsilon \]
+Hasta que \[  \vec{\theta}[n+1] - \vec{\theta}[n] < \epsilon \]
 
 - Nomenclatura: usamos $:=$ como operador de asignación.
+- $\alpha$ es la tasa de aprendizaje o /learning rate/ del algoritmo.
 
 Para calcular la derivada hacemos derivadas parciales. Actualizamos los parámetros simultáneamente en cada paso. Si actualizamos de a uno estamos haciendo otro algoritmo, que probablemente también converja pero es distinto.
 
 *** Reading: Gradient descent
 
-*** Video: Gradien descent intuition
+*** Video: Gradient descent intuition
+
+- Si $\alpha$ es muy grande, el algoritmo puede oscilar o incluso diverger.
+- Si $\alpha$ es muy chica, puede tardar mucho en converger.
+- Con $\alpha$ fija, los "pasos" que da el algoritmo son cada vez más chicos a medida que la función de costo se aproxima a un mínimo local.
 
 *** Reading: Gradient descent intuition
 
 *** Video: Gradient descent for linear regression
+
+Dice Andrew cerca del minuto 4:40:
+
+#+begin_quote
+But, it turns out that that the cost function for
+linear regression is always going to be a bow shaped function like this.
+The technical term for this is that this is called a convex function.
+#+end_quote
+
+¿Por qué?
+
+- La función de costo $J(\vec{\theta})$ es el error cuadrático medio (MSE).
+- El MSE es cuadrático respecto a los parámetros siempre y cuando estos sean lineales, de grado 1. *La función de hipótesis debe ser lineal respecto a los parámetros para que la función de costo sea cuadrática*.
+  - Sea por ejemplo \[ h(x,y) =  a.x^2 + b.y^2 - c.x^2 y^2 \]. Esta función tiene más de un mínimo.
+
+[[file:imgs/001-01-nolineal.gif]]
+
+  - Su MSE quedaría algo como \[ x^4 + 2 x^2 y^2 - 2 x^4 y^2 + y^4 - 2 x^2 y^4 + x^4 y^4  \] (sólo [[https://www.wolframalpha.com/input/?i=%28x%5E2+%2B+y%5E2+-+x%5E2y%5E2%29%5E2][la elevé al cuadrado]])
+
+[[file:imgs/001-02-nolineal-cuadrado.gif]]
+
+-----------------
+
+Hay otras formas de estimar los parámetros (regresores). Una de ellas es el método de los mínimos cuadrados ([[https://en.wikipedia.org/wiki/Ordinary_least_squares][/Ordinary Least Squares]]/). El descenso por el gradiente es más fácil de computar que OLS, en el caso de datasets grandes.
+
+En realidad todo lo que vimos es descenso por el gradiente por lotes, o */batch gradient descent/*, que es cuando la función de costo se optimiza usando todas las entradas disponibles. Esto es costoso.
+
+
+
+****** TODO Leer más de [[https://en.wikipedia.org/wiki/Linear_regression][regresión lineal]]
+
+
+
+**** Regresión lineal
+
+
 
 *** Reading: Gradient descent for linear regression
 

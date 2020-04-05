@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-04-04 sáb 22:57 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Notas del curso Machine Learning de Andrew Ng en Coursera</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Pablo Aguado" />
+<meta name="description" content="Mis notas."
+ />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Notas del curso Machine Learning de Andrew Ng en Coursera</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orga564f11">1. Info</a></li>
+<li><a href="#org28270fe">2. Ideas</a></li>
+<li><a href="#orgdc5a8c1">3. Semana 1</a>
+<ul>
+<li><a href="#orgfb0e02a">3.1. Introduction</a>
+<ul>
+<li><a href="#org3acece4">3.1.1. Video: Welcome</a></li>
+<li><a href="#org60c80a7">3.1.2. Video: What is Machine Learning</a></li>
+<li><a href="#orgd1564e1">3.1.3. Reading: What is Machine Learning?</a></li>
+<li><a href="#org862fcb2">3.1.4. Video: Supervised Learning</a></li>
+<li><a href="#orgb9d1a92">3.1.5. Video: Unsupervised Learning</a></li>
+</ul>
+</li>
+<li><a href="#orgc09c80f">3.2. Model and cost function</a>
+<ul>
+<li><a href="#org7ee2038">3.2.1. Video: Model representation</a></li>
+<li><a href="#org37dc548">3.2.2. Reading: Model representation</a></li>
+<li><a href="#orgd6cdbe7">3.2.3. Video: Cost function</a></li>
+<li><a href="#org637e867">3.2.4. Reading: Cost function</a></li>
+<li><a href="#org2f75c28">3.2.5. Video: Cost function intuition I</a></li>
+<li><a href="#org1ee5ae7">3.2.6. Reading: Cost function intuition I</a></li>
+<li><a href="#org57e6c8a">3.2.7. Video: Cost function intuition II</a></li>
+<li><a href="#org568685b">3.2.8. Reading: Cost function intuition II</a></li>
+</ul>
+</li>
+<li><a href="#org5e03532">3.3. Parameter learning</a>
+<ul>
+<li><a href="#org362f215">3.3.1. Video: Gradient descent</a></li>
+<li><a href="#orgdc77dd3">3.3.2. Reading: Gradient descent</a></li>
+<li><a href="#orga31242b">3.3.3. Video: Gradient descent intuition</a></li>
+<li><a href="#org48246c8">3.3.4. Reading: Gradient descent intuition</a></li>
+<li><a href="#org15901ac">3.3.5. Video: Gradient descent for linear regression</a></li>
+<li><a href="#orgfdf8824">3.3.6. Reading: Gradient descent for linear regression</a></li>
+</ul>
+</li>
+<li><a href="#org328ce4a">3.4. Linear Algebra review</a></li>
+</ul>
+</li>
+<li><a href="#org566d3b2">4. Semana 2</a></li>
+<li><a href="#orgb40396d">5. Semana 3</a></li>
+<li><a href="#orga392faf">6. Semana 4</a></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orga564f11" class="outline-2">
+<h2 id="orga564f11"><span class="section-number-2">1</span> Info</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li><a href="https://www.coursera.org/learn/machine-learning">https://www.coursera.org/learn/machine-learning</a></li>
+<li><a href="https://www.coursera.org/learn/machine-learning/discussions/all/threads/v2YppY8FEeWIeBJxvl1elQ">Important notes for new ML students</a>
+<ul class="org-ul">
+<li>Hay más <i>test cases</i> en los Recursos del curso.</li>
+<li><b>Hay que usar Octave &gt; 4.0.0</b></li>
+<li><a href="https://learner.coursera.help/hc/en-us/articles/209818863-Coursera-Honor-Code">Cousera Honor Code</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org28270fe" class="outline-2">
+<h2 id="org28270fe"><span class="section-number-2">2</span> Ideas</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Ideas mías a lo largo del curso.
+</p>
+
+<ol class="org-ol">
+<li>Probar <a href="https://github.com/google-research/google-research/blob/master/automl_zero/README.md">AutoML-Zero</a>.</li>
+<li>Buscar clusters en espacios transformados y muy transformados. Ej: Fourier, Fourier de Fourier, Cepstrum&#x2026;</li>
+</ol>
+</div>
+</div>
+
+
+<div id="outline-container-orgdc5a8c1" class="outline-2">
+<h2 id="orgdc5a8c1"><span class="section-number-2">3</span> Semana 1</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Intro, regresión lineal, repaso de Álgebra.
+</p>
+
+
+<ul class="org-ul">
+<li><a href="https://www.coursera.org/learn/machine-learning/discussions/weeks/1/threads/hAp4LT1SEeaL_xIEq4QdBw">FAQ de la semana 1</a></li>
+</ul>
+</div>
+
+<div id="outline-container-orgfb0e02a" class="outline-3">
+<h3 id="orgfb0e02a"><span class="section-number-3">3.1</span> Introduction</h3>
+<div class="outline-text-3" id="text-3-1">
+</div>
+<div id="outline-container-org3acece4" class="outline-4">
+<h4 id="org3acece4"><span class="section-number-4">3.1.1</span> Video: Welcome</h4>
+</div>
+
+<div id="outline-container-org60c80a7" class="outline-4">
+<h4 id="org60c80a7"><span class="section-number-4">3.1.2</span> Video: What is Machine Learning</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<ul class="org-ul">
+<li>Los algoritmos más importantes son el aprendizaje supervisado y el aprendizaje no supervisado. Es esta además la clasificación más general de algoritmos.
+<ul class="org-ul">
+<li>Otros son el aprendizaje por refuerzo y los sistemas de recomendación.</li>
+</ul></li>
+<li>Hay que aprender las herramientas, pero <b>es muy importante saber cómo y cuándo usarlas</b>.</li>
+<li>Sea una máquina que debe hacer una tarea T, con un desempeño P y que la exponemos a experiencias (instancias) E de esa tarea T. Se dice que la computadora aprende si su desempeño P en la tarea T <i>aumenta proporcionalmente a la cantidad de experiencias E</i>.</li>
+<li>Otra definición de aprendizaje automático es la capacidad (de la computadora) de aprender a resolver problemas para los que no fue programada. ~</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd1564e1" class="outline-4">
+<h4 id="orgd1564e1"><span class="section-number-4">3.1.3</span> Reading: What is Machine Learning?</h4>
+</div>
+
+<div id="outline-container-org862fcb2" class="outline-4">
+<h4 id="org862fcb2"><span class="section-number-4">3.1.4</span> Video: Supervised Learning</h4>
+<div class="outline-text-4" id="text-3-1-4">
+<ul class="org-ul">
+<li>En el aprendizaje supervisado, le mostramos al programa ejemplos de entradas y sus correspondientes salidas/respuestas correctas. Ya sabemos cómo son las respuestas corectas; tenemos la idea de que hay una relación entre las entradas y las salidas. Dado un conjunto de entradas y salidas, intentamos obtener un modelo que permita predecir/inferir las salidas a nuevos datos de entrada.</li>
+<li>Los problemas de aprendizaje supervisado se clasifican en problemas de regresión y de clasificación:
+<ul class="org-ul">
+<li>Problema de <b>regresión</b> si el conjunto imagen es continuo. La salida es una variable numérica.</li>
+<li>Problema de <b>clasificación</b> si el conjunto imagen es discreto. La salida es una variable categórica.</li>
+</ul></li>
+<li>Los algoritmos de Máquinas de Vector Soporte permiten <i><b>infinitos</b></i> valores de entrada.</li>
+</ul>
+</div>
+
+<ol class="org-ol">
+<li><a id="org977ea28"></a><span class="todo TODO">TODO</span> Leer <a href="https://stats.stackexchange.com/questions/22381/why-not-approach-classification-through-regression">https://stats.stackexchange.com/questions/22381/why-not-approach-classification-through-regression</a><br /></li>
+
+<li><a id="orga6c90c1"></a><span class="todo TODO">TODO</span> Leer <a href="https://datascience.stackexchange.com/questions/25298/how-to-know-when-to-treat-a-problem-as-a-classification-task-or-a-regression-tas">https://datascience.stackexchange.com/questions/25298/how-to-know-when-to-treat-a-problem-as-a-classification-task-or-a-regression-tas</a><br /></li>
+</ol>
+</div>
+
+<div id="outline-container-orgb9d1a92" class="outline-4">
+<h4 id="orgb9d1a92"><span class="section-number-4">3.1.5</span> Video: Unsupervised Learning</h4>
+<div class="outline-text-4" id="text-3-1-5">
+<ul class="org-ul">
+<li>En el aprendizaje no supervisado, le damos datos al programa con la intención de encontrar estructuras subyacentes, patrones.</li>
+<li>Un ejemplo típico es el <i>clustering</i> o agrupamiento de datos.</li>
+<li>En el ejemplo de sonido Cocktail Party, según <a href="https://www.coursera.org/learn/machine-learning/discussions/weeks/1/threads/hAp4LT1SEeaL_xIEq4QdBw">FAQ de la semana 1</a>, lo que usan es <i>Principal Component Analysis, PCA, a mathematical trick that takes two sets of correlated data, and returns two new sets of data that are not correlated.</i> No lo había visto así antes, creo&#x2026;</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc09c80f" class="outline-3">
+<h3 id="orgc09c80f"><span class="section-number-3">3.2</span> Model and cost function</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Vemos la regresión lineal como primer algoritmo de aprendizaje supervisado.
+</p>
+</div>
+
+<div id="outline-container-org7ee2038" class="outline-4">
+<h4 id="org7ee2038"><span class="section-number-4">3.2.1</span> Video: Model representation</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+Un poco de nomenclatura:
+</p>
+
+<ul class="org-ul">
+<li>\(m\): cantidad de ejemplos de entrenamiento.</li>
+<li>\(\vec{x}\): entradas / descriptores / <i>features</i></li>
+<li>\(\vec{y}\): salidas. \(\hat{\vec{y}}\) son las salidas estimadas.</li>
+<li>\(h_\theta\): función de hipótesis, de estimación. Tiene parámetros \(\vec{\theta}\). Entonces tenemos que \( \hat{y}^{(i)} = h_\theta(x^{(i)}) = h(x,\theta) \)</li>
+<li>\(x^{(i)}\): entrada $i$-ésima del vector de entradas, con índices empezando en 1.
+<ul class="org-ul">
+<li>\((x^{}^{}^{(i)},y^{}^{}^{(i)})\) es un ejemplo de entrenamiento.</li>
+</ul></li>
+<li>Para regresión lineal de una variable tenemos entonces</li>
+</ul>
+<p>
+\[ \hat{y}^{(i)} = h_\theta(x^{(i)}) = \theta_0 + \theta_1 * x^{(i)} \]
+</p>
+</div>
+</div>
+
+<div id="outline-container-org37dc548" class="outline-4">
+<h4 id="org37dc548"><span class="section-number-4">3.2.2</span> Reading: Model representation</h4>
+<div class="outline-text-4" id="text-3-2-2">
+<ul class="org-ul">
+<li>\(X\): el espacio de los valores de entrada.</li>
+<li>\(Y\): el espacio de los valores de salida.</li>
+<li>El objetivo del aprendizaje supervisado es encontrar una función \(h: X \rightarrow Y\) que sea buena prediciendo salidas a partir de entradas.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd6cdbe7" class="outline-4">
+<h4 id="orgd6cdbe7"><span class="section-number-4">3.2.3</span> Video: Cost function</h4>
+<div class="outline-text-4" id="text-3-2-3">
+<p>
+Formalizamos el problema del aprendizaje como la minimización de una función de costo \(J(\vec{\theta})\). La función de costo habitual y recomendada para problemas de regresión lineal es el <b>error cuadrático medio</b> (<a href="https://en.wikipedia.org/wiki/Mean_squared_error"><i>Mean Squared Error</i></a> o <i>Mean Squared Deviation</i>).
+</p>
+
+<p>
+Para un predictor como lo es \(h_\theta\), el MSE se define como
+\[ MSE = \frac{1}{N} (\sum_{1}^{N}Y_i - \hat{Y}_i )^2\]
+</p>
+
+<p>
+En nuestro caso vamos a definir a la función de costo para este problema de regresión lineal univariable como
+</p>
+
+<p>
+\[ J(\theta_0 , \theta_1) = \frac{1}{2m} \sum_{i=1}^m( h_\theta(x^{(i)}) - y^{(i)} )^2  \]
+\[ J(\theta_0 , \theta_1) =  \frac{1}{2m} \sum_{i=1}^m( \theta_0 + \theta_1 * x^{(i)} - y^{(i)} )^2 \]
+</p>
+
+<ul class="org-ul">
+<li>El factor \(1/2\) es para ahorrar cálculos, puesto que en redes neuronales al hacer <i>backpropagation</i> o <i>gradient descent</i> hay que derivar esta función de error y entonces con este \(1/2\) simplificamos el \(2\) de la derivada del cuadrado.</li>
+</ul>
+
+<p>
+La optimización es entonces encontrar los parámetros \(\theta\) que minimizan la función de costo:
+\[ \underset{\theta_0 , \theta_1}{\text{min}}  J(\theta_0 , \theta_1)\]
+</p>
+</div>
+</div>
+
+<div id="outline-container-org637e867" class="outline-4">
+<h4 id="org637e867"><span class="section-number-4">3.2.4</span> Reading: Cost function</h4>
+</div>
+
+<div id="outline-container-org2f75c28" class="outline-4">
+<h4 id="org2f75c28"><span class="section-number-4">3.2.5</span> Video: Cost function intuition I</h4>
+</div>
+
+<div id="outline-container-org1ee5ae7" class="outline-4">
+<h4 id="org1ee5ae7"><span class="section-number-4">3.2.6</span> Reading: Cost function intuition I</h4>
+</div>
+
+<div id="outline-container-org57e6c8a" class="outline-4">
+<h4 id="org57e6c8a"><span class="section-number-4">3.2.7</span> Video: Cost function intuition II</h4>
+</div>
+
+<div id="outline-container-org568685b" class="outline-4">
+<h4 id="org568685b"><span class="section-number-4">3.2.8</span> Reading: Cost function intuition II</h4>
+<div class="outline-text-4" id="text-3-2-8">
+<p>
+De <a href="https://es.wikipedia.org/wiki/Isol%C3%ADnea">isolíneas / curvas de nivel</a>.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org5e03532" class="outline-3">
+<h3 id="org5e03532"><span class="section-number-3">3.3</span> Parameter learning</h3>
+<div class="outline-text-3" id="text-3-3">
+</div>
+<div id="outline-container-org362f215" class="outline-4">
+<h4 id="org362f215"><span class="section-number-4">3.3.1</span> Video: Gradient descent</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<p>
+El descenso por el gradiente es un algoritmo de optimización que vamos a usar (entre otras cosas) para minimizar la función de costo.
+</p>
+
+<p>
+Hacer \[ \vec{\theta}[n+1] := \vec{\theta}[n] - \alpha \frac{\delta J(\vec{\theta})}{\delta\theta}  \]
+</p>
+
+<p>
+Hasta que \[  \vec{\theta}[n+1] - \vec{\theta}[n] < \epsilon \]
+</p>
+
+<ul class="org-ul">
+<li>Nomenclatura: usamos \(:=\) como operador de asignación.</li>
+<li>\(\alpha\) es la tasa de aprendizaje o <i>learning rate</i> del algoritmo.</li>
+</ul>
+
+<p>
+Para calcular la derivada hacemos derivadas parciales. Actualizamos los parámetros simultáneamente en cada paso. Si actualizamos de a uno estamos haciendo otro algoritmo, que probablemente también converja pero es distinto.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgdc77dd3" class="outline-4">
+<h4 id="orgdc77dd3"><span class="section-number-4">3.3.2</span> Reading: Gradient descent</h4>
+</div>
+
+<div id="outline-container-orga31242b" class="outline-4">
+<h4 id="orga31242b"><span class="section-number-4">3.3.3</span> Video: Gradient descent intuition</h4>
+<div class="outline-text-4" id="text-3-3-3">
+<ul class="org-ul">
+<li>Si \(\alpha\) es muy grande, el algoritmo puede oscilar o incluso diverger.</li>
+<li>Si \(\alpha\) es muy chica, puede tardar mucho en converger.</li>
+<li>Con \(\alpha\) fija, los "pasos" que da el algoritmo son cada vez más chicos a medida que la función de costo se aproxima a un mínimo local.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org48246c8" class="outline-4">
+<h4 id="org48246c8"><span class="section-number-4">3.3.4</span> Reading: Gradient descent intuition</h4>
+</div>
+
+<div id="outline-container-org15901ac" class="outline-4">
+<h4 id="org15901ac"><span class="section-number-4">3.3.5</span> Video: Gradient descent for linear regression</h4>
+<div class="outline-text-4" id="text-3-3-5">
+<p>
+Dice Andrew cerca del minuto 4:40:
+</p>
+
+<blockquote>
+<p>
+But, it turns out that that the cost function for
+linear regression is always going to be a bow shaped function like this.
+The technical term for this is that this is called a convex function.
+</p>
+</blockquote>
+
+<p>
+¿Por qué?
+</p>
+
+<ul class="org-ul">
+<li>La función de costo \(J(\vec{\theta})\) es el error cuadrático medio (MSE).</li>
+<li>El MSE es cuadrático respecto a los parámetros siempre y cuando estos sean lineales, de grado 1. <b>La función de hipótesis debe ser lineal respecto a los parámetros para que la función de costo sea cuadrática</b>.
+<ul class="org-ul">
+<li>Sea por ejemplo \[ h(x,y) =  a.x^2 + b.y^2 - c.x^2 y^2 \]. Esta función tiene más de un mínimo.</li>
+</ul></li>
+</ul>
+
+
+<div class="figure">
+<p><img src="imgs/001-01-nolineal.gif" alt="001-01-nolineal.gif" />
+</p>
+</div>
+
+<ul class="org-ul">
+<li>Su MSE quedaría algo como \[ x^4 + 2 x^2 y^2 - 2 x^4 y^2 + y^4 - 2 x^2 y^4 + x^4 y^4  \] (sólo <a href="https://www.wolframalpha.com/input/?i=%28x%5E2+%2B+y%5E2+-+x%5E2y%5E2%29%5E2">la elevé al cuadrado</a>)</li>
+</ul>
+
+
+<div class="figure">
+<p><img src="imgs/001-02-nolineal-cuadrado.gif" alt="001-02-nolineal-cuadrado.gif" />
+</p>
+</div>
+
+<hr />
+
+<p>
+Hay otras formas de estimar los parámetros (regresores). Una de ellas es el método de los mínimos cuadrados (<a href="https://en.wikipedia.org/wiki/Ordinary_least_squares">/Ordinary Least Squares</a>/). El descenso por el gradiente es más fácil de computar que OLS, en el caso de datasets grandes.
+</p>
+
+<p>
+En realidad todo lo que vimos es descenso por el gradiente por lotes, o <b><i>batch gradient descent</i></b>, que es cuando la función de costo se optimiza usando todas las entradas disponibles. Esto es costoso.
+</p>
+</div>
+
+
+
+<ol class="org-ol">
+<li><a id="orga14faf7"></a><span class="todo TODO">TODO</span> Leer más de <a href="https://en.wikipedia.org/wiki/Linear_regression">regresión lineal</a><br /></li>
+</ol>
+
+
+
+<li><a id="org52f7aae"></a>Regresión lineal<br /></li>
+</ol>
+</div>
+
+
+
+<div id="outline-container-orgfdf8824" class="outline-4">
+<h4 id="orgfdf8824"><span class="section-number-4">3.3.6</span> Reading: Gradient descent for linear regression</h4>
+</div>
+</div>
+
+<div id="outline-container-org328ce4a" class="outline-3">
+<h3 id="org328ce4a"><span class="section-number-3">3.4</span> Linear Algebra review</h3>
+</div>
+</div>
+
+<div id="outline-container-org566d3b2" class="outline-2">
+<h2 id="org566d3b2"><span class="section-number-2">4</span> Semana 2</h2>
+</div>
+
+<div id="outline-container-orgb40396d" class="outline-2">
+<h2 id="orgb40396d"><span class="section-number-2">5</span> Semana 3</h2>
+</div>
+
+<div id="outline-container-orga392faf" class="outline-2">
+<h2 id="orga392faf"><span class="section-number-2">6</span> Semana 4</h2>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Pablo Aguado</p>
+<p class="date">Created: 2020-04-04 sáb 22:57</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
