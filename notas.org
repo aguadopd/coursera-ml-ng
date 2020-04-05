@@ -179,6 +179,26 @@ En realidad todo lo que vimos es descenso por el gradiente por lotes, o */batch 
 
 ** Linear Algebra review
 
+*** Video: Matrix vector multiplication
+
+- Más adelante vamos a ver por qué es mejor vectorizar calculos en lugar de iterar.
+- Hace un truco interesante que es incluir a la ordenada al origen dentro del vector de parámetros ---en realidad está bien, es un parámetro calculado---, y luego introduce una columna de \(1\)s en la matriz de entradas.
+  - La alternativa es sumar la columna aparte. $A*X + B$
+
+*** Video: Matrix matrix multiplication
+
+- Acá hace el mismo truco pero para hacer varias predicciones a la vez: usa varios modelos y varias entradas.
+
+*** Video: Inverse and transpose
+
+Interesante:
+#+BEGIN_QUOTE
+But the intuition if you want is that you can think of matrices as not have an inverse that is somehow too close to zero in some sense.
+#+END_QUOTE
+
+- Las matrices que no tienen inversa son matrices /singulares/ o /degeneradas/.
+  - Asumo que se refiere a matrices cuadradas, que podrían tener inversa.
+
 * Semana 2
 
 * Semana 3
