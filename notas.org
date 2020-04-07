@@ -72,7 +72,7 @@ Un poco de nomenclatura:
 - $\vec{y}$: salidas. $\hat{\vec{y}}$ son las salidas estimadas.
 - $h_\theta$: función de hipótesis, de estimación. Tiene parámetros $\vec{\theta}$. Entonces tenemos que \( \hat{y}^{(i)} = h_\theta(x^{(i)}) = h(x,\theta) \)
 - $x^{(i)}$: entrada $i$-ésima del vector de entradas, con índices empezando en 1.
-  - $(x^{}^{}^{(i)},y^{}^{}^{(i)})$ es un ejemplo de entrenamiento.
+  - $(x^{(i)},y^{(i)})$ es un ejemplo de entrenamiento.
 - Para regresión lineal de una variable tenemos entonces 
 \[ \hat{y}^{(i)} = h_\theta(x^{(i)}) = \theta_0 + \theta_1 * x^{(i)} \]
 
@@ -200,6 +200,67 @@ But the intuition if you want is that you can think of matrices as not have an i
   - Asumo que se refiere a matrices cuadradas, que podrían tener inversa.
 
 * Semana 2
+
+** Video: Multivariate linear regression
+
+En la regresión lineal multivariable o regresión lineal múltiple, tenemos varios valores de entrada o descriptores. Para tener una notación más compacta y conveniente, vamos a definir:
+- $\theta_0=1$ ;
+- $n$ es la cantidad de entradas, descriptores;
+- vamos a usar $\vec{\theta}$ con índice $0$;
+- y $\vec{\theta}_j^{(i)}$ es el elemento j-ésimo del ejemplo i-ésimo.
+
+Entonces $\vec{\theta}$ tiene $n+1$ elementos y  \[ \vec{\theta} = 1 + \theta_1 + \theta_2 + \dots + \theta_n  \]
+
+
+Y luego \[ \vec{h_\theta}(\vec{x}) = \vec{\theta}^T \cdot \vec{x}  \]
+
+- Intuición para el ejemplo de estimar el precio de un inmueble: $\theta_0$ es el precio base.
+
+** Reading: multiple features
+
+** Video: Gradient descent for multiple features
+
+La regla de actualización era:
+
+ \[ \vec{\theta}[n+1] := \vec{\theta}[n] - \alpha \frac{\delta J(\vec{\theta})}{\delta\theta}  \]
+
+Y para cuando la función de costo es el error cuadrático medio (MSE), queda (para actualización con todos los $m$ ejemplos):
+
+\[ \vec{\theta}_j[n+1] := \vec{\theta}[n] - \alpha \sum_{i=1}^{m} \left( ( \vec{\theta}^T \cdot \vec{x}^{(i)} - y^{(i)}  ) x_j^{(i)} \right) \]
+
+- Puedo ver el factor de avance luego de $\alpha$ como el aporte al error medio que hizo el descriptor $x_j$ .
+  - El producto vectorial y la resta son el error medio para ese vector de entrada.
+  - El factor $x_j$ es el aporte de ese elemento, en esa dirección.
+    - La dirección final es la suma vectorial de los elementos.
+
+** Reading: Gradient descent for multiple features
+
+** Video: Gradient descent in practice I - Feature scaling
+
+- Al parecer, el algoritmo de descenso por el gradiente converge *bastante más rápidamente* si los descriptores están en el mismo orden de magnitud.
+  - Andrew propone que estén /más o menos/ en el rango $-3 < x_j < 3$ y duda si $\-frac{1}{3} < x < \frac{1}{3}$
+- Para esto se suele normalizar cada descriptor respecto al rango de sí mismo en la muestra (los m ejemplos de entrada) o respecto a la desviación estándar. Esto se llama */feature scaling/*.
+- Otra práctica habitual es centrar en cero los valores, para lo cual se resta la media de la muestra. Esto se llama */mean normalization/*.
+
+*** Más de feature scaling y mean normalization
+
+De la ecuación de actualización de los parámetros de la ecuación de hipótesis infiero que el vector se mueve _más rápidamente_ en dirección de los parámetros más grandes. Sin embargo en [[*Reading: Gradient descent in practice I - Feature scaling]] dice:
+
+#+begin_quote
+This is because θ will descend quickly on small ranges and slowly on large ranges, and so will oscillate inefficiently down to the optimum when the variables are very uneven.
+#+end_quote
+
+***** TODO Averiguar más de esto. ¿Por qué se hace?
+
+** Reading: Gradient descent in practice I - Feature scaling
+
+
+** Video: Gradient descent in practice II - Learning rate
+
+** Reading: Gradient descent in practice II - Learning rate
+
+
+
 
 * Semana 3
 
