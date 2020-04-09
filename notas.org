@@ -201,7 +201,11 @@ But the intuition if you want is that you can think of matrices as not have an i
 
 * Semana 2
 
-** Video: Multivariate linear regression
+** Environment setup instructions
+
+** Multivariate linear regression
+
+*** Video: Multivariate linear regression
 
 En la regresión lineal multivariable o regresión lineal múltiple, tenemos varios valores de entrada o descriptores. Para tener una notación más compacta y conveniente, vamos a definir:
 - $\theta_0=1$ ;
@@ -216,9 +220,9 @@ Y luego \[ \vec{h_\theta}(\vec{x}) = \vec{\theta}^T \cdot \vec{x}  \]
 
 - Intuición para el ejemplo de estimar el precio de un inmueble: $\theta_0$ es el precio base.
 
-** Reading: multiple features
+*** Reading: multiple features
 
-** Video: Gradient descent for multiple features
+*** Video: Gradient descent for multiple features
 
 La regla de actualización era:
 
@@ -233,16 +237,18 @@ Y para cuando la función de costo es el error cuadrático medio (MSE), queda (p
   - El factor $x_j$ es el aporte de ese elemento, en esa dirección.
     - La dirección final es la suma vectorial de los elementos.
 
-** Reading: Gradient descent for multiple features
+**** TODO EL ERROR ES MAYPR CUANDO HAY CORRELACIÓN ENTRE DESCRIPTORES Y PARÁMETROS.
 
-** Video: Gradient descent in practice I - Feature scaling
+*** Reading: Gradient descent for multiple features
+
+*** Video: Gradient descent in practice I - Feature scaling
 
 - Al parecer, el algoritmo de descenso por el gradiente converge *bastante más rápidamente* si los descriptores están en el mismo orden de magnitud.
-  - Andrew propone que estén /más o menos/ en el rango $-3 < x_j < 3$ y duda si $\-frac{1}{3} < x < \frac{1}{3}$
+  - Andrew propone que estén /más o menos/ en el rango $-3 < x_j < 3$ y duda si $-\frac{1}{3} < x < \frac{1}{3}$
 - Para esto se suele normalizar cada descriptor respecto al rango de sí mismo en la muestra (los m ejemplos de entrada) o respecto a la desviación estándar. Esto se llama */feature scaling/*.
 - Otra práctica habitual es centrar en cero los valores, para lo cual se resta la media de la muestra. Esto se llama */mean normalization/*.
 
-*** Más de feature scaling y mean normalization
+**** Más de feature scaling y mean normalization
 
 De la ecuación de actualización de los parámetros de la ecuación de hipótesis infiero que el vector se mueve _más rápidamente_ en dirección de los parámetros más grandes. Sin embargo en [[*Reading: Gradient descent in practice I - Feature scaling]] dice:
 
@@ -250,17 +256,70 @@ De la ecuación de actualización de los parámetros de la ecuación de hipótes
 This is because θ will descend quickly on small ranges and slowly on large ranges, and so will oscillate inefficiently down to the optimum when the variables are very uneven.
 #+end_quote
 
-***** TODO Averiguar más de esto. ¿Por qué se hace?
+****** TODO Averiguar más de esto. ¿Por qué se hace? ¿Tienen que ser de la misma magnitud o ser chicos?
 
-** Reading: Gradient descent in practice I - Feature scaling
-
-
-** Video: Gradient descent in practice II - Learning rate
-
-** Reading: Gradient descent in practice II - Learning rate
+*** Reading: Gradient descent in practice I - Feature scaling
 
 
+*** Video: Gradient descent in practice II - Learning rate
 
+- Si la función de costo $J(\vec{\theta})$ diverge u oscila, entonces mi tasa de aprendizaje $\alpha$ es muy grande. Si es muy chica, converge lentamente.
+- Puedo verlo graficando la función de costo.
+- Elegir el valor de $\alpha$ es, a priori, por prueba y error. */¿Habrá heurísticas para determinar un buen valor inicial?/*
+- La condición de convergencia también suele depender del problema. Andrew habla de valores absolutos... */¿por qué no usar un $\epsilon$ relativo?/*
+
+*** Reading: Gradient descent in practice II - Learning rate
+
+
+*** Video: Features and polynomial regression
+
+*** Reading: Features and polynomial regression
+
+- La regresión lineal es ajustar un modelo lineal, de grado 1, una combinación lineal entre las entradas y parámetros.
+- Podemos ajustar modelos no lineales como hipótesis si codificamos estas no linealidades dentro de los descriptores. Por ejemplo, para el caso de la estimación de precios de casas, un posible descriptor podría ser el cuadrado del área, y ahí estamos incluyendo algo cuadrático en el modelo.
+- Al incluir las no linealidades en los descriptores, pero todavía usando los parámetros como multiplicadores de orden 1, podemos seguir usando el descenso por el gradiente para optimizar.
+- Andrew habla también de usar relaciones entre entradas básicas para construir otras entradas. Por ejemplo, el producto de dos descriptores hace un nuevo descriptor que codifica otra relación.
+
+** Computing parameters analitically
+
+*** Video: Normal equation
+
+- Otra forma de optimizar la regresión lineal es resolverla analíticamente con el método de los [[https://en.wikipedia.org/wiki/Least_squares][mínimos cuadrados]] [[https://en.wikipedia.org/wiki/Linear_least_squares][lineales]] / ecuación normal. Esto da la solución óptima (que existe porque hemos dicho que para regresión lineal es un espacio de búsqueda cónvexo con un solo mínimo).
+
+\[  \vec{\theta} = ( X^T \times X )^{-1} \times X^T \times \vec{y}   \]
+
+\[ X = \left[  x^{(i)}  \right]  \]
+
+- La complejidad de invertir una matriz es $O(n^3)$ y esto se pone lento para $n > 10^5$. La complejidad del descenso por el gradiente, en cambio, es de $O(k \cdot n^2)$.
+
+- \(( X^T \times X )^{-1} \times X^T = X^{+}\) es la _[[https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse][pseudoinversa]]_ de $X$, y el método de mínimos cuadrados no es más que una solución (óptima en el sentido del error cuadrático) de un sistema de ecuaciones sobredeterminado.
+
+  - La pseudoinversa se puede calcular con /Singular Value Decomposition/ o Descomposición QR, por ejemplo.
+
+  - La regresión por mínimos cuadrados asume muchas cosas que no necesariamente siempre se cumplen. Ver la [[https://en.wikipedia.org/wiki/Robust_regression][regresión robusta]] como alternativa.
+
+*** Reading: Normal equation
+
+*** Video: Normal equation noninvertibility
+
+Si $( X^T \times X )$ no es invertible, entonces puede haber 2 problemas:
+
+1. El sistema esta subdeterminado. Faltan ejemplos, $m < n$ / tenemos muchos descriptores.
+   - Después vamos a ver que se soluciona con /regularización/.
+2. Algunos descriptores están muy correlacionados / son linealmente dependientes.
+
+Si no es invertible naturalmente (es singular o degenerada) igual se puede invertir con la pseudoinversa. Igual esto no sería problema si hubiésemos usado la pseudoinversa desde un principio en lugar de estar haciéndolo manualmente. Y, nuevamente, seguro hay métodos más robustos (aunque no hay que dejar de hacer análisis de la información con la que contamos).
+
+*** Reading: Normal equation noninvertibility
+
+
+** Submitting programming assignments
+
+** Review
+
+** Octave/Matlab tutorial
+
+** Review
 
 * Semana 3
 
