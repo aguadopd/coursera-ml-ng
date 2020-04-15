@@ -99,6 +99,16 @@ En nuestro caso vamos a definir a la función de costo para este problema de reg
 La optimización es entonces encontrar los parámetros $\theta$ que minimizan la función de costo:
 \[ \underset{\theta_0 , \theta_1}{\text{min}}  J(\theta_0 , \theta_1)\]
 
+------
+
+/En las notas del curso encontramos la forma matricial, que luego usamos para hacer descenso por el gradiente de forma matricial. Lo pongo acá por completitud/.
+
+MSE: \[ J(\theta) = \frac{1}{2m} (X\times\theta-Y)^T(X\times\theta-Y)  \]
+
+El producto implica la sumatoria y el cuadrado elemento a elemento.
+
+------
+
 *** Reading: Cost function
 
 *** Video: Cost function intuition I
@@ -120,12 +130,20 @@ El descenso por el gradiente es un algoritmo de optimización que vamos a usar (
 
 Hacer \[ \vec{\theta}[n+1] := \vec{\theta}[n] - \alpha \frac{\delta J(\vec{\theta})}{\delta\theta}  \]
 
+(expresado de otra manera)
+
+\[ {\theta}_i[n+1] := \vec{\theta}[n] - \alpha \frac{\delta J(\vec{\theta})}{\delta\theta}  \]
+
 Hasta que \[  \vec{\theta}[n+1] - \vec{\theta}[n] < \epsilon \]
 
 - Nomenclatura: usamos $:=$ como operador de asignación.
 - $\alpha$ es la tasa de aprendizaje o /learning rate/ del algoritmo.
 
 Para calcular la derivada hacemos derivadas parciales. Actualizamos los parámetros simultáneamente en cada paso. Si actualizamos de a uno estamos haciendo otro algoritmo, que probablemente también converja pero es distinto.
+
+Cuando la función de costo es el error cuadrático medio (/MSE/), la fórmula de actualización queda:
+
+\[ \theta_i[n+1] := \vec{\theta}[n] - \frac{\alpha}{m}  \sum_{i=1}^m( h_\theta(x^{(i)}) - y^{(i)} ) \theta_i  \]
 
 *** Reading: Gradient descent
 
@@ -216,9 +234,17 @@ En la regresión lineal multivariable o regresión lineal múltiple, tenemos var
 Entonces $\vec{\theta}$ tiene $n+1$ elementos y  \[ \vec{\theta} = 1 + \theta_1 + \theta_2 + \dots + \theta_n  \]
 
 
-Y luego \[ \vec{h_\theta}(\vec{x}) = \vec{\theta}^T \cdot \vec{x}  \]
+Y luego \[ \vec{h_\theta}(\vec{x}) = \vec{\theta}^T \cdot \vec{x}  = \vec{x}^T \cdot \vec{\theta}  \]
 
 - Intuición para el ejemplo de estimar el precio de un inmueble: $\theta_0$ es el precio base.
+
+------
+
+/En [[*Video: Normal equation]] se introduce notación matricial que luego en el ejercicio 1 usamos para expresar todo de forma vectorizada. Dejo todo acá para más completitud/.
+
+MSE: \[ J(\theta) = \frac{1}{2m} (X\times\theta-Y)^T(X\times\theta-Y)  \]
+
+------
 
 *** Reading: multiple features
 
@@ -226,16 +252,25 @@ Y luego \[ \vec{h_\theta}(\vec{x}) = \vec{\theta}^T \cdot \vec{x}  \]
 
 La regla de actualización era:
 
- \[ \vec{\theta}[n+1] := \vec{\theta}[n] - \alpha \frac{\delta J(\vec{\theta})}{\delta\theta}  \]
+ \[ \vec{\theta}[n+1] := \vec{\theta}[n] - \\alpha \frac{\delta J(\vec{\theta})}{\delta\theta}  \]
 
 Y para cuando la función de costo es el error cuadrático medio (MSE), queda (para actualización con todos los $m$ ejemplos):
 
-\[ \vec{\theta}_j[n+1] := \vec{\theta}[n] - \alpha \sum_{i=1}^{m} \left( ( \vec{\theta}^T \cdot \vec{x}^{(i)} - y^{(i)}  ) x_j^{(i)} \right) \]
+\[ \vec{\theta}_j[n+1] := \vec{\theta}[n] - \frac{\alpha}{m} \sum_{i=1}^{m} \left( ( \vec{\theta}^T \cdot \vec{x}^{(i)} - y^{(i)}  ) x_j^{(i)} \right) \]
 
 - Puedo ver el factor de avance luego de $\alpha$ como el aporte al error medio que hizo el descriptor $x_j$ .
   - El producto vectorial y la resta son el error medio para ese vector de entrada.
   - El factor $x_j$ es el aporte de ese elemento, en esa dirección.
     - La dirección final es la suma vectorial de los elementos.
+
+-------
+
+/La versión vectorizada/matricial del algoritmo está en las notas del curso y después la usamos en el ejercicio de programación 1. La dejo acá por completitud/.
+
+\[ \theta_{n \times 1}[i+1] = \theta_{n \times 1}[i] - \frac{\alpha}{m} X_{m \times n}^T (X_{m \times n} \theta_{n \times 1} - Y_{m \times 1} )_{m \times 1} \]
+\[ \theta_{}[i+1] = \theta[i] - \frac{\alpha}{m} X^T (X \theta - Y) \]
+
+-----------
 
 **** TODO EL ERROR ES MAYPR CUANDO HAY CORRELACIÓN ENTRE DESCRIPTORES Y PARÁMETROS.
 
@@ -290,6 +325,8 @@ This is because θ will descend quickly on small ranges and slowly on large rang
 
 \[ X = \left[  x^{(i)}  \right]  \]
 
+- A $X$ la llamamos */matriz de diseño/*. Cada fila es un ejemplo, y tiene tamaño $m \times n+1 $
+
 - La complejidad de invertir una matriz es $O(n^3)$ y esto se pone lento para $n > 10^5$. La complejidad del descenso por el gradiente, en cambio, es de $O(k \cdot n^2)$.
 
 - \(( X^T \times X )^{-1} \times X^T = X^{+}\) es la _[[https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse][pseudoinversa]]_ de $X$, y el método de mínimos cuadrados no es más que una solución (óptima en el sentido del error cuadrático) de un sistema de ecuaciones sobredeterminado.
@@ -319,7 +356,44 @@ Si no es invertible naturalmente (es singular o degenerada) igual se puede inver
 
 ** Octave/Matlab tutorial
 
+#+BEGIN_SRC octave
+  % Para ver una matriz/vector como píxeles con color
+  A = magic(9)
+  figure
+  imagesc(A)
+  colorbar
+  colormap gray
+#+END_SRC
+
+
 ** Review
+
+*** Programming assignment 1: linear regression
+
+- Mi gradient descent convergía pero no al mismo resultado exacto, y más rápida o lentamente. Me faltaba el factor $1/m$.
+- Armé una versión vectorizada del gradient descent pero es distinta a la propuesta:
+
+La mía:
+
+- usé $n$ como la longitud de $\theta$, incluyendo los \(1\)s.
+
+#+begin_src octave
+  M = length(y); % number of training examples
+  N = length(theta);
+  error = (X * theta) - y;  % Mx1
+  % ponderated_error = repmat(error, [1, N]) .* X;  % MxN
+  % ponderated_error = error * ones(1,n) * X  % MxN, equivale al broadcasting
+  ponderated_error = error .* X;  % Broadcasting. MxN
+  % gradient = sum(ponderated_error,1);  % 1xN
+  gradient = ones(1,M) * ponderated_error;  % 1xN, equivalente a la sumatoria
+  theta = theta - (alpha/M) * gradient';  % Nx1
+#+end_src
+
+\[ \theta_{n \times 1}[i+1] = \theta_{n \times 1}[i] - \frac{\alpha}{m} \left[ 1_{1 \times m} \left( X_{m \times n} \theta_{n \times 1} - Y_{m \times 1} \right)_{m \times 1} 1_{1 \times n} X_{m \times n} \right]^T  \]
+
+La original es más compacta:
+
+\[ \theta_{n \times 1}[i+1] = \theta_{n \times 1}[i] - \frac{\alpha}{m} X_{m \times n}^T (X_{m \times n} \theta_{n \times 1} - Y_{m \times 1} )_{m \times 1} \]
 
 * Semana 3
 

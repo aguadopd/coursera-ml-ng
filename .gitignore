@@ -301,3 +301,6 @@ dmypy.json
 .history
 
 # End of https://www.gitignore.io/api/emacs,octave,python,pycharm,jupyternotebooks,visualstudiocode
+
+
+ltximg/

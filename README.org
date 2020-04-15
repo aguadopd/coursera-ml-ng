@@ -9,13 +9,16 @@ Notas y ejercicios de mi paso por el curso de *Machine Learning* de Andrew Ng en
 |                  |       | <20>                                                                |       |
 |------------------+-------+---------------------------------------------------------------------+-------|
 | [2020-03-29 dom] |  1:00 | Comienzo. Creo carpetas para ir guardando las cosas                 |       |
-| [2020-03-30 lun] |  3:00 | Comienzo notas y semana 1.                                          |       |
-| [2020-04-04 sáb] |  5:30 | Semana 1. Model and cost function, Parameter learning.              |       |
-| [2020-04-05 dom] |  1:20 | Semana 1. Algebra review.                                           |       |
-| [2020-04-06 lun] | 01:10 | Semana 2. Multivariate linear regression hasta Feature scaling      |       |
-| [2020-04-08 mié] | 02:30 | Semana 2. Mv. linear regression y Computing parameters analitically |       |
+| [2020-03-30 lun] |  3:00 | S1. Comienzo notas y semana 1.                                      |       |
+| [2020-04-04 sáb] |  5:30 | S1. Model and cost function, Parameter learning.              |       |
+| [2020-04-05 dom] |  1:20 | S1. Algebra review.                                           |       |
+| [2020-04-06 lun] | 01:10 | S2. Multivariate linear regression hasta Feature scaling      |       |
+| [2020-04-08 mié] | 02:30 | S2. Mv. linear regression y Computing parameters analitically  |       |
+| [2020-04-09 jue] | 01:00 | S2: Octave/Matlab tutorial.                                         |       |
+| [2020-04-11 sáb] | 04:00 | S2: Programming assignment: linear regression.                      |       |
+| [2020-04-14 mar] | 02:00 | S2: Completo notas.                                                 |       |
 |------------------+-------+---------------------------------------------------------------------+-------|
-|                  | 14:30 |                                                                     |       |
+|                  | 21:30 |                                                                     |       |
 #+TBLFM: $2=vsum(@2..@-1);U
 
 
