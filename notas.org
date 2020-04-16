@@ -397,4 +397,49 @@ La original es más compacta:
 
 * Semana 3
 
+** Classification and representation
+
+*** Classification
+
+Vamos a ver la *regresión logística* que es un algoritmo de clasificación (aunque su nombre diga /regresión/).
+
+La regresión lineal no es un buen método para la clasificación en variables discretas. Acá necesitamos algo más no lineal. Una opción es usar regresión lineal + un umbral arbitrario de separación, pero aún no es suficiente.
+
+Vamos a ver clasificación binaria. Definimos como $0$ y $1$ a las clases. También usamos *etiqueta* para denominar a la salida $h_\theta(x)$.
+
+*** Hypothesis representation
+
+En clasificación binaria, los resultados observados sólo pueden tomar los valores $0$ y $1$, y por tanto nuestra función de hipótesis debería también sólo tomar esos valores.
+
+Para empezar elegimos una función que esté acotada a ese rango. Una opción es la *función logística* o *sigmoidea*:
+
+\[ h(z) = \frac{1}{1+e^z} \]
+
+\[ h(\theta,x) = h_\theta(x) = \frac{1}{1+e^{\theta^T x} \]
+
+- Mapea los reales al intervalo $[0, 1]$.
+
+Podemos interpretar los resultados como la probabilidad de que la hipótesis tome un valor, dada determinada entrada.
+
+- La suma de las probabilidades debe ser $1$.
+
+
+**** La función logística o sigmoidea
+
+- Se parece a la función cumulativa o función de distribución acumulada de una distribución normal/gaussiana.
+  - Pero esta tiene una función explícita, mientras que la FDA de la gaussiana no tiene forma cerrada.
+  - La función de densidad de probabilidad asociada "Se parece a la distribución normal en su forma, pero tiene colas más pesadas (y, por lo tanto, menor curtosis)". [[https://es.wikipedia.org/wiki/Distribuci%C3%B3n_log%C3%ADstica][Wikipedia: Distribución logística]]
+- Puedo pensar que la FDP de la distribución logística me indica la cantidad de información que me da el valor de un descriptor. En el pico es donde más aporta; luego mientras más me alejo del centro, más claro es que es de una clase o de la otra.
+- Es una aproximación suave de la función escalón.
+
+[[file:imgs/002-320px-Logistic-curve.svg.png]]
+
+\[ f(x) = \frac{L}{1+e^{-k(x-x_0)}}  \]
+
+- $L$ es el valor máximo.
+- $k$ es la tasa de crecimiento o pendiente de la curva.
+- $x_0$ es el centro
+
+*** Decision boundary
+
 * Semana 4
