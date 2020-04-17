@@ -462,19 +462,49 @@ Si usamos el error cuadrático medio como función de costo para optimizar con e
 
 Lo que hacemos entonces es proponer otra función de costo que sea convexa y diferenciable. Por supuesto, tiene que penalizar las predicciones/hipótesis erróneas. La que se propone es
 
-\[ J(h_\theta(x)) = J(h(\theta,x) = \quad -log(h_0(x)) \quad \text{si} y = 1   \]
-\[ J(h_\theta(x)) = J(h(\theta,x) = \quad -log(1-h_0(x)) \quad \text{si} y = 0   \]
+\[ J(h_\theta(x)) = J(h(\theta,x) = \quad -log(h_\theta(x)) \quad \text{si} y = 1   \]
+\[ J(h_\theta(x)) = J(h(\theta,x) = \quad -log(1-h_\theta(x)) \quad \text{si} y = 0   \]
 
-#+begin_src octave :exports results
+#+begin_src octave :exports none
   figure(1, "visible", "off");
   hold on;
-  sombrero;
+  grid
+  fplot("-log(x)", [0, 1, 0, 5], 'lineWidth', 4)
   set(gca, "linewidth", 4, "fontsize", 18)
-  l = legend;
-  set(l, "fontsize", 14)
-  print("-S400x400", "./imgs/test.png")
-  ans = "./imgs/test.png"
+  title('J(h( \theta ,x) = -log(h_\theta(x))')
+  legend off;
+  % l = legend;
+  % set(l, "fontsize", 14, "location","east")
+  print("-S300,300", "./imgs/003-01-logcost1.png")
+  ans = "[[file:./imgs/003-01-logcost1.png]]"
 #+end_src
 
+#+RESULTS:
+: [[file:./imgs/003-01-logcost1.png]]
+
+[[file:./imgs/003-01-logcost1.png]]
+
+
+
+#+begin_src octave :exports none
+  figure(1, "visible", "off");
+  hold on;
+  grid
+  fplot("-log(1-x)", [0, 1, 0, 5], 'lineWidth', 4)
+  set(gca, "linewidth", 4, "fontsize", 18)
+  title('J(h( \theta ,x) = -log(1-h_\theta(x))')
+  legend off;
+  % l = legend;
+  % set(l, "fontsize", 14, "location","east")
+  print("-S300,300", "./imgs/003-02-logcost2.png")
+  ans = "[[file:./imgs/003-02-logcost2.png]]"
+#+end_src
+
+#+RESULTS:
+: [[file:./imgs/003-02-logcost2.png]]
+
+[[file:./imgs/003-02-logcost2.png]]
+
+Nótese que tienden a infinito en $0$ y $1$ respectivamente.
 
 * Semana 4
