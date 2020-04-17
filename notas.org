@@ -415,7 +415,7 @@ Para empezar elegimos una función que esté acotada a ese rango. Una opción es
 
 \[ h(z) = \frac{1}{1+e^z} \]
 
-\[ h(\theta,x) = h_\theta(x) = \frac{1}{1+e^{\theta^T x} \]
+\[ h(\theta,x) = h_\theta(x) = \frac{1}{1+e^{\theta^T  x}}\]
 
 - Mapea los reales al intervalo $[0, 1]$.
 
@@ -441,5 +441,40 @@ Podemos interpretar los resultados como la probabilidad de que la hipótesis tom
 - $x_0$ es el centro
 
 *** Decision boundary
+
+La clasificación es discreta; para hacerla discreta necesitamos agregar un umbral a nuestra función de hipótesis. /No entiendo por qué pone el umbral como si fuese una cosa aparte de la función de hipótesis/. Entonces, para la regresión logística hacemos:
+
+\[ y = 0 \quad \text{si} \quad h(z) = h(z(\theta, x)) = h(\theta^T x) \lt 0,5 \]
+\[ y = 0 \quad \text{si} \quad h(z) = h(z(\theta, x)) = h(\theta^T x) \geq 0,5 \]
+
+Lo que equivale a
+
+\[ y = 0 \quad \text{si} \quad  \theta^T x < 0,5 \]
+\[ y = 1 \quad \text{si} \quad \theta^T x \ge 0,5 \]
+
+La función de entrada a la sigmoidea, $z(\theta,x)$ define el umbral de decisión. Al igual que vimos para regresión lineal, esta función no tiene por qué ser lineal con respecto a los descriptores (/¿mas sí lineal respecto a los parámetros?/), y es la que va a separar las clases en su espacio. Por ejemplo, para dos variables podría ser un elipsoide: \( z(\theta,x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \theta_3 x_1^2 + \theta_4 x_2^2 \).
+
+** Logistic regression model
+
+*** Cost function
+
+Si usamos el error cuadrático medio como función de costo para optimizar con el descenso por el gradiente, vamos a tener que derivar una función no lineal. Esto es porque la función logística/sigmoidea $h(z)$ no es lineal con respecto a los parámetros \theta, y por tanto el error cuadrático medio no es una función convexa; esto implica que tiene (¿o puede tener?) más de un mínimo.
+
+Lo que hacemos entonces es proponer otra función de costo que sea convexa y diferenciable. Por supuesto, tiene que penalizar las predicciones/hipótesis erróneas. La que se propone es
+
+\[ J(h_\theta(x)) = J(h(\theta,x) = \quad -log(h_0(x)) \quad \text{si} y = 1   \]
+\[ J(h_\theta(x)) = J(h(\theta,x) = \quad -log(1-h_0(x)) \quad \text{si} y = 0   \]
+
+#+begin_src octave :exports results
+  figure(1, "visible", "off");
+  hold on;
+  sombrero;
+  set(gca, "linewidth", 4, "fontsize", 18)
+  l = legend;
+  set(l, "fontsize", 14)
+  print("-S400x400", "./imgs/test.png")
+  ans = "./imgs/test.png"
+#+end_src
+
 
 * Semana 4
