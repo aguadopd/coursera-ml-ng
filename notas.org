@@ -132,18 +132,28 @@ Hacer \[ \vec{\theta}[n+1] := \vec{\theta}[n] - \alpha \frac{\delta J(\vec{\thet
 
 (expresado de otra manera)
 
-\[ {\theta}_i[n+1] := \vec{\theta}[n] - \alpha \frac{\delta J(\vec{\theta})}{\delta\theta}  \]
+\[ {\theta}_j[n+1] := {\theta}_j[n] - \alpha \frac{\delta J(\vec{\theta})}{\delta\theta}  \]
 
-Hasta que \[  \vec{\theta}[n+1] - \vec{\theta}[n] < \epsilon \]
+Hasta la convergencia de \(\vec{\theta}\), equivalente a la convergencia de \(J(\vec{\theta})\):
+
+\[  \vec{\theta}[n] - \vec{\theta}[n-1] < \vec{\epsilon} \]
+\[ J(\vec{\theta}[n]) - J(\vec{\theta}[n-1])  < \epsilon  \]
 
 - Nomenclatura: usamos $:=$ como operador de asignación.
 - $\alpha$ es la tasa de aprendizaje o /learning rate/ del algoritmo.
 
-Para calcular la derivada hacemos derivadas parciales. Actualizamos los parámetros simultáneamente en cada paso. Si actualizamos de a uno estamos haciendo otro algoritmo, que probablemente también converja pero es distinto.
+Para calcular la derivada hacemos derivadas parciales. Actualizamos los parámetros simultáneamente en cada paso. Si actualizamos de a uno y recalculamos estamos haciendo otro algoritmo, que probablemente también converja pero es distinto.
 
 Cuando la función de costo es el error cuadrático medio (/MSE/), la fórmula de actualización queda:
 
-\[ \theta_i[n+1] := \vec{\theta}[n] - \frac{\alpha}{m}  \sum_{i=1}^m( h_\theta(x^{(i)}) - y^{(i)} ) \theta_i  \]
+\[ \theta_j[n+1] := {\theta}_j[n] - \frac{\alpha}{m}  \sum_{i=1}^m( h_\theta(x^{(i)}) - y^{(i)} ) x_j^{(i)}  \]
+
+- El primer termino de la sumatoria es la magnitud y dirección del error.
+- El segundo término de la sumatoria es la sensibilidad de J respecto al parámetro, y resulta ser igual a la magnitud del descriptor asociado a ese parámetro.
+
+-----
+
+- [[https://www.youtube.com/watch?v=WnqQrPNYz5Q][Un video de /gradient descent/ sugerido en las notas del curso]].
 
 *** Reading: Gradient descent
 
@@ -200,7 +210,7 @@ En realidad todo lo que vimos es descenso por el gradiente por lotes, o */batch 
 *** Video: Matrix vector multiplication
 
 - Más adelante vamos a ver por qué es mejor vectorizar calculos en lugar de iterar.
-- Hace un truco interesante que es incluir a la ordenada al origen dentro del vector de parámetros ---en realidad está bien, es un parámetro calculado---, y luego introduce una columna de \(1\)s en la matriz de entradas.
+- Hace un truco interesante que es incluir a la ordenada al origen dentro del vector de parámetros ---en realidad está bien, es un parámetr calculado---, y luego introduce una columna de \(1\)s en la matriz de entradas.
   - La alternativa es sumar la columna aparte. $A*X + B$
 
 *** Video: Matrix matrix multiplication
@@ -242,7 +252,7 @@ Y luego \[ \vec{h_\theta}(\vec{x}) = \vec{\theta}^T \cdot \vec{x}  = \vec{x}^T \
 
 /En [[*Video: Normal equation]] se introduce notación matricial que luego en el ejercicio 1 usamos para expresar todo de forma vectorizada. Dejo todo acá para más completitud/.
 
-MSE: \[ J(\theta) = \frac{1}{2m} (X\times\theta-Y)^T(X\times\theta-Y)  \]
+\[ \hat{Y}(\theta,X) = X \theta  ]\
 
 ------
 
@@ -252,11 +262,11 @@ MSE: \[ J(\theta) = \frac{1}{2m} (X\times\theta-Y)^T(X\times\theta-Y)  \]
 
 La regla de actualización era:
 
- \[ \vec{\theta}[n+1] := \vec{\theta}[n] - \\alpha \frac{\delta J(\vec{\theta})}{\delta\theta}  \]
+ \[ \vec{\theta}[n+1] := \vec{\theta}[n] - \alpha \frac{\delta J(\vec{\theta})}{\delta\theta}  \]
 
-Y para cuando la función de costo es el error cuadrático medio (MSE), queda (para actualización con todos los $m$ ejemplos):
+Y para cuando la función de costo es el error cuadrático medio (MSE), queda (para actualización con *todos los $m$ ejemplos*):
 
-\[ \vec{\theta}_j[n+1] := \vec{\theta}[n] - \frac{\alpha}{m} \sum_{i=1}^{m} \left( ( \vec{\theta}^T \cdot \vec{x}^{(i)} - y^{(i)}  ) x_j^{(i)} \right) \]
+\[ \theta_j[n+1] := {\theta}_j[n] - \frac{\alpha}{m}  \sum_{i=1}^m( h_\theta(x^{(i)}) - y^{(i)} ) x_j^{(i)}  \]
 
 - Puedo ver el factor de avance luego de $\alpha$ como el aporte al error medio que hizo el descriptor $x_j$ .
   - El producto vectorial y la resta son el error medio para ese vector de entrada.
@@ -285,13 +295,29 @@ Y para cuando la función de costo es el error cuadrático medio (MSE), queda (p
 
 **** Más de feature scaling y mean normalization
 
-De la ecuación de actualización de los parámetros de la ecuación de hipótesis infiero que el vector se mueve _más rápidamente_ en dirección de los parámetros más grandes. Sin embargo en [[*Reading: Gradient descent in practice I - Feature scaling]] dice:
+De la ecuación de actualización de los parámetros de la ecuación de hipótesis
+infiero que el vector se mueve _más rápidamente_ en dirección de los parámetros
+más grandes. Sin embargo en [[*Reading: Gradient descent in practice I - Feature scaling]] dice:
 
 #+begin_quote
 This is because θ will descend quickly on small ranges and slowly on large ranges, and so will oscillate inefficiently down to the optimum when the variables are very uneven.
 #+end_quote
 
-****** TODO Averiguar más de esto. ¿Por qué se hace? ¿Tienen que ser de la misma magnitud o ser chicos?
+****** DONE Averiguar más de esto. ¿Por qué se hace? ¿Tienen que ser de la misma magnitud o ser chicos?
+CLOSED: [2020-04-18 sáb 02:46]
+
+- Ver https://www.robertoreif.com/blog/2017/12/21/importance-of-feature-scaling-in-data-modeling-part-2
+- Ver https://math.stackexchange.com/questions/2341704/feature-scalings-effect-on-gradient-descent
+
+Estaba entendiendo mal las curvas de nivel. El eje corto de las elipses es el asociado a los descriptores más grandes, con más rango. Son curvas de nivel de $J(\theta)$, no de $J(x)$.  Ahora si estoy de acuerdo.
+
+En regresión lineal (quizás puedo generalizarlo a cualquiera) *los parámetros tienen rangos "inversos" a los de los descriptores que multiplican*. Si un descriptor tiene un rango grande, entonces su parámetro asociado va a tener un rango chico.
+
+_Se podría solucionar también con learning rates diferenciados: más grandes para los descriptores de más rango, más chicos para los de menos rango._
+
+¡Lo que dice en [[*Reading: Gradient descent in practice I - Feature scaling]] está mal expresado entonces!
+
+****** TODO Corregir https://math.stackexchange.com/questions/2341704/feature-scalings-effect-on-gradient-descent
 
 *** Reading: Gradient descent in practice I - Feature scaling
 
@@ -458,12 +484,16 @@ La función de entrada a la sigmoidea, $z(\theta,x)$ define el umbral de decisi�
 
 *** Cost function
 
-Si usamos el error cuadrático medio como función de costo para optimizar con el descenso por el gradiente, vamos a tener que derivar una función no lineal. Esto es porque la función logística/sigmoidea $h(z)$ no es lineal con respecto a los parámetros \theta, y por tanto el error cuadrático medio no es una función convexa; esto implica que tiene (¿o puede tener?) más de un mínimo.
+Sea la función de costo $J$ la media de una función de error:
 
-Lo que hacemos entonces es proponer otra función de costo que sea convexa y diferenciable. Por supuesto, tiene que penalizar las predicciones/hipótesis erróneas. La que se propone es
+\[ J(\theta) = \frac{1}{m} \sum_1^m  error(\hat{y}, y) \]
 
-\[ J(h_\theta(x)) = J(h(\theta,x) = \quad -log(h_\theta(x)) \quad \text{si} y = 1   \]
-\[ J(h_\theta(x)) = J(h(\theta,x) = \quad -log(1-h_\theta(x)) \quad \text{si} y = 0   \]
+Si usamos el error cuadrático medio como función de error para optimizar con el descenso por el gradiente, vamos a tener que derivar una función no lineal. Esto es porque la función logística/sigmoidea $h(z)$ no es lineal con respecto a los parámetros \theta, y por tanto el error cuadrático medio no es una función convexa; esto implica que tiene (¿o puede tener?) más de un mínimo.
+
+Lo que hacemos entonces es proponer otra función de error que sea convexa y diferenciable. Por supuesto, tiene que penalizar las predicciones/hipótesis erróneas. La que se propone es
+
+\[ error(h_\theta(x)) = error(h(\theta,x) = \quad -\log(h_\theta(x)) \quad \text{si} \quad y = 1   \]
+\[ error(h_\theta(x)) = error(h(\theta,x) = \quad -\log(1-h_\theta(x)) \quad \text{si} \quad y = 0   \]
 
 #+begin_src octave :exports none
   figure(1, "visible", "off");
@@ -471,7 +501,7 @@ Lo que hacemos entonces es proponer otra función de costo que sea convexa y dif
   grid
   fplot("-log(x)", [0, 1, 0, 5], 'lineWidth', 4)
   set(gca, "linewidth", 4, "fontsize", 18)
-  title('J(h( \theta ,x) = -log(h_\theta(x))')
+  title('error(h( \theta ,x) = -log(h_\theta(x))')
   legend off;
   % l = legend;
   % set(l, "fontsize", 14, "location","east")
@@ -492,7 +522,7 @@ Lo que hacemos entonces es proponer otra función de costo que sea convexa y dif
   grid
   fplot("-log(1-x)", [0, 1, 0, 5], 'lineWidth', 4)
   set(gca, "linewidth", 4, "fontsize", 18)
-  title('J(h( \theta ,x) = -log(1-h_\theta(x))')
+  title('error(h( \theta ,x) = -log(1-h_\theta(x))')
   legend off;
   % l = legend;
   % set(l, "fontsize", 14, "location","east")
@@ -506,5 +536,116 @@ Lo que hacemos entonces es proponer otra función de costo que sea convexa y dif
 [[file:./imgs/003-02-logcost2.png]]
 
 Nótese que tienden a infinito en $0$ y $1$ respectivamente.
+
+------
+
+En la sección siguiente Andrew dice que esta función de costo (en realidad su forma simplificada) se puede derivar estadísticamente a partir del principio de estimación de máxima verisimilitud.
+
+*** Simplified cost function and gradient descent
+
+**** Forma simplificada
+
+Teníamos a la función de error para la regresión logística como:
+
+\[ error(h_\theta(x)) = error(h(\theta,x)) = \quad -\log(h_\theta(x)) \quad \text{si} \quad y = 1   \]
+\[ error(h_\theta(x)) = error(h(\theta,x)) = \quad -\log(1-h_\theta(x)) \quad \text{si} \quad y = 0   \]
+
+La forma simplificada es:
+
+\[ error(h(\theta,x)) = y (-\log(h_\theta(x))) + (1-y) (-\log(1-h_\theta(x)))   \]
+
+\[ error(h(\theta,x)) = -y \log(\hat{y}) - (1-y) \log(\hat{y})  \]
+
+Esta función es convexa (si $h$ es la sigmoidea, al menos).
+
+Luego la función de costo queda:
+
+\[  J(h_\theta(x)) = J(h(\theta,x)) = - \frac{1}{m} \sum_{i=1}^m \left[ y^{(i)} \log(h_\theta(x^{(i)})) + (1-y^{(i)}) \log(1-h_\theta(x^{(i)}))  \right]  \]
+
+La forma vectorizada/matricial es:
+
+\[ J(h(\theta,X)) = -\frac{1}{m} Y^T h(X\theta) - (1-Y)^T (1-h(X\theta))   \]
+
+**** Descenso por el gradiente
+
+Resulta que la derivada $\delta J(\theta,x)/\delta \theta$, es la misma que la que obtuvimos usando el error cuadrático medio (/MSE/) como función de costo para regresión lineal, y entonces la formula de actualización de parámetros es la misma:
+
+\[ \theta_j[n+1] := {\theta}_j[n] - \frac{\alpha}{m}  \sum_{i=1}^m( h_\theta(x^{(i)}) - y^{(i)} ) x_j^{(i)}  \]
+
+En forma vectorizada/matricial:
+
+\[ \theta_{}[i+1] = \theta[i] - \frac{\alpha}{m} X^T (h(X \theta) - Y) \]
+
+*** Advanced optimization
+
+Hay algoritmos generales de optimización mejores (pero más complejos) que el descenso por el gradiente. Andrew nombra:
+  - [[https://en.wikipedia.org/wiki/Conjugate_gradient_method][Gradientes conjugados]]
+  - BFGS ([[https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm][/Broyden–Fletcher–Goldfarb–Shanno algorithm/]])
+  - L-BFGS ([[https://en.wikipedia.org/wiki/Limited-memory_BFGS][/Limited memory BFGS/]])
+
+En Octave tenemos la función ~fminunc~ (de /function minimize unconstrained/) que nos permite optimizar usando una función de costo arbitraria. Le tenemos que proveer esa función de costo, que calcula la función de costo y el gradiente en cada iteración. En el ejemplo de Andrew, la función de costo calcula el gradiente de forma analítica, pero asumo que podrías también tener una memoria y usar diferencias.
+
+** Multiclass classification
+
+*** Multiclass classification: one vs all
+
+Si tenemos $n$ salidas discretas posibles, podemos modelar el problema con $n$ clasificadores binarios, que toman una salida como caso positivo y el resto como negativo.
+
+Una vez que clasificamos con todos los clasificadores, elegimos la salida definitiva como aquella que haya tenido la mayor confianza; y entonces tenemos que ver la probabilidad predicha antes de discretizarla.
+
+Nótese que esto también se cumple en los binarios cuando $n=2$: podemos verlo como que ambos clasificadores definen la misma frontera de decisión.
+
+** Solving the problem of overfitting
+
+*** The problem of overfitting
+
+Empezamos a evaluar la bondad de ajuste de nuestros modelos.
+
+- Un modelo subajustado (/underfitted/) o de alto sesgo (/high bias/) tiene mucho error para los datos con los que se entrenó, y por ende muy probablemente tenga mucho error con entradas nuevas. El modelo no captura las características del espacio del problema.
+  - El sesgo se asocia con prejuicio. El modelo prejuzga incorrectamente cómo deberían ser las entradas.
+- Un modelo sobreajustado (/overfitted/) predice /demasiado/ correctamente los datos con los que se ajustó, pero no predice correctamente entradas que sean un poco distintas; *no generaliza*. También se habla de que es un modelo con alta varianza (/high variance/), porque el espacio de funciones de hipótesis (de la complejidad propuesta) que predicen bien es muy grande; hay muchos grados de libertad.
+
+En los ejemplos mostrados, el ajuste se incrementa con el grado de las funciones de hipótesis, para regresión lineal. Entonces complejizar las funciones de hipótesis implica agregar más descriptores ---reales o sintéticos---.
+
+**** Opciones para reducir el sobreajuste
+
+Las principales formas de reducir el sobreajuste:
+
+1. Reducir la cantidad de descriptores.
+   - Manualmente o con métodos automáticos de selección de modelo.
+   - Perdemos información codificada en los descriptores que eliminamos.
+2. Usar *regularización*.
+   - Mantenemos todos los descriptores pero los ponderamos.
+
+*** Cost function
+
+Introducimos un parámetro de regularización $\lambda$ en la función de costo, que pondera la suma de los cuadrados de los parámetros $\theta$.
+
+- /Creo que este tipo de regularización tiene un nombre/.
+- /Usamos el cuadrado para que no se cancelen entre sí y porque es derivable supongo/.
+
+Por ejemplo, para /MSE/:
+
+\[ J(\theta,x,h(x),lambda) =  \frac{1}{2m} \sum_{i=1}^{m} \left[ h(\theta,x^{(i)}) - y^{(i)} \right]^2 + \lambda \sum_{j=1}^{n} \theta_j^2  \]
+
+- Se suele omitir la ordenada al origen, término de sesgo o *intercepto* $\theta_0$ porque no afecta mucho a los resultados.
+  - /Me parece que debe haber una razón más interesante, porque esta decisión hace que tengamos que calcular las funciones de costo de forma separada para \(\theta_0\)/.
+
+Lo que buscamos es tener parámetros pequeños, lo que hace que la función de hipótesis sea suave, simple.
+
+Más adelante vamos a ver formas de determinar el valor del parámetro de regularización $\lambda$ para que funcione. Si es muy grande, hay subajuste, y si es muy chico seguimos con sobreajuste.
+
+*** Regularized linear regression
+
+*** Regularized logistic regression
+
+** Review
+
+*** Quiz: Regularization
+
+- Agregar nuevos descriptores nos da una hipótesis igual o mejor a la que tenemos antes de agregarlos, en los datos de entrenamiento/modelado.
+  - Asumo que asume convergencia.
+
+*** Programming assignment
 
 * Semana 4
