@@ -535,7 +535,8 @@ Lo que hacemos entonces es proponer otra función de error que sea convexa y dif
 
 [[file:./imgs/003-02-logcost2.png]]
 
-Nótese que tienden a infinito en $0$ y $1$ respectivamente.
+- Nótese que tienden a infinito en $0$ y $1$ respectivamente.
+- Usamos el *logaritmo natural*, base $e$.
 
 ------
 
@@ -560,11 +561,11 @@ Esta función es convexa (si $h$ es la sigmoidea, al menos).
 
 Luego la función de costo queda:
 
-\[  J(h_\theta(x)) = J(h(\theta,x)) = - \frac{1}{m} \sum_{i=1}^m \left[ y^{(i)} \log(h_\theta(x^{(i)})) + (1-y^{(i)}) \log(1-h_\theta(x^{(i)}))  \right]  \]
+\[  J(h_\theta(x)) = J(h(\theta,x)) =  \frac{1}{m} \sum_{i=1}^m \left[ -y^{(i)} \log(h_\theta(x^{(i)})) - (1-y^{(i)}) \log(1-h_\theta(x^{(i)}))  \right]  \]
 
 La forma vectorizada/matricial es:
 
-\[ J(h(\theta,X)) = -\frac{1}{m} Y^T h(X\theta) - (1-Y)^T (1-h(X\theta))   \]
+\[ J(h(\theta,X)) = \frac{1}{m} \left[ - Y^T \log(h(X\theta)) - (1-Y)^T \log(1-h(X\theta)) \right]  \]
 
 **** Descenso por el gradiente
 
@@ -626,18 +627,89 @@ Introducimos un parámetro de regularización $\lambda$ en la función de costo,
 
 Por ejemplo, para /MSE/:
 
-\[ J(\theta,x,h(x),lambda) =  \frac{1}{2m} \sum_{i=1}^{m} \left[ h(\theta,x^{(i)}) - y^{(i)} \right]^2 + \lambda \sum_{j=1}^{n} \theta_j^2  \]
+\[ J(\theta,x,h(x),\lambda) =  \frac{1}{2m} \left( \sum_{i=1}^{m} \left[ h(\theta,x^{(i)}) - y^{(i)} \right]^2 + \lambda \sum_{j=1}^{n} \theta_j^2 \right)  \]
 
 - Se suele omitir la ordenada al origen, término de sesgo o *intercepto* $\theta_0$ porque no afecta mucho a los resultados.
   - /Me parece que debe haber una razón más interesante, porque esta decisión hace que tengamos que calcular las funciones de costo de forma separada para \(\theta_0\)/.
+    - En verdad es incorrecto pretender que el intercepto sea pequeño. Ver abajo en [[*Buscar por qué no usamos $\theta_0$]].
+
 
 Lo que buscamos es tener parámetros pequeños, lo que hace que la función de hipótesis sea suave, simple.
 
 Más adelante vamos a ver formas de determinar el valor del parámetro de regularización $\lambda$ para que funcione. Si es muy grande, hay subajuste, y si es muy chico seguimos con sobreajuste.
 
+****** DONE Buscar por qué no usamos $\theta_0$
+CLOSED: [2020-04-20 lun 00:53]
+
+El intercepto es nuestro factor de prejuicio que es independente de los descriptores. Es nuestra respuesta por defecto cuando no tenemos información, y no tiene por qué ser un valor chico. Por tanto no lo introducimos en el algoritmo de regularización.
+
+Recordemos que el intercepto es una variable independiente, la ordenada al origen. Lo introducimos dentro del vector de parámetros solo por conveniencia, para simplificar los cálculos.
+
 *** Regularized linear regression
 
+La función de costo usando error cuadrático medio y regresión lineal nos queda
+
+\[ J(\theta,x,h(x),\lambda) =  \frac{1}{2m} \left( \sum_{i=1}^{m} \left[ h(\theta,x^{(i)}) - y^{(i)} \right]^2 + \lambda \sum_{j=1}^{n} \theta_j^2 \right)  \]
+
+Nótese que $j$ empieza en $1$. La regla de actualización derivada es:
+
+\[ \theta_j[n+1] := {\theta}_j[n] - \frac{\alpha}{m}  \sum_{i=1}^m( h_\theta(x^{(i)}) - y^{(i)} ) x_j^{(i)} \quad \text{si} \quad j=0 \]
+
+\[ \theta_j[n+1] := {\theta}_j[n] - \frac{\alpha}{m}  \sum_{i=1}^m( h_\theta(x^{(i)}) - y^{(i)} ) x_j^{(i)} + \frac{\lambda}{m} \theta_j \quad \text{si} \quad j>0 \]
+
+Factorizando $\theta_j$ de esta última ecuación nos queda
+
+\[ \theta_j[n+1] := {\theta}_j[n](1 - \frac{\alpha\lambda}{m}) - \frac{\alpha}{m}  \sum_{i=1}^m( h_\theta(x^{(i)}) - y^{(i)} ) x_j^{(i)}  \quad \text{si} \quad j>0 \]
+
+El factor $(1 - \frac{\alpha\lambda}{m})$ nos indica que en todas las actualizaciones se comienza reduciendo el valor anterior de los parámetros.
+
+**** Forma matricial/vectorizada
+
+La forma matricial/vectorizada queda
+
+\[ J(\theta, X, \lambda) = \frac{1}{2m} (X\theta - Y) + \frac{\lambda}{2m} \theta(1:n)^T \theta(1:n) \]
+
+
+La actualización necesita 2 etapas: la primera es el cálculo normal sin regularización, y de aquí guardamos $\theta_0$; en la segunda sumamos el termino de regularización; y finalmente reemplazamos con el $\theta_0$ encontrado anteriormente.
+
+\[ \theta[i+1]^{(a)} := \theta[i] - \frac{\alpha}{m} X^T (h(X \theta) - Y) \]
+\[ \theta_0[i+1]^{} := \theta[i+1]^{(a)}(0) \]
+\[ \theta[i+1]^{} := \theta[i+1]^{(a)} + \frac{\lambda}{2m} \theta[i] \]
+\[ \theta[i+1](0) := \theta_0[i+1]  \]
+
+
+------------
+
+**** La ecuación normal con regularización
+
+La ecuación normal era
+
+\[  \theta = [ ( X^T \times X)^{-1} \times X^T ] \times Y  \]
+
+Agregamos un término de regularización:
+
+\[  \theta = [ ( X^T \times X \times \lambda L)^{-1} \times X^T ] \times Y  \]
+
+Donde L es una matriz diagonal cuyo primer elemento de la diagonal principal es $0$ e indica que no queremos que la regularización afecte al parámetro \theta_0 .
+
+Este termino de regularización *hace que esa matriz sea invertible aunque se trate de un sistema subdeterminado* (siempre que $\lambda>0$).
+  - En las [[https://www.coursera.org/learn/machine-learning/discussions/weeks/3/threads/poUNvD1-EeakuhJbRt69hQ][preguntas frecuentes de la semana 3]] dicen que [[http://web.mit.edu/zoya/www/linearRegression.pdf][acá hay un "boceto de demonstración"]].
+
 *** Regularized logistic regression
+
+La función de costo de la regresión logística con regularización queda: 
+
+\[  J(h_\theta(x), \lambda) = J(h(\theta,x)) = \frac{1}{m} \sum_{i=1}^m \left[-y^{(i)} \log(h_\theta(x^{(i)})) - (1-y^{(i)}) \log(1-h_\theta(x^{(i)}))  \right] + \frac{\lambda}{2m} \sum_{j=1}^n \theta_j^2 \]
+
+La forma vectorizada/matricial:
+
+\[ J(h(\theta,X), \lambda) = \frac{1}{m} \left[ -Y^T \log(h(X\theta)) - (1-Y)^T \log(1-h(X\theta)) \right] + \frac{\lambda}{2m} \theta(1:n)^T \theta(1:n) \]
+
+La regla de actualización es igual que para regresión lineal con /MSE/, calculando por separado $\theta_0$.
+
+
+
+
 
 ** Review
 
@@ -646,6 +718,51 @@ Más adelante vamos a ver formas de determinar el valor del parámetro de regula
 - Agregar nuevos descriptores nos da una hipótesis igual o mejor a la que tenemos antes de agregarlos, en los datos de entrenamiento/modelado.
   - Asumo que asume convergencia.
 
-*** Programming assignment
+*** Programming assignment: logistic regression
+
+- Corregí algunas funciones vectorizadas de mis notas.
+- El logaritmo es logaritmo natural, no base 10. Por tanto debería escribir $ln$ en lugar de $log$, aunque en Octave la función es ~log~.
+- /Cross entropy/
+- Usamos /feature mapping/ para crear nuevos descriptores a partir de los 2 que teníamos. Los nuevos son todas las combinaciones lineales posibles de descriptores, hasta cierto grado.
+
+#+begin_src octave
+  function out = mapFeature(X1, X2)
+  % MAPFEATURE Feature mapping function to polynomial features
+  %
+  %   MAPFEATURE(X1, X2) maps the two input features
+  %   to quadratic features used in the regularization exercise.
+  %
+  %   Returns a new feature array with more features, comprising of 
+  %   X1, X2, X1.^2, X2.^2, X1*X2, X1*X2.^2, etc..
+  %
+  %   Inputs X1, X2 must be the same size
+  %
+
+    degree = 6;
+    out = ones(size(X1(:,1)));
+    for i = 1:degree
+      for j = 0:i
+        out(:, end+1) = (X1.^(i-j)).*(X2.^j);
+      end
+    end
+
+  end
+
+  % ---------
+  % Add Polynomial Features
+  % Note that mapFeature also adds a column of ones for us, so the intercept
+  % term is handled
+  X = mapFeature(X(:,1), X(:,2));
+
+#+end_src
+
+- $\theta_0$: manejé los distintos gradientes así:
+
+#+begin_src octave
+  grad = (1/m) * X'*(sigmoid(X*theta) - y);
+  grad0 = grad(1);
+  grad = grad + (lambda/m).*theta;
+  grad(1) = grad0;
+#+end_src
 
 * Semana 4

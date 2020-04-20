@@ -25,8 +25,9 @@ Notas y ejercicios de mi paso por el curso de *Machine Learning* de Andrew Ng en
 | [2020-04-18 sáb] | 01:10 | S3. Logistic regression model.                                |       |
 | [2020-04-18 sáb] | 00:30 | S3. Multiclass classification. Review.                        |       |
 | [2020-04-18 sáb] | 02:00 | S3. Solving the problem of overfitting.                       |       |
+| [2020-04-19 dom] | 03:30 | S3. Programming assignment y completo notas.                  |       |
 |------------------+-------+---------------------------------------------------------------+-------|
-|                  | 31:40 |                                                               |       |
+|                  | 35:10 |                                                               |       |
 #+TBLFM: $2=vsum(@2..@-1);U
 
 
