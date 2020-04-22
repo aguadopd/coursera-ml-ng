@@ -26,8 +26,9 @@ Notas y ejercicios de mi paso por el curso de *Machine Learning* de Andrew Ng en
 | [2020-04-18 sáb] | 00:30 | S3. Multiclass classification. Review.                        |       |
 | [2020-04-18 sáb] | 02:00 | S3. Solving the problem of overfitting.                       |       |
 | [2020-04-19 dom] | 03:30 | S3. Programming assignment y completo notas.                  |       |
+| [2020-04-21 mar] | 01:40 | S4. Review cosas S3. S4: Motivations, Neural Networks         |       |
 |------------------+-------+---------------------------------------------------------------+-------|
-|                  | 35:10 |                                                               |       |
+|                  | 36:50 |                                                               |       |
 #+TBLFM: $2=vsum(@2..@-1);U
 
 

@@ -20,6 +20,10 @@ Ideas mías a lo largo del curso.
 1. Probar [[https://github.com/google-research/google-research/blob/master/automl_zero/README.md][AutoML-Zero]].
 2. Buscar clusters en espacios transformados y muy transformados. Ej: Fourier, Fourier de Fourier, Cepstrum...
 
+** Enlaces
+
+1. http://www.deeplearningbook.org/
+2. 
 
 * Semana 1
 
@@ -766,3 +770,66 @@ La regla de actualización es igual que para regresión lineal con /MSE/, calcul
 #+end_src
 
 * Semana 4
+
+Empezamos a ver redes neuronales.
+
+** Motivations
+
+*** Non-linear hypotheses
+
+Las redes neuronales son de los clasificadores más avanzados y usados hoy en día.
+
+Para problemas poco lineales, la regresión logística empieza a necesitar muchos descriptores. Demasiados. Sea por ejemplo un problema con dos descriptores $x_1$ y $x_2$. Si queremos más expresividad de clasificación y añadimos como descriptores sintéticos todos los productos de segundo orden, tenemos $x_1^2 , x_2^2, x_1 x_2 $, y tendríamos un total de 5 descriptores. Este total crece como $O(\frac{n^2}{2})$. Los de tercer orden crecen como $O(n^3)$.
+
+Hay muchos problemas que de entrada ya están definidos por muchos descriptores. Un ejemplo: las imágenes digitales. Por ejemplo, una imagen de 100\times100px requeriría aproximadamente 50 millones de descriptores de segundo grado.
+
+
+*** Neurons and the brain
+
+- /The "one learning algorithm" hypotesis/: el cerebro tiene el mismo algoritmo de aprendizaje siempre, y se adapta a cualquier entrada.
+
+****** TODO https://www.lesswrong.com/posts/9Yc7Pp7szcjPgPsjf/the-brain-as-a-universal-learning-machine
+
+****** TODO https://www.youtube.com/watch?v=AY4ajbu_G3k
+
+****** TODO https://www.youtube.com/watch?v=NKpuX_yzdYs
+
+****** TODO https://www.youtube.com/watch?v=zIwLWfaAg-8
+
+****** TODO https://www.wired.com/2013/05/neuro-artificial-intelligence/
+
+** Neural networks
+
+*** Model representation I
+
+Está largo de escribir así que copio la imagen:
+
+[[./imgs/004-neural-network-model.png]]
+
+Algo de nomenclatura y convenciones:
+
+- Es equivalente hablar de una *unidad*, una *neurona*, la salida de una neurona o la *activación* de una neurona. Siempre hablamos del resultado de la función de activación ante ciertas entradas y parámetros o pesos: $h(\theta,x)$. La neurona en sí no tiene significado en el modelo, aunque lo tiene en el diagrama.
+  - La unidad 1 de la capa 2 es $a_2^{(1)}$.
+  - Se suele omitir la unidad de sesgo de cada capa, $a_0^{(j)}$, porque vale siempre 1. Esta es la que se multiplica por $\theta_0$. /DISCREPO/.
+- La función de activación típica es la función logística/sigmoidea.
+- A los parámetros de la función también les decimos *pesos*.
+  - \Theta^{(j)} es la matriz de pesos que relaciona la capa $j$ con la siguiente $j+1$. Si una capa $j$ tiene $s_j$ unidades y la siguiente es $j+1$ con $s_{j+1}$ unidades, la dimensión de $\Theta^{(j)}$ será $(s_{j+1})\times(s_j+1)$ (entradas \times (salidas + entradas independientes)); el $+1$ es por la unidad de sesgo.
+- En los diagramas se funden axones y dendritas de capas conectadas, adyacentes. Entonces los únicos axones son los de la capa de salida.
+- A las capas que no son de salida o entrada se les suele llamar *capas ocultas*.
+
+*** Model representation II
+
+** Applications
+
+*** Examples and intuitions I
+
+*** Examples and intuitions II
+
+*** Multiclass classification
+
+** Review
+
+*** Quiz: Neural networks: representation
+
+*** Programming assignment: multi-class classificatin and neural networks
+
