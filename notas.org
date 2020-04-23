@@ -808,9 +808,10 @@ Está largo de escribir así que copio la imagen:
 
 Algo de nomenclatura y convenciones:
 
-- Es equivalente hablar de una *unidad*, una *neurona*, la salida de una neurona o la *activación* de una neurona. Siempre hablamos del resultado de la función de activación ante ciertas entradas y parámetros o pesos: $h(\theta,x)$. La neurona en sí no tiene significado en el modelo, aunque lo tiene en el diagrama.
+- Es equivalente hablar de una *unidad*, una *neurona*, la salida de una neurona o la *activación* de una neurona. Siempre hablamos del resultado de la función de activación ante ciertas entradas y parámetros o pesos: $g(\theta,x)$. La neurona en sí no tiene significado en el modelo, aunque lo tiene en el diagrama.
   - La unidad 1 de la capa 2 es $a_2^{(1)}$.
   - Se suele omitir la unidad de sesgo de cada capa, $a_0^{(j)}$, porque vale siempre 1. Esta es la que se multiplica por $\theta_0$. /DISCREPO/.
+- $h_{\Theta}^{}(\vec{x}^{})$ es la salida final de la red neuronal, en función de las entradas.
 - La función de activación típica es la función logística/sigmoidea.
 - A los parámetros de la función también les decimos *pesos*.
   - \Theta^{(j)} es la matriz de pesos que relaciona la capa $j$ con la siguiente $j+1$. Si una capa $j$ tiene $s_j$ unidades y la siguiente es $j+1$ con $s_{j+1}$ unidades, la dimensión de $\Theta^{(j)}$ será $(s_{j+1})\times(s_j+1)$ (entradas \times (salidas + entradas independientes)); el $+1$ es por la unidad de sesgo.
@@ -819,9 +820,18 @@ Algo de nomenclatura y convenciones:
 
 *** Model representation II
 
+Este modelo básico de red neuronal es un conjunto de funciones logísticas encadenadas. La forma de conectar las neuronas (arquitectura) le va a permitir aprender funciones no lineales complejas.
+
+En forma vectorizada y asumiendo la misma función de activación $g^{(j)}$ para todas las neuronas:
+
+\[ h_{\Theta}^{}(\vec{x}^{}) = h(g, \vec{x}, \Theta) \]
+\[ \vec{a}^{(j) }= g_{}^{}(\vec{z}^{(j)}) = g(\Theta^{(j-1)} \vec{a}^{(j-1)})  \]
+
 ** Applications
 
 *** Examples and intuitions I
+
+Con una neurona de 3 entradas puedo calcular las funciones AND y OR.
 
 *** Examples and intuitions II
 
