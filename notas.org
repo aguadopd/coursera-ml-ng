@@ -835,7 +835,13 @@ Con una neurona de 3 entradas puedo calcular las funciones AND y OR.
 
 *** Examples and intuitions II
 
+Ejemplo de XNOR.
+
 *** Multiclass classification
+
+Para clasificación multiclase solo tenemos que tener tantas salidas como clases. Luego, codificamos la salida como un vector "/one hot/", donde todos los elementos son $0$ menos el de la salida correcta, que es $1$.
+
+Las salidas de la red $\vec{\hat{y}} = h_\Theta(\vec{x})$ no son una distribución de probabilidad, no necesariamente suman 1. Son la salida de distintas sigmoideas, y cada una representa la confianza que tiene ese clasificador.
 
 ** Review
 
