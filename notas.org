@@ -701,7 +701,7 @@ Este termino de regularización *hace que esa matriz sea invertible aunque se tr
 
 *** Regularized logistic regression
 
-La función de costo de la regresión logística con regularización queda: 
+La función de costo de la regresión logística con regularización queda:
 
 \[  J(h_\theta(x), \lambda) = J(h(\theta,x)) = \frac{1}{m} \sum_{i=1}^m \left[-y^{(i)} \log(h_\theta(x^{(i)})) - (1-y^{(i)}) \log(1-h_\theta(x^{(i)}))  \right] + \frac{\lambda}{2m} \sum_{j=1}^n \theta_j^2 \]
 
@@ -848,4 +848,89 @@ Las salidas de la red $\vec{\hat{y}} = h_\Theta(\vec{x})$ no son una distribuci�
 *** Quiz: Neural networks: representation
 
 *** Programming assignment: multi-class classificatin and neural networks
+
+* Semana 5
+
+Vamos a ver el algoritmo de retropropagación o propagación hacia atrás (/backpropagation/) para el aprendizaje de redes neuronales.
+
+** Cost function and backpropagation
+
+*** Cost function
+
+Para optimizar un conjunto de parámetros $\Theta$ necesitamos primero definir una función de costo a minimizar.
+
+Algunas definiciones:
+
+- $K$ es la cantidad de salidas de la red.
+  - Usamos $k$ para indizarlas.
+- $L$ es la cantidad de capas de nuestra red.
+  - Usamos $l$ para indizarlas.
+- $s_l$ es la cantidad de neuronas/unidades de la capa $l$, *sin contar la unidad de sesgo $a_0^{(l)}$*.
+
+La función de costo es una extensión de la regularizada que usábamos para regresión logística.
+
+- Sumamos los errores de todas las salidas.
+- Regularizamos todos los parámetros $\theta$ de las matrices $\Theta$, excepto aquellos que relacionan unidades de sesgo. Estos son corresponden a la primera fila y la primera columna de cada $\Theta$.
+
+\[  J(\Theta, \lambda) = \frac{1}{m} \sum_{k=1}^K \sum_{i=1}^m \left[-y_k^{(i)} \log(h_\Theta(x^{(i)})_k) - (1-y_k^{(i)}) \log(1-h_\Theta(x^{(i)})_k)  \right] + \frac{\lambda}{2m} \sum_{l=1}^L \sum_{v=1}^{s_{l+1}} \sum_{j=1}^{s_l} (\Theta_{v,j}^{(l)})^2 \]
+
+- /Yo voy a usar $v$ donde él usa OTRA $i$/.
+
+
+*** Backpropagation algorithm
+
+Esto está complicado así que nos lo dan sin demostraciones.
+
+\[  \frac{\delta J(\Theta)}{\delta \Theta_{v,j}^{(l)} } = D_{v,j}^{(l)}  \]
+
+\[ D_{v,j}^{(l)} = \frac{1}{m} \Delta_{v,j}^{(l)} + \lambda \Theta_{v,j}^{(l)} \quad \text{si} \quad j=0  \]
+
+\[ D_{v,j}^{(l)} = \frac{1}{m} \Delta_{v,j}^{(l)} \quad \text{si} \quad j\ne0  \]
+
+$\Delta_{v,j}^{(l)}$ son matrices en las que vamos acumulando los errores de cada unidad de cada capa, para cada ejemplo de entrada. El proceso es:
+
+1. Para cada ejemplo $x{(i)}$:
+   1. Calculamos las salidas de la red, propagando hacia adelante.
+   2. Calculamos los errores, propagando hacia atrás.
+
+\[  \Delta_{v,j}^{(l)} [n+1] := \Delta_{v,j}^{(l)} [n] + \vec{a}_j^{(l)} \vec{\delta}_{v}^{(l+1)} \]
+
+De forma vectorizada/matricial:
+
+\[ \Delta^{(l)}[n+1] := \Delta^{(l)}[n] + \delta^{(l+1)} (a^{(l)})^T   \]
+
+
+$\vec{\delta}^{(l)}$ es un vector de los errores para cada capa. Si no entiendo mal, es la derivada de $g$ en el punto determinado por sus entradas, multiplicado por el avance del error retropropagado.
+
+\[  \vec{\delta}^{(l=L)} :=  \vec{a}^{(l)} - \vec{y}^{}  \]
+
+\[  \vec{\delta}^{( 1 \lt l \lt L )} := (\Theta^{(l)})^T \vec{\delta}^{(l+1)} * \vec{g'}(z^{(l)})  \]
+
+\[ \vec{g'} (z^{(l)}) = \vec{a}^{(l)} .* (\vec{1} - \vec{a}^{(l)} )  \]
+
+
+
+
+
+*** Backpropagation intuition
+
+** Backpropagation in practice
+
+*** Implementation note: unrolling parameters
+
+*** Gradient checking
+
+*** Random initialization
+
+*** Putting it together
+
+*** Autonomous driving
+
+** Applications of neural networks
+
+*** Quiz: Neural networks: learning
+
+*** Programming assignment: neural network learning
+
+** Review
 
