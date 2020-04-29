@@ -132,11 +132,11 @@ De [[https://es.wikipedia.org/wiki/Isol%C3%ADnea][isolíneas / curvas de nivel]]
 
 El descenso por el gradiente es un algoritmo de optimización que vamos a usar (entre otras cosas) para minimizar la función de costo.
 
-Hacer \[ \vec{\theta}[n+1] := \vec{\theta}[n] - \alpha \frac{\delta J(\vec{\theta})}{\delta\theta}  \]
+Hacer \[ \vec{\theta}[n+1] := \vec{\theta}[n] - \alpha \frac{\partial J(\vec{\theta})}{\partial\theta}  \]
 
 (expresado de otra manera)
 
-\[ {\theta}_j[n+1] := {\theta}_j[n] - \alpha \frac{\delta J(\vec{\theta})}{\delta\theta}  \]
+\[ {\theta}_j[n+1] := {\theta}_j[n] - \alpha \frac{\partial J(\vec{\theta})}{\partial\theta}  \]
 
 Hasta la convergencia de \(\vec{\theta}\), equivalente a la convergencia de \(J(\vec{\theta})\):
 
@@ -266,7 +266,7 @@ Y luego \[ \vec{h_\theta}(\vec{x}) = \vec{\theta}^T \cdot \vec{x}  = \vec{x}^T \
 
 La regla de actualización era:
 
- \[ \vec{\theta}[n+1] := \vec{\theta}[n] - \alpha \frac{\delta J(\vec{\theta})}{\delta\theta}  \]
+ \[ \vec{\theta}[n+1] := \vec{\theta}[n] - \alpha \frac{\partial J(\vec{\theta})}{\partial\theta}  \]
 
 Y para cuando la función de costo es el error cuadrático medio (MSE), queda (para actualización con *todos los $m$ ejemplos*):
 
@@ -809,7 +809,7 @@ Está largo de escribir así que copio la imagen:
 Algo de nomenclatura y convenciones:
 
 - Es equivalente hablar de una *unidad*, una *neurona*, la salida de una neurona o la *activación* de una neurona. Siempre hablamos del resultado de la función de activación ante ciertas entradas y parámetros o pesos: $g(\theta,x)$. La neurona en sí no tiene significado en el modelo, aunque lo tiene en el diagrama.
-  - La unidad 1 de la capa 2 es $a_2^{(1)}$.
+  - La unidad 1 de la capa 2 es $a_1^{(2)}$.
   - Se suele omitir la unidad de sesgo de cada capa, $a_0^{(j)}$, porque vale siempre 1. Esta es la que se multiplica por $\theta_0$. /DISCREPO/.
 - $h_{\Theta}^{}(\vec{x}^{})$ es la salida final de la red neuronal, en función de las entradas.
 - La función de activación típica es la función logística/sigmoidea.
@@ -881,7 +881,7 @@ La función de costo es una extensión de la regularizada que usábamos para reg
 
 Esto está complicado así que nos lo dan sin demostraciones.
 
-\[  \frac{\delta J(\Theta)}{\delta \Theta_{v,j}^{(l)} } = D_{v,j}^{(l)}  \]
+\[  \frac{\partial J(\Theta)}{\partial \Theta_{v,j}^{(l)} } = D_{v,j}^{(l)}  \]
 
 \[ D_{v,j}^{(l)} = \frac{1}{m} \Delta_{v,j}^{(l)} + \lambda \Theta_{v,j}^{(l)} \quad \text{si} \quad j=0  \]
 
@@ -914,6 +914,12 @@ $\vec{\delta}^{(l)}$ es un vector de los errores para cada capa. Si no entiendo 
 
 *** Backpropagation intuition
 
+Los términos $\delta$ son los "errores" de predicción de cada unidad. Más técnicamente:
+
+\[  \delta_j^{(l)} = \frac{\partial costo(h_\Theta, x^{(i)})}{\partial z_j^{(l)}}   \]
+
+Así como cada $z^{(l)}$ es una suma pesada de las entradas a esa unidad, cada $\delta^{(l)}$ es una suma pesada de las entradas a esa unidad, recorriendo el grafo al revés, desde las salidas a hacia las entradas.
+
 ** Backpropagation in practice
 
 *** Implementation note: unrolling parameters
@@ -925,6 +931,8 @@ $\vec{\delta}^{(l)}$ es un vector de los errores para cada capa. Si no entiendo 
 *** Putting it together
 
 *** Autonomous driving
+
+Jeep automanejado en 1992.
 
 ** Applications of neural networks
 
