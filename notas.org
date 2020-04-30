@@ -924,9 +924,34 @@ Así como cada $z^{(l)}$ es una suma pesada de las entradas a esa unidad, cada $
 
 *** Implementation note: unrolling parameters
 
+Muchos algoritmos de optimización esperan vectores. Para trabajar con nuestras matrices $\Theta$ de parámetros y $D$ de gradientes, lo que hacemos es juntar todos los elementos y expresarlos como vector. Luego las reconstruimos en donde sea necesario.
+
+En Octave:
+
+#+begin_src octave
+  Theta1 = rand(4,3);  % 4x3
+  Theta2 = rand(2,4);  % 2x4
+  ThetaVec = [Theta1(:); Theta2(:)];  % 20x1
+  % [J, DVec]  = costFunction(ThetaVec, X, Y)  % Adentro reconstruimos ThetaVec
+  ThetaVecOptimized = fminunc(...)
+  Theta1 = reshape(ThetaVecOptimized(1:11), 4,3)
+#+end_src
+
 *** Gradient checking
 
+Para verificar que nuestro algoritmo de retropropagación esté funcionando bien, podemos comparar los gradientes $D$ calculados con unos calculados manualmente usando una aproximación de la derivada en el punto. Andrew sugiere usar una aproximación de doble lado:
+
+\[  \frac{\partial J(\Theta)}{\partial \Theta}   \approx  \frac{J(\Theta + \epsilon) - J(\Theta - \epsilon)}{2 \epsilon}\]
+
+Calculamos esto para cada uno de los parámetros $\theta$ del vector desenrollado a partir de las matrices $\Theta$. Calculamos para cada parámetro, manteniendo el resto fijos; es la derivada parcial.
+
+*¡Nótese que podríamos optimizar con esto!* El problema es que es computacionalmente mucho más costoso que el algoritmo de retropropagación. Implica recalcular la función de costo 2 veces para cada parámetro de las matrices. Por lo tanto, solo lo deberíamos usar para depurar nuestro código, pero luego desactivarlo.
+
 *** Random initialization
+
+Si inicializamos los parámetros $\theta$ de las matrices $\Theta$ todos con el mismo valor, en cada iteración de propagación hacia adelante terminamos con las mismas activaciones en cada unidad de una misma capa; y en cada iteración de propagación hacia atrás terminamos con los mismos errores $\delta$. Esto implica que todas las unidades de una capa terminan calculando los mismos descriptores. Esto se llama el *problema de los caminos simétricos*. /Supongo que se da porque todas las unidades están conectadas de la misma manera, quizás no sería necesario si las unidades se conectaran de forma distinta/.
+
+La forma de solucionar el problema es romper la simetría (/simmetry breaking/). Para esto debemos inicializar los parámetros con valores distintos. Andrew propone inicializarlos con valores aleatorios (distribución uniforme) en un intervalo $[-\epsilon, \epsilon]$ para un valor $\epsilon$ pequeño cualquiera (propone un $\epsilon<1$).
 
 *** Putting it together
 
