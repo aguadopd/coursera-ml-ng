@@ -870,9 +870,9 @@ Algunas definiciones:
 La función de costo es una extensión de la regularizada que usábamos para regresión logística.
 
 - Sumamos los errores de todas las salidas.
-- Regularizamos todos los parámetros $\theta$ de las matrices $\Theta$, excepto aquellos que relacionan unidades de sesgo. Estos son corresponden a la primera fila y la primera columna de cada $\Theta$.
+- Regularizamos todos los parámetros $\theta$ de las matrices $\Theta$, excepto aquellos que relacionan unidades de sesgo. Estos son corresponden a +la primera fila y+ la primera columna de cada $\Theta$.
 
-\[  J(\Theta, \lambda) = \frac{1}{m} \sum_{k=1}^K \sum_{i=1}^m \left[-y_k^{(i)} \log(h_\Theta(x^{(i)})_k) - (1-y_k^{(i)}) \log(1-h_\Theta(x^{(i)})_k)  \right] + \frac{\lambda}{2m} \sum_{l=1}^L \sum_{v=1}^{s_{l+1}} \sum_{j=1}^{s_l} (\Theta_{v,j}^{(l)})^2 \]
+\[  J(\Theta, \lambda) = \frac{1}{m} \sum_{k=1}^K \sum_{i=1}^m \left[-y_k^{(i)} \log(h_\Theta(x^{(i)})_k) - (1-y_k^{(i)}) \log(1-h_\Theta(x^{(i)})_k)  \right] + \frac{\lambda}{2m} \sum_{l=1}^L \sum_{v=1}^{s_{l+1}} \sum_{j=2}^{s_l} (\Theta_{v,j}^{(l)})^2 \]
 
 - /Yo voy a usar $v$ donde él usa OTRA $i$/.
 
@@ -880,6 +880,8 @@ La función de costo es una extensión de la regularizada que usábamos para reg
 *** Backpropagation algorithm
 
 Esto está complicado así que nos lo dan sin demostraciones.
+
+El algoritmo de retropropagación o propagación hacia atrás sirve para calcular el gradiente de la función de costo en función de los parámetros. Luego usamos este gradiente *en algún algoritmo de optimización* como el descenso por el gradiente, para encontrar los parámetros que minimizan la función de costo.
 
 \[  \frac{\partial J(\Theta)}{\partial \Theta_{v,j}^{(l)} } = D_{v,j}^{(l)}  \]
 
@@ -955,6 +957,12 @@ La forma de solucionar el problema es romper la simetría (/simmetry breaking/).
 
 *** Putting it together
 
+- La arquitectura es el patrón de conexión entre las neuronas.
+  - Lo más básico es tener una capa oculta (pero no dice de cuántas unidades).
+  - Una buena heurística es tener tantas capas ocultas como unidades de entrada.
+- Recordamos que el algoritmo de retropropagación es un algoritmo para calcular el gradiente de la función de costo respecto a la variación de los parámetros; la optimización se hace con un algoritmo genérico de optimización, como el descenso por el gradiente.
+- $J(\Theta)$ no es un espacio convexo en las redes neuronales. Esto implica que quizás no alcanzamos el mínimo global, pero dice Andrew que esto no suele ser un problema en la realidad.
+
 *** Autonomous driving
 
 Jeep automanejado en 1992.
@@ -964,6 +972,44 @@ Jeep automanejado en 1992.
 *** Quiz: Neural networks: learning
 
 *** Programming assignment: neural network learning
+
+- Usé una forma vectorizada de la función de costo, según algunas pistas que encontré en las notas del curso. En ellas usé la /traza/ de una matriz, para trabajar con muchas salidas.
+
+#+begin_src octave
+  % Cálculo de la función de costo
+  y_onehot = zeros(num_labels, m);  % s3xm
+  for i = 1:m  % cada columna
+    y_onehot(y(i),i) = 1;
+  endfor
+
+  % Cálculo totalmente vectorizado:
+  % Uso la traza (suma de la diagonal principal), pero también podría ser la suma de
+  %  todos los elementos del producto elemento a elemento.
+  J = (1/m) * (trace(-y_onehot * log(a3')) - trace((1.-y_onehot) * log(1.-a3')) );
+
+  % Agrego regularización
+  J = J + (lambda/(2*m)) * (sum(sum(Theta1(:,2:end).^2)) +  sum(sum(Theta2(:,2:end).^2)));
+#+end_src
+ 
+Sin regularización:
+
+\[ J = \frac{1}{m} \times \left( tr( Y \times -log(\hat{Y}) ) - tr(  (1-Y) \times -log(1-\hat{Y})  ) \right)  \]
+
+\[ J = \frac{1}{m} \times \left(  \sum \left[ Y \odot -log(\hat{Y})  \right] - \sum \left[ (1-Y) \odot -log(1 - \hat{Y})  \right] \right)   \]
+
+- One hot.
+- Implementé una forma vectorizada de la retropropagación, basada en lo que encontré [[https://medium.com/secure-and-private-ai-math-blogging-competition/https-medium-com-fadymorris-understanding-vectorized-implementation-of-neural-networks-dae4115ca185][acá]].
+
+#+begin_src octave
+  % Retropropagación
+  % https://medium.com/secure-and-private-ai-math-blogging-competition/https-medium-com-fadymorris-understanding-vectorized-implementation-of-neural-networks-dae4115ca185
+  delta3 = a3 - y_onehot;
+  delta2 = (Theta2' * delta3) .* sigmoidGradient([ones(1,size(z2,2));z2]);
+  Delta2 = delta3 * a2';
+  Delta1 = delta2(2:end, :) * a1';
+  D2 = (1/m) * Delta2 + (lambda/m) * [zeros(size(Theta2,1),1) , Theta2(:,2:end)];
+  D1 = (1/m) * Delta1 + (lambda/m) * [zeros(size(Theta1,1),1), Theta1(:,2:end)];
+#+end_src
 
 ** Review
 
