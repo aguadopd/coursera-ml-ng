@@ -963,11 +963,13 @@ La forma de solucionar el problema es romper la simetría (/simmetry breaking/).
 - Recordamos que el algoritmo de retropropagación es un algoritmo para calcular el gradiente de la función de costo respecto a la variación de los parámetros; la optimización se hace con un algoritmo genérico de optimización, como el descenso por el gradiente.
 - $J(\Theta)$ no es un espacio convexo en las redes neuronales. Esto implica que quizás no alcanzamos el mínimo global, pero dice Andrew que esto no suele ser un problema en la realidad.
 
+** Applications of neural networks
+
 *** Autonomous driving
 
 Jeep automanejado en 1992.
 
-** Applications of neural networks
+** Review
 
 *** Quiz: Neural networks: learning
 
@@ -1011,5 +1013,100 @@ Sin regularización:
   D1 = (1/m) * Delta1 + (lambda/m) * [zeros(size(Theta1,1),1), Theta1(:,2:end)];
 #+end_src
 
+* Semana 6
+
+En esta semana vamos a ver cómo evaluar nuestros modelos.
+
+- Advice for applying machine learning
+- Machine learning system design
+
+#+begin_quote
+To optimize a machine learning algorithm, you’ll need to first understand where the biggest improvements can be made. [...]
+
+When you're applying machine learning to real problems, a solid grasp of this week's content will easily save you a large amount of work.
+#+end_quote
+
+** Evaluating a learning algorithm
+
+*** Deciding what to try next
+
+Algunas cosas que podemos cambiar para intentar mejorar nuestros algoritmos si no estamos satisfechos con los resultados:
+- Obtener más ejemplos
+- Generar más descriptores / proponer un modelo más complejo.
+  - Sintéticos (modelos más complejos, descriptores polinomiales)
+  - Reales
+- Usar menos descriptores / proponer un modelo más simple.
+- Variar el factor de regularización $\lambda$.
+- Aumentar las iteraciones buscando la convergencia.
+
+Algunas de esas decisiones pueden ser muy costosas o largas. Vamos a ver herramientas de diagnóstico que nos pueden dar pista sobre qué es mejor probar.
+
+*** Evaluating a hypothesis
+
+Dividimos el conjunto de datos en 2 subconjuntos de muestras aleatorias:
+
+1. Conjunto de entrenamiento. Sobre estos datos optimizamos nuestros parámetros.
+2. Conjunto de evaluación/prueba. Sobre estos datos evaluamos el desempeño de nuestro modelo.
+
+Para evaluar el desempeño Andrew propone:
+
+- En regresión:
+  - MSE
+- En clasificación:
+  - La misma función de costo que usamos para optimizar.
+  - Error medio de predicción / error de clasificación 0/1. Es el error usando las salidas /one-hot/.
+
+*** Model selection and train/validation/test sets
+
+Andrew propone usar usar un tercer subconjunto, intermedio, sobre el cuál podemos evaluar *hiperparámetros* o parámetros de más alto nivel. Entonces:
+
+1. Conjunto de entrenamiento
+   - 60%
+   - Aquí ajustamos los parámetros básicos de nuestro modelo, $\theta$.
+2. Conjunto de validación (cruzada)
+   - 20%
+   - Acá ajustamos parámetros que definen la estructura de nuestro modelo. Por ejemplo, el grado del polinomio de ajuste. O sea que ajustamos los $\theta$ de modelos con distintos grados $d$ y elegimos un $d$ según su desempeño en este conjunto.
+3. Conjunto de evaluación
+   - 20%
+   - Acá estimamos el desempeño real de nuestro modelo.
+
+**** Discusión
+
+No me queda claro por qué no podríamos ajustar parámetros e hiperparámetros en simultáneo. ¿Y con qué criterio distinguimos los unos de los otros?
+
+** Bias vs variance
+
+*** Diagnosing bias vs variance
+
+*** Regularization and bias/variance
+
+*** Learning curves
+
+*** Deciding what to do next revisited
+
 ** Review
+
+*** Quiz: advice for applying machine learning
+
+*** Programming assignment: regularized linear regression and bias/variance
+
+** Building a spam classifier
+
+*** Prioritizing what to work on
+
+*** Error analysis
+
+** Handling skewed data
+
+*** Error metrics for skewed classes
+
+*** Trading off precision and recall
+
+** Using large datasets
+
+*** Data for machine learning
+
+** Review
+
+*** Quiz: machine learning system design
 
