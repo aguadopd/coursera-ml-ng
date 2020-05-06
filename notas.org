@@ -872,7 +872,7 @@ La función de costo es una extensión de la regularizada que usábamos para reg
 - Sumamos los errores de todas las salidas.
 - Regularizamos todos los parámetros $\theta$ de las matrices $\Theta$, excepto aquellos que relacionan unidades de sesgo. Estos son corresponden a +la primera fila y+ la primera columna de cada $\Theta$.
 
-\[  J(\Theta, \lambda) = \frac{1}{m} \sum_{k=1}^K \sum_{i=1}^m \left[-y_k^{(i)} \log(h_\Theta(x^{(i)})_k) - (1-y_k^{(i)}) \log(1-h_\Theta(x^{(i)})_k)  \right] + \frac{\lambda}{2m} \sum_{l=1}^L \sum_{v=1}^{s_{l+1}} \sum_{j=2}^{s_l} (\Theta_{v,j}^{(l)})^2 \]
+\[  J(\Theta, \lambda) = \frac{1}{m} \sum_{k=1}^K \sum_{i=1}^m \left[-y_k^{(i)} \log(h_\Theta(x^{(i)})_k) - (1-y_k^{(i)}) \log(1-h_\Theta(x^{(i)})_k)  \right] + \frac{\lambda}{2m} \sum_{l=1}^L \sum_{v=0}^{s_{l+1}} \sum_{j=1}^{s_l} (\Theta_{v,j}^{(l)})^2 \]
 
 - /Yo voy a usar $v$ donde él usa OTRA $i$/.
 
@@ -1056,6 +1056,9 @@ Para evaluar el desempeño Andrew propone:
   - La misma función de costo que usamos para optimizar.
   - Error medio de predicción / error de clasificación 0/1. Es el error usando las salidas /one-hot/.
 
+Tanto en la función de costo $J_{validation}$ como en la $J_{test}$ _no incluímos los términos de regularización_.
+
+
 *** Model selection and train/validation/test sets
 
 Andrew propone usar usar un tercer subconjunto, intermedio, sobre el cuál podemos evaluar *hiperparámetros* o parámetros de más alto nivel. Entonces:
@@ -1074,11 +1077,41 @@ Andrew propone usar usar un tercer subconjunto, intermedio, sobre el cuál podem
 
 No me queda claro por qué no podríamos ajustar parámetros e hiperparámetros en simultáneo. ¿Y con qué criterio distinguimos los unos de los otros?
 
+- Otro hiperparámetro podría ser un umbral de clasificación.
+
+
 ** Bias vs variance
 
 *** Diagnosing bias vs variance
 
+Cuando tenemos mucho error en el conjunto de validación, hay una forma de saber si es error de sesgo alto o error de varianza alta:
+- Si $J_{train} \approx J_{val}$ y ambos son altos, entonces el modelo tiene sesgo alto y está subajustando.
+- Si $J_{val} \gg J_{train}$ (suponiendo que estamos minimizando el error), entonces el modelo tiene varianza alta y está sobreajustando.
+
+[[./imgs/005-high-bias-vs-high-variance.png]]
+
+
 *** Regularization and bias/variance
+
+El comportamiento de las funciones de costo respecto a $\lambda$ es espejado al que se observa según el grado del polinomio; esto es, $J_train$ crece proporcionalmente a $\lambda$.
+
+Andrew propone elegir un conjunto de valores posibles de $\lambda$ y evaluarlos para cada uno de los posibles valores de $d$.
+
+Algo interesante comentado en [[https://www.coursera.org/learn/machine-learning/discussions/weeks/6/threads/P3Cp9j_ZEeaDRA5SxbW7qQ][las preguntas frecuentes de la semana 6]], respecto a hacerlo de forma secuencial:
+
+#+begin_quote
+Q5) What does Prof Ng mean when he says we're "fitting another parameter 'd' to the CV set"?
+
+We use the CV set to make adjustments to the model. Prof Ng is referring to adjusting both the regularization and the polynomial degree.
+
+But there is a problem.
+
+Each subset of data can only be used for one purpose. If you have one CV set and use it to adjust the regularization, then you cannot continue using the same CV set to select the best polynomial degree. This would result in overfitting the CV set.
+
+One solution is to further split the data set so you have two CV sets, and use one to adjust the regularization, and the second to select the best polynomial degree. But this increases the amount of labeled data that is needed.
+
+A second solution is possible. You can create all possible combinations of the parameters 'd' and lambda, and evaluate each combination using only one validation set. You then select the combination that gives the lowest validation set error. Only one CV set is needed.
+#+end_quote
 
 *** Learning curves
 
