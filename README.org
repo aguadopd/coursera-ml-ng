@@ -5,41 +5,46 @@ Notas y ejercicios de mi paso por el curso de *Machine Learning* de Andrew Ng en
 * Log simple
 
 
-| Fecha            | Horas | Actividad                                                     | Notas |
-|                  |       | <20>                                                          |       |
-|------------------+-------+---------------------------------------------------------------+-------|
-| [2020-03-29 dom] |  1:00 | Comienzo. Creo carpetas para ir guardando las cosas           |       |
-| [2020-03-30 lun] |  3:00 | S1. Comienzo notas y semana 1.                                |       |
-| [2020-04-04 sáb] |  5:30 | S1. Model and cost function, Parameter learning.              |       |
-| [2020-04-05 dom] |  1:20 | S1. Algebra review.                                           |       |
-| [2020-04-06 lun] | 01:10 | S2. Multivariate linear regression hasta Feature scaling      |       |
-| [2020-04-08 mié] | 02:30 | S2. Mv. linear regression y Computing parameters analitically |       |
-| [2020-04-09 jue] | 01:00 | S2: Octave/Matlab tutorial.                                   |       |
-| [2020-04-11 sáb] | 04:00 | S2: Programming assignment: linear regression.                |       |
-| [2020-04-14 mar] | 02:00 | S2: Completo notas.                                           |       |
-| [2020-04-16 jue] | 02:00 | S3. Classification and representation.                        |       |
-| [2020-04-17 vie] | 02:00 | S3. Classification and representation. Decision boundary.     |       |
-| [2020-04-17 vie] | 00:40 | S2. Pienso en Feature scaling.                                |       |
-| [2020-04-17 vie] | 00:20 | S3. Logistic regression model.                                |       |
-| [2020-04-18 sáb] | 01:30 | S2. Reviso notas y sigo pensando en feature scaling.          |       |
-| [2020-04-18 sáb] | 01:10 | S3. Logistic regression model.                                |       |
-| [2020-04-18 sáb] | 00:30 | S3. Multiclass classification. Review.                        |       |
-| [2020-04-18 sáb] | 02:00 | S3. Solving the problem of overfitting.                       |       |
-| [2020-04-19 dom] | 03:30 | S3. Programming assignment y completo notas.                  |       |
-| [2020-04-21 mar] | 01:40 | S4. Review cosas S3. S4: Motivations, Neural Networks         |       |
-| [2020-04-22 mié] | 00:40 | S4. Model representation II, Examples and intuitions.         |       |
-| [2020-04-23 jue] | 00:30 | S4. Examples and intuitions. Multiclass classification. Quiz. |       |
-| [2020-04-24 vie] | 01:30 | S4. Programming assignment: multiclass classification & NN    |       |
-| [2020-04-26 dom] | 02:30 | S5. Cost function and backpropagation.                        |       |
-| [2020-04-28 mar] | 00:45 | S5. Backpropagation intuition.                                |       |
-| [2020-04-29 mié] | 01:15 | S5. Backpropagation in practice.                              |       |
-| [2020-04-30 jue] | 00:30 | S5. Putting it together.                                      |       |
-| [2020-05-01 vie] | 03:00 | S5. Programming assignment: NN learning.                      |       |
-| [2020-05-03 dom] | 00:45 | S5. Programming assignment: NN learning. Notas.               |       |
-| [2020-05-04 lun] | 01:10 | S6. Evaluating a learning algorithm.                          |       |
-| [2020-05-05 mar] | 01:00 | S6. Bias vs variance.                                         |       |
-|------------------+-------+---------------------------------------------------------------+-------|
-|                  | 50:25 |                                                               |       |
+| Fecha            | Horas | Actividad                                                                    | Notas |
+|                  |       | <20>                                                                         |       |
+|------------------+-------+------------------------------------------------------------------------------+-------|
+| [2020-03-29 dom] |  1:00 | Comienzo. Creo carpetas para ir guardando las cosas                          |       |
+| [2020-03-30 lun] |  3:00 | S1. Comienzo notas y semana 1.                                               |       |
+| [2020-04-04 sáb] |  5:30 | S1. Model and cost function, Parameter learning.                             |       |
+| [2020-04-05 dom] |  1:20 | S1. Algebra review.                                                          |       |
+| [2020-04-06 lun] | 01:10 | S2. Multivariate linear regression hasta Feature scaling                     |       |
+| [2020-04-08 mié] | 02:30 | S2. Mv. linear regression y Computing parameters analitically                |       |
+| [2020-04-09 jue] | 01:00 | S2: Octave/Matlab tutorial.                                                  |       |
+| [2020-04-11 sáb] | 04:00 | S2: Programming assignment: linear regression.                               |       |
+| [2020-04-14 mar] | 02:00 | S2: Completo notas.                                                          |       |
+| [2020-04-16 jue] | 02:00 | S3. Classification and representation.                                       |       |
+| [2020-04-17 vie] | 02:00 | S3. Classification and representation. Decision boundary.                    |       |
+| [2020-04-17 vie] | 00:40 | S2. Pienso en Feature scaling.                                               |       |
+| [2020-04-17 vie] | 00:20 | S3. Logistic regression model.                                               |       |
+| [2020-04-18 sáb] | 01:30 | S2. Reviso notas y sigo pensando en feature scaling.                         |       |
+| [2020-04-18 sáb] | 01:10 | S3. Logistic regression model.                                               |       |
+| [2020-04-18 sáb] | 00:30 | S3. Multiclass classification. Review.                                       |       |
+| [2020-04-18 sáb] | 02:00 | S3. Solving the problem of overfitting.                                      |       |
+| [2020-04-19 dom] | 03:30 | S3. Programming assignment y completo notas.                                 |       |
+| [2020-04-21 mar] | 01:40 | S4. Review cosas S3. S4: Motivations, Neural Networks                        |       |
+| [2020-04-22 mié] | 00:40 | S4. Model representation II, Examples and intuitions.                        |       |
+| [2020-04-23 jue] | 00:30 | S4. Examples and intuitions. Multiclass classification. Quiz.                |       |
+| [2020-04-24 vie] | 01:30 | S4. Programming assignment: multiclass classification & NN                   |       |
+| [2020-04-26 dom] | 02:30 | S5. Cost function and backpropagation.                                       |       |
+| [2020-04-28 mar] | 00:45 | S5. Backpropagation intuition.                                               |       |
+| [2020-04-29 mié] | 01:15 | S5. Backpropagation in practice.                                             |       |
+| [2020-04-30 jue] | 00:30 | S5. Putting it together.                                                     |       |
+| [2020-05-01 vie] | 03:00 | S5. Programming assignment: NN learning.                                     |       |
+| [2020-05-03 dom] | 00:45 | S5. Programming assignment: NN learning. Notas.                              |       |
+| [2020-05-04 lun] | 01:10 | S6. Evaluating a learning algorithm.                                         |       |
+| [2020-05-05 mar] | 01:00 | S6. Bias vs variance.                                                        |       |
+| [2020-05-08 vie] | 00:15 | S6. Bias vs variance.                                                        |       |
+| [2020-05-09 sáb] | 00:30 | S6. Bias vs variance.                                                        |       |
+| [2020-05-09 sáb] | 03:30 | S6. Programming assignment: Regularized linear regression and bias/variance. |       |
+| [2020-05-09 sáb] | 01:10 | S6. Building a spam classifier. Handling skewed data. Using large datasets.  |       |
+| [2020-05-10 dom] | 00:30 | S6. Using large datasets. Review.                                            |       |
+|------------------+-------+------------------------------------------------------------------------------+-------|
+|                  | 56:20 |                                                                              |       |
 #+TBLFM: $2=vsum(@2..@-1);U
 
 

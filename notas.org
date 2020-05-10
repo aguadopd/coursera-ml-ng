@@ -23,7 +23,9 @@ Ideas mías a lo largo del curso.
 ** Enlaces
 
 1. http://www.deeplearningbook.org/
-2. 
+2. http://ufldl.stanford.edu/tutorial/  Deep Learning Tutorial
+3. https://developers.google.com/machine-learning/crash-course
+4. 
 
 * Semana 1
 
@@ -671,7 +673,7 @@ El factor $(1 - \frac{\alpha\lambda}{m})$ nos indica que en todas las actualizac
 
 La forma matricial/vectorizada queda
 
-\[ J(\theta, X, \lambda) = \frac{1}{2m} (X\theta - Y) + \frac{\lambda}{2m} \theta(1:n)^T \theta(1:n) \]
+\[ J(\theta, X, \lambda) = \frac{1}{2m} \sum (X\theta - Y)^2 + \frac{\lambda}{2m} \theta(1:n)^T \theta(1:n) \]
 
 
 La actualización necesita 2 etapas: la primera es el cálculo normal sin regularización, y de aquí guardamos $\theta_0$; en la segunda sumamos el termino de regularización; y finalmente reemplazamos con el $\theta_0$ encontrado anteriormente.
@@ -1115,7 +1117,23 @@ A second solution is possible. You can create all possible combinations of the p
 
 *** Learning curves
 
+Las gráficas de aprendizaje muestran la variación de los errores de entrenamiento y validación ante el cambio de cantidad de muestras de entrenamiento, para una complejidad de modelo fija.
+
+Cuando nuestro modelo sufre de alto sesgo, vemos que $J_{train}$ y $J_{CV}$ pronto se estancan en un valor. El modelo no puede explicar más variación.
+
+[[./imgs/006-1-learning-curves.png]]
+
+Para un modelo con alta varianza, las curvas varían lentamente y tienden a converger, pero van a necesitar de muchos ejemplos para poder encontrar la generalización.
+
+[[./imgs/006-2-learning-curves.png]]
+
+Estaría bueno tener una gráfica de como varían esas curvas al cambiar la complejidad del modelo...
+
 *** Deciding what to do next revisited
+
+--------
+
+La regularización sirve para forzar la exploración de todo el espacio de parámetros, y bajo la suposición de que los descriptores están normalizados. La regularización intenta que todos los descriptores afecten en la decisión, y esto puede ser mentira. Me parece que sería mejor atacar el problema con la complejidad del modelo, no con regularización.
 
 ** Review
 
@@ -1129,15 +1147,45 @@ A second solution is possible. You can create all possible combinations of the p
 
 *** Error analysis
 
+- Hacer una implementación rápida de un clasificador y sus pruebas, para tener información de en qué paso gastar tiempo a continuación. Esto es importante.
+- Podemos construir curvas de aprendizaje para ver si necesitamos más o menos ejemplos, modelos más complejos, etcétera.
+- Podemos analizar manualmente los casos mal clasificados (o con mucho error en caso de regresión, supongo), para intentar observar patrones.
+- Siempre es bueno tener una única métrica de evaluación. Esta nos va a permitir discernir si una estrategia es buena o no.
+- Es muy recomendable evaluar las cosas en los conjuntos de validación cruzada, no en el conjunto de evaluación. Nunca ajustamos nada en el conjunto de evaluación.
+
 ** Handling skewed data
 
 *** Error metrics for skewed classes
 
+En clasificación (¿binaria?) en la distribución de las clases está muy sesgada (una de las clases es muy rara, tiene poca frecuencia), no es apropiado usar la precisión como métrica. Aquí corresponde analizar la precisión y la exhaustividad (/recall/).
+
+[[./imgs/007- precisionrecall.svg.png]]
+
+Podemos variar el comportamiento del modelo al modificar el umbral de decisión a la salida (esto es un hiperparámetro, y lo evaluamos en el conjunto de validación).
+
 *** Trading off precision and recall
+
+Una métrica que incluye la precisión y la exhaustividad es el Valor F (/F score/), que se define como la media armónica (ponderada) de la precisión y exhaustividad.
+
+\[ F_\beta = (1 + \beta^2) \frac{precision \cdot recall}{(\beta^2 \cdot precision) + recall}  \]
+
+$\beta$ es cuántas veces es la exhaustividad más importante que la precisión. Normalmente se usa $\beta = 1$, obteniendo la métrica $F_1$ que pondera de igual manera la precisión y la exhaustividad.
+
+\[ F_\beta \in [0, 1] \]
+
 
 ** Using large datasets
 
 *** Data for machine learning
+
+Si tenemos
+
+- un conjunto de descriptores suficientemente expresivo como para determinar correctamente la salida a partir de ellos (si un humano experto puede hacerlo a partir de esas entradas, el sistema también podrá);
+- un modelo complejo, de poco sesgo, que no se va a sobreajustar;
+
+entonces la forma de mejorar los resultados en con más y más datos de entrenamiento.
+
+En la publicación [[https://www.microsoft.com/en-us/research/publication/mitigating-the-paucity-of-data-problem-exploring-the-effect-of-training-corpus-size-on-classifier-performance-for-natural-language-processing/]["Mitigating the Paucity-of-Data Problem: Exploring the Effect of Training Corpus Size on Classifier Performance for Natural Language Processing" de Michele Banko y Eric Brill]] se prueban varios modelos complejos y se observa que su desempeño tiende a ser el mismo, y además crece monotónicamente con la cantidad de ejemplos de entrenamiento.
 
 ** Review
 
