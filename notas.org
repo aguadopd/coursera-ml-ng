@@ -25,7 +25,7 @@ Ideas mías a lo largo del curso.
 1. http://www.deeplearningbook.org/
 2. http://ufldl.stanford.edu/tutorial/  Deep Learning Tutorial
 3. https://developers.google.com/machine-learning/crash-course
-4. 
+4. https://deeplearning.mit.edu/
 
 * Semana 1
 
@@ -781,7 +781,7 @@ Empezamos a ver redes neuronales.
 
 Las redes neuronales son de los clasificadores más avanzados y usados hoy en día.
 
-Para problemas poco lineales, la regresión logística empieza a necesitar muchos descriptores. Demasiados. Sea por ejemplo un problema con dos descriptores $x_1$ y $x_2$. Si queremos más expresividad de clasificación y añadimos como descriptores sintéticos todos los productos de segundo orden, tenemos $x_1^2 , x_2^2, x_1 x_2 $, y tendríamos un total de 5 descriptores. Este total crece como $O(\frac{n^2}{2})$. Los de tercer orden crecen como $O(n^3)$.
+Para problemas poco lineales, la regresión logística empieza a necesitar muchos descriptores. Demasiados. Sea por ejemplo un problema con dos descriptores $x_1$ y $x_2$. Si queremos más expresividad de clasificación y añadimos como descriptores sintéticos todos los productos de segundo orden, tenemos $x_1^2 , x_2^2, x_1 x_2$, y tendríamos un total de 5 descriptores. Este total crece como $O(\frac{n^2}{2})$. Los de tercer orden crecen como $O(n^3)$.
 
 Hay muchos problemas que de entrada ya están definidos por muchos descriptores. Un ejemplo: las imágenes digitales. Por ejemplo, una imagen de 100\times100px requeriría aproximadamente 50 millones de descriptores de segundo grado.
 
@@ -1183,11 +1183,56 @@ Si tenemos
 - un conjunto de descriptores suficientemente expresivo como para determinar correctamente la salida a partir de ellos (si un humano experto puede hacerlo a partir de esas entradas, el sistema también podrá);
 - un modelo complejo, de poco sesgo, que no se va a sobreajustar;
 
-entonces la forma de mejorar los resultados en con más y más datos de entrenamiento.
+entonces la forma de mejorar los resultados es con más y más datos de entrenamiento.
 
 En la publicación [[https://www.microsoft.com/en-us/research/publication/mitigating-the-paucity-of-data-problem-exploring-the-effect-of-training-corpus-size-on-classifier-performance-for-natural-language-processing/]["Mitigating the Paucity-of-Data Problem: Exploring the Effect of Training Corpus Size on Classifier Performance for Natural Language Processing" de Michele Banko y Eric Brill]] se prueban varios modelos complejos y se observa que su desempeño tiende a ser el mismo, y además crece monotónicamente con la cantidad de ejemplos de entrenamiento.
 
 ** Review
 
 *** Quiz: machine learning system design
+
+* Semana 7
+
+Vamos a ver /SVMs/: máquinas de vector soporte / máquinas de soporte vectorial.
+
+** Large margin classification
+
+*** Optimization objective
+
+Vamos a ver un algoritmo de aprendizaje supervisado más: las máquinas de soporte vectorial. Primero definimos una función de costo a optimizar, que es similar a la que usamos para regresión logística.
+
+\[  J(\theta) = C \sum_{i=1}^m \left[ y^{(i)} cost_1(\theta x^{(i)}) + (1-y^{(i)}) cost_0(1 - \theta x^{(i)}) \right]  + \frac{1}{2}  \sum_{v=1}^{n} \theta_v  \]
+
+- _Este es un caso de clasificación binaria_.
+- $C$ es equivalente a $1/\lambda$, y es un factor que sirve para ponderar la optimización del primer término sobre el otro.
+- Las funciones $cost_0$ y $cost_1$ son muy similares al menos logaritmo de la función logística (lo que estaba ahí en la función de costo que usamos para regresión logística). Parecen funciones rampa, con base en $0$ y crecimiento en $1$ y $-1$ respectivamente.
+
+La función de hipótesis (que todavía no vemos) no emite probabilidades, sino una salida discreta, que definimos con un umbral en $0$:
+
+\[  h_\theta(x) = 1 \quad si \quad \theta^T x \ge 0   \]
+\[  h_\theta(x) = 0 \quad si \quad \theta^T x \lt 0  \]
+
+*** Large margin intuition
+
+La minimización nos da parámetros que definen una frontera óptima de separación entre clases. La frontera es óptima en términos de maximizar los márgenes, los espacios entre la frontera y los datos.
+
+- A menor C, más regularización y menos sobreajuste.
+
+*** Mathematics behind large margin classification
+
+** Kernels
+
+*** Kernels I
+
+*** Kernels II
+
+** SVMs in practice
+
+*** Using an SVM
+
+** Review
+
+*** Quiz: support vector machines
+
+*** Programming assignmentL SVMs
 
