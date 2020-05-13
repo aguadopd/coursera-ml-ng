@@ -1212,19 +1212,57 @@ La función de hipótesis (que todavía no vemos) no emite probabilidades, sino 
 \[  h_\theta(x) = 1 \quad si \quad \theta^T x \ge 0   \]
 \[  h_\theta(x) = 0 \quad si \quad \theta^T x \lt 0  \]
 
+-------
+
+Resulta que $cost_0$ y $cost_1$ se llaman funciónes de pérdida bisagra ([[https://en.wikipedia.org/wiki/Hinge_loss][/hinge loss/]]).
+
+\[ l(\hat{y}) = \max(0, 1-t \cdot \hat{y}) \]
+
+donde \( y = \pm  1 \) es la salida deseada.
+
+Resulta además que la función de hipótesis es simplemente una combinación lineal de los descriptores de entrada, definida por los parámetros y a la que luego se le aplica un umbral en 0. Más tarde vamos a remplazar los descriptores, para lograr fronteras no lineales.
+
 *** Large margin intuition
 
 La minimización nos da parámetros que definen una frontera óptima de separación entre clases. La frontera es óptima en términos de maximizar los márgenes, los espacios entre la frontera y los datos.
 
 - A menor C, más regularización y menos sobreajuste.
 
+****** TODO Revisar esto y abajo
+
 *** Mathematics behind large margin classification
+
+No se entendió.
 
 ** Kernels
 
 *** Kernels I
 
+
+
 *** Kernels II
+
+En estos videos entendí un poco más y voy a intentar explicar todo acá.
+
+En las /SVMs/ nuestra función de hipótesis define un hiperplano de decisión. La optimización maximiza el margen entre ese hiperplano y los ejemplos de entrenamiento, a ambos lados del hiperplano.
+
+Una forma de hacerlo sería como lo hicimos en regresión lineal: agregando descriptores de mayor orden, a partir de los descriptores iniciales.
+
+Acá hacemos otra cosa: mapeamos nuestro conjunto de descriptores a otro conjunto de descriptores (no necesariamente del mismo tamaño). Este nuevo conjunto son distancias definidas por funciones de similitud / funciones de distancia. ¿Distancia a dónde? La distancia es en el espacio de descriptores originales, entre las entradas y puntos de referencia (/landmarks/). Como puntos de referencia usamos /cada uno de los ejemplos de entrenamiento/.
+
+A las funciones de distancia también se denomina /kernels/ o núcleos. Ahora vimos un /kernel/ gaussiano:
+
+\[  f_i = similarity(x, l^{(i)} ) = e^{\frac{||x - l{(i)}||^2}{s\sigma^2}} = exp(\frac{||x - l{(i)}||^2}{s\sigma^2}) \]
+
+- Esta es una gaussiana de altura 1, y $\sigma$ define su "anchura".
+  - La similaridad será $\approx1$ si la entrada está cerca de esa referencia, y $0$ si está lejos.
+- Mientras más grande $\sigma$, la función es menos discriminativa, más suavizada. Entonces $\sigma$ actúa como otro parámetro de regularización.
+
+Nótese que luego deberemos mapear cada entrada al espacio de distancias, y ahí predecir la clase.
+
+*Entonces al aplicar el /kernel/ estamos convirtiendo un problema no lineal en uno lineal*. También hacíamos esto al agregar parámetros no lineales en regresión lineal o logística.
+
+¿Por qué no usamos estas funciones de distancia en regresión lineal? En realidad si podemos, pero por cierta matemática de la implementación, esto es mucho más rápido en las SVMs. _Nótese que el espacio transformado de descriptores es de $m$ dimensiones, donde $m$ es el número de ejemplos de entrenamiento_.
 
 ** SVMs in practice
 
