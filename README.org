@@ -50,8 +50,9 @@ Notas y ejercicios de mi paso por el curso de *Machine Learning* de Andrew Ng en
 | [2020-05-16 sáb] | 02:00 | S7. Programming assignment: SVMs                                             |   |       |
 | [2020-05-23 sáb] | 01:30 | S8. Clustering                                                               |   |       |
 | [2020-05-23 sáb] | 00:45 | S8. Dimensionality reduction. Motivation. PCA.                               |   |       |
+| [2020-05-24 dom] |  2:30 | S8. PCA                                                                      |   |       |
 |------------------+-------+------------------------------------------------------------------------------+---+-------|
-|                  | 64:05 |                                                                              |   |       |
+|                  | 66:35 |                                                                              |   |       |
 #+TBLFM: $2=vsum(@2..@-1);U
 
 

@@ -1346,12 +1346,14 @@ También podemos usar algoritmos de agrupamiento cuando nosotros queremos agrupa
 
 *** K-means algorithm
 
+*Acá trabajamos los ejemplos en sus $n$ dimensiones originales; no agregamos el $x_0=1$ que nos facilitaba trabajar con los interceptos.*
+
 Sean:
 
 - $K$: el número de grupos que queremos tener, indexado con $k$.
 - $\mu_k$: el centroide / centro de masa del grupo $k$.
 - $c^{(i)}$: el grupo asignado al ejemplo $i$. Es el grupo que tiene la menor distancia entre su centroide y el ejemplo. Hay varias métricas de distancia; la más común es la euclidea.
-- $\mu_{c^{(i)}} $: el centroide del grupo / /cluster/ del ejemplo $i$.
+- $\mu_{c^{(i)}}$: el centroide del grupo / /cluster/ del ejemplo $i$.
 
 
 El algoritmo es:
@@ -1413,17 +1415,80 @@ Otro aplicación de la reducción de dimensionalidad es para intentar visualizar
 
 **** Principal component analysis formulation
 
-El algoritmo más usado para reducción dimensional es el llamado "Análsisis de componentes principales" (/Principal Component Analysis, PCA/). Para el (hiper)espacio de representación de nuestros descriptores, /PCA/ busca determinar el hiperplano que minimice las distancias entre los puntos en el hiperespacio y sus proyecciones en el hiperplano.
+*Acá trabajamos los ejemplos en sus $n$ dimensiones originales; no agregamos el $x_0=1$ que nos facilitaba trabajar con los interceptos.*
+
+El algoritmo más usado para reducción dimensional es el llamado "Análisis de componentes principales" (/Principal Component Analysis, PCA/). Para el (hiper)espacio de representación de nuestros descriptores, /PCA/ busca determinar el hiperplano que minimice las distancias entre los puntos en el hiperespacio y sus proyecciones (ortogonales) en el hiperplano.
 
 **** Principal component analysis algorithm
+
+No vamos a ver demostraciones, pero la cosa es más o menos así.
+
+Primero debemos normalizar/escalar los valores de entrada, para que estén en dimensiones comparables.
+
+Luego construimos la matriz de covarianza, que tiene las covarianzas de las dimensiones. // La [[https://en.wikipedia.org/wiki/Covariance][covarianza]] indica dependencia entre dimensiones. Si la covarianza es 0, las dimensiones son independientes.
+
+\[ \Sigma = \frac{1}{m} \sum_{i=1}^m x^{(i)} (x^{(i)})^T = \frac{1}{m} X^T X \]
+
+Ahora aplicamos la Descomposición en valores singulares (/SVD, Singular Value Decomposition/), que es una factorización que nos permite obtener los vectores propios o autovectores de la matriz de covarianza.
+
+\[ U_{m \times k}, S, V = svd(\Sigma)  \]
+
+Nos importa la matriz $U$, que tiene autovectores. Cada columna es un autovector, y estos son las dimensiones (¿rotadas? distintas.) que ¿mejor? explican nuestros datos. De esta matriz $U$ nos vamos a quedar con los primeros $k$ vectores, que serán nuestro nuevo espacio de representación. Construimos entonces una matriz $U_{reducción}$.
+
+Para expresar los vectores en las nuevas dimensiones, hacemos
+
+\[ z^{(i)} = U_{reducción}^T x^{(i)} \]
+
+O para todos los ejemplos:
+
+\[ Z = U_{reducción}^T X ]\
 
 *** Appliying PCA
 
 **** Reconstruction from compressed representation
 
+Para volver del espacio $R^k$ al $R^n$, usamos la matriz $U$ así:
+
+\[  x_{aprox}^{(i)} = U_{reducción}  x^{(i)} \]
+
+- Nótese que lo que obtenemos es una aproximación de el dato original. Esta aproximación es la proyección del dato original en el hiperplano de menor dimensión calculado con /PCA/, pero expresado en las $n$ dimensiones originales.
+  - Perdemos información.
+
 **** Choosing the number of principal components
 
+Sean
+
+- Error medio de proyección: \( E_{p} = \frac{1}{m} \sum_{i=1}^{m} || x^{(i)} - x_{aprox}^{(i)} ||^2 \)
+- Varianza de los datos: \( V = \frac{1}{m} \sum_{i=1}^{m} ||x^{(i)}||^2  \)
+
+Podemos definir la varianza no explicada / no retenida por nuestro modelo de dimensiones reducidas como
+
+\[ V_{ne} = \frac{\frac{1}{m} \sum_{i=1}^{m} || x^{(i)} - x_{aprox}^{(i)} ||^2}{\frac{1}{m} \sum_{i=1}^{m} ||x^{(i)}||^2}  \]
+
+\[ V_{ne} = \frac{\sum_{i=1}^{m} || x^{(i)} - x_{aprox}^{(i)} ||^2}{\sum_{i=1}^{m} ||x^{(i)}||^2}  \]
+
+- Normalmente buscamos que $V_{ne}$ sea menor al $5%$ o $1%$, pero depende del caso.
+- En modelos de alta dimensionalidad es frecuente encontrar que muchas dimensiones están correlacionadas y por tanto podemos encontrar un $k\ll n$.
+
+Para calcular $V_{ne}$ como lo definimos anteriormente, debemos hacer todo el proceso de /PCA/ para un $k$ dado, para luego calcular los errores de proyección. Esto es costoso.
+
+Una mejor forma de hacerlo es con la matriz $S$ obtenida al hacer /SVD/:
+
+\[ U_{m \times k}, S, V = svd(\Sigma)  \]
+
+Esta tiene (en su diagonal principal) los autovalores $s_{ii}$ asociados con los autovectores de $U$, y al igual que estos, están ordenados de mayor a menor importancia o influencia. Podemos hacer entonces:
+
+\[ V_{ne} = 1 - \frac{ \sum_{i=1}^k s_{ii} }{ \sum_{i=1}^n s_{ii} } \]
+
+y fácilmente definimos el $k$ que queremos.
+
+
 **** Advice for appliying PCA
+
+Algunos consejos:
+
+1. *No* usar /PCA/ como herramienta para reducir sobreajuste. Puede funcionar, pero al usar /PCA/ no estamos teniendo en cuenta las etiquetas de los datos de entrada, y quizás estamos desechando información importante, o grupos enteros de datos. La regulrización es el método que deberíamos usar en su lugar.
+2. No usar /PCA/ de entrada, por que sí. Deberíamos siempre probar con los datos crudos, y usar /PCA/ si queremos acelerar el aprendizaje o usar menos espacio, por ejemplo.
 
 *** Review
 
