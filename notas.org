@@ -1228,11 +1228,14 @@ La minimización nos da parámetros que definen una frontera óptima de separaci
 
 - A menor C, más regularización y menos sobreajuste.
 
-****** TODO Revisar esto y abajo
+****** DONE Revisar esto y abajo
+CLOSED: [2020-05-13 mié 20:12]
 
 *** Mathematics behind large margin classification
 
 No se entendió.
+
+Ya lo entendí... sirve para justificar la explicación del título anterior.
 
 ** Kernels
 
@@ -1268,9 +1271,163 @@ Nótese que luego deberemos mapear cada entrada al espacio de distancias, y ahí
 
 *** Using an SVM
 
+Si bien hay más funciones de distancia o /kernels/ normalmente se usan dos:
+ - /kernel/ lineal (en realidad, sin /kernel/) es cuando no usamos función de distancia (lo que hicimos al principio) y $\hat{y}=1 \quad si \quad h(\theta^T x) \ge 0$. Esto es muy similar en resultados a una regresión logística.
+ - /kernel/ gaussiano.
+
+Las soluciones se encuentran con algoritmos especializados para /SVM/. Les tenemos que dar la función de distancia y listo.
+
+*Es importante normalizar los descriptores (hacer /feature scaling/) antes de calcular nos nuevos descriptores de distancia*. Al normalizar hacemos comparables los distintos descriptores, *ponderamos su información de igual manera*.
+
+La función de costo que optimizamos (definida anteriormente) es convexa, y por tanto siempre encontramos el mínimo global.
+
+Los algoritmos pueden soportar multiclase. Si no, hacemos el clásico "uno contra todos".
+- Para $K$ clases necesitamos $K$ clasificadores.
+
+**** Cuándo usar
+
+Sean
+- $n$ el número de descriptores/parámetros.
+- $m$ el número de ejemplos de entrenamiento.
+
+
+Entonces
+
+1. Si $\frac{n}{m} \ge 10$, el sistema está subdeterminado y es mejor intentar con un modelo simple. Tenemos pocos datos y con un modelo complejo nos arriesgamos a sobreajustar. Aquí podemos usar regresión logística o /SVM/ con /kernel/ lineal, que es equivalente.
+
+2. Si $\frac{m}{n} \ge 10$, el sistema está sobredeterminado. Acá deberíamos usar un modelo complejo que permita capturar la influencia de todos los descriptores. Aquí es donde brillan las /SVM/ con /kernel/ gaussiano.
+
+  - Si $m$ es muy grande ($\gt10000$), entonces una /SVM/ con /kernel/ gaussiano tarda mucho en entrenar. Entonces podemos usar regresión logística o un /kernel/ lineal, junto con la adición de nuevos descriptores sintéticos. Esto es solo por una limitación de poder de cómputo.
+
+Dice Andrew que en ambos casos también podríamos usar redes neuronales, pero estas tardan más en entrenar.
+
 ** Review
 
 *** Quiz: support vector machines
 
-*** Programming assignmentL SVMs
+*** Programming assignment SVMs
+
+Usé ~containers.Map~ para crear un mapeo, como los diccionarios de Python.
+
+** Otras cosas
+
+*** https://www.youtube.com/watch?v=3liCbRZPrZA SVM with polynomial kernel visualization
+
+#+begin_quote
+Technically what is visualized here isn't "the kernel trick". This is the general idea of how nonlinearly projecting some points into a higher-dimensional feature space makes linear classifiers more powerful. You can do this with out SVMs. Just compute the high-dimensional features corresponding to your data, then use logistic regression or whatever. Trouble is, if the higher-dimensional space is really big, this could be expensive. The "kernel trick" is computational trick that SVMs use to compute the inner product between the high-dimensional features corresponding to two points with out explicitly computing the high-dimensional features. (For certain special feature spaces.)
+
+But this is definitely a cool visualization of the value of feature spaces! 
+#+end_quote
+https://news.ycombinator.com/item?id=1299733
+
+
+*** https://ranvir.xyz/blog/svm-support-vector-machines-in-machine-learning/
+
+Discusión en https://news.ycombinator.com/item?id=23035120
+
+- https://github.com/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers
+- http://www.stat.columbia.edu/~gelman/book/
+- "Statistical Rethinking" by McElreath
+- Introduction to Statistical Learning https://faculty.marshall.usc.edu/gareth-james/ISL/
+- Elements of Statistical Learning https://web.stanford.edu/~hastie/ElemStatLearn/
+
+* Semana 8: Unsupervised learning
+
+Vamos a ver algo de aprendizaje no supervisado. Acá no tenemos entradas y salidas etiquetadas; solo un conjunto de datos de entrada de los cuáles queremos entender la estructura subyacente.
+También vemos algo de reducción de la dimensionalidad del problema.
+
+** Clustering
+
+*** Unsupervised learning: introduction
+
+Buscamos ver si hay conjuntos de datos que presentan características similares, con las cuáles podríamos agruparlos.
+
+También podemos usar algoritmos de agrupamiento cuando nosotros queremos agrupar los datos en un número arbitrario de grupos. Por ejemplo, podríamos querer tener K segmentos de mercado.
+
+*** K-means algorithm
+
+Sean:
+
+- $K$: el número de grupos que queremos tener, indexado con $k$.
+- $\mu_k$: el centroide / centro de masa del grupo $k$.
+- $c^{(i)}$: el grupo asignado al ejemplo $i$. Es el grupo que tiene la menor distancia entre su centroide y el ejemplo. Hay varias métricas de distancia; la más común es la euclidea.
+- $\mu_{c^{(i)}} $: el centroide del grupo / /cluster/ del ejemplo $i$.
+
+
+El algoritmo es:
+
+- Hasta la convergencia o llegar a un número de interaciones:
+  - Etiquetar cada ejemplo $(i)$, asignándole un grupo $c^{(i)}$.
+  - Recalcular los centroides de cada grupo. El nuevo valor de un centroide $\mu_k$ será el centro de masa de los ejemplos etiquetados con $k$ ($c^{(i)}=k$).
+
+Si un grupo $k$ no tiene ejemplos tras alguna iteración, lo podemos eliminar.
+
+
+*** Optimization objective
+
+La función que estamos optimizando es:
+
+\[ J(c^{(1)}, \dots, c^{(m)} , \mu_1, \dots, \mu_k ) = \frac{1}{m} \sum_1^m || x^{(i)} - \mu_{c^{(i)}} ||^2 \]
+
+Es conocida como /distorsión/ del algoritmo /K-means/.
+
+El algoritmo primero optimiza $c$, manteniendo $\mu$ constante, y después lo hace a la inversa.
+
+*No es una función convexa*, lo que implica que podemos tener más de un mínimo.
+
+La función de costo _debe_ disminuir en cada iteración.
+
+*** Random initialization
+
+La configuración óptima que encontremos al minimizar se ve influenciada por cómo inicializamos los centroides. La forma recomendada es asignarles la posición de un ejemplo cualquiera (distinto a cada uno).
+
+Para buscar la solución global, ejecutamos el algoritmo muchas veces y nos quedamos con aquella solución de menor distorsión.
+
+ - Es importante hacer esto cuando K es chico (Andrew dice 2 a 10), pero no tan necesario cuando estamos buscando muchos grupos.
+
+*** Choosing the number of clusters
+
+*La función de costo debe disminuir a medida que incrementamos K*, llegando al mínimo cuando $K=m$. Si no ocurre para un cierto $K$, es que tuvimos un resultado de un mínimo local no bueno.
+
+El número se suele elegir a ojo, observando los datos, o está determinado por el problema en el cuál vamos a usar nuestro agrupamiento.
+
+Una forma de elegir el número de grupos es con el "método del codo". Este consiste en graficar la función de costo según el valor de $K$, y elegir el vértice de la gráfica descendente. Si no hay vértice claramente observable, entonces no nos sirve el método.
+
+** Review
+
+*** Quiz: Unsuperised learning
+
+** Dimensionality reduction
+
+*** Motivation
+
+**** Motivation I: Data compression
+
+Otro tipo de aprendizaje no supervisado se usa para reducir la dimensionalidad de nuestro universo representado. Esto es, representar la misma información pero con menos descriptores. Esto nos va a permitir tener representaciones más compactas (menos memoria) y sobre todo, acelerar la búsqueda de soluciones.
+
+**** Motivation II Visualization
+
+Otro aplicación de la reducción de dimensionalidad es para intentar visualizar nuestros datos. La visualización suele ayudarnos a entender los datos y proponer mejores soluciones.
+
+*** Principal component analysis
+
+**** Principal component analysis formulation
+
+El algoritmo más usado para reducción dimensional es el llamado "Análsisis de componentes principales" (/Principal Component Analysis, PCA/). Para el (hiper)espacio de representación de nuestros descriptores, /PCA/ busca determinar el hiperplano que minimice las distancias entre los puntos en el hiperespacio y sus proyecciones en el hiperplano.
+
+**** Principal component analysis algorithm
+
+*** Appliying PCA
+
+**** Reconstruction from compressed representation
+
+**** Choosing the number of principal components
+
+**** Advice for appliying PCA
+
+*** Review
+
+**** Quiz: principal component analysis
+
+**** Programming assignment: K-means clustering and PCA
 
