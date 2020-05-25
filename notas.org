@@ -26,6 +26,7 @@ Ideas mías a lo largo del curso.
 2. http://ufldl.stanford.edu/tutorial/  Deep Learning Tutorial
 3. https://developers.google.com/machine-learning/crash-course
 4. https://deeplearning.mit.edu/
+5. http://cs229.stanford.edu
 
 * Semana 1
 
@@ -1441,7 +1442,7 @@ Para expresar los vectores en las nuevas dimensiones, hacemos
 
 O para todos los ejemplos:
 
-\[ Z = U_{reducción}^T X ]\
+\[ Z = X U_{reducción} \]
 
 *** Appliying PCA
 
@@ -1450,6 +1451,10 @@ O para todos los ejemplos:
 Para volver del espacio $R^k$ al $R^n$, usamos la matriz $U$ así:
 
 \[  x_{aprox}^{(i)} = U_{reducción}  x^{(i)} \]
+
+O para todos los ejemplos:
+
+\[ X_aprox = X U_{reducción}^T \]
 
 - Nótese que lo que obtenemos es una aproximación de el dato original. Esta aproximación es la proyección del dato original en el hiperplano de menor dimensión calculado con /PCA/, pero expresado en las $n$ dimensiones originales.
   - Perdemos información.
