@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-05-24 dom 19:34 -->
+<!-- 2020-05-26 mar 22:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Notas del curso Machine Learning de Andrew Ng en Coursera</title>
@@ -271,288 +271,308 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org234a3e1">1. Info</a></li>
-<li><a href="#org452b340">2. Ideas</a>
+<li><a href="#orge60be12">1. Info</a></li>
+<li><a href="#org85e196a">2. Ideas</a>
 <ul>
-<li><a href="#org373d390">2.1. Enlaces</a></li>
+<li><a href="#orgdc486bd">2.1. Enlaces</a></li>
 </ul>
 </li>
-<li><a href="#org6ca9971">3. Semana 1</a>
+<li><a href="#orgfe02473">3. Semana 1</a>
 <ul>
-<li><a href="#org02ba02f">3.1. Introduction</a>
+<li><a href="#org5afdce5">3.1. Introduction</a>
 <ul>
-<li><a href="#org06d1059">3.1.1. Video: Welcome</a></li>
-<li><a href="#org4700a82">3.1.2. Video: What is Machine Learning</a></li>
-<li><a href="#orga1cf8a1">3.1.3. Reading: What is Machine Learning?</a></li>
-<li><a href="#orgd8082e6">3.1.4. Video: Supervised Learning</a></li>
-<li><a href="#org4bc174c">3.1.5. Video: Unsupervised Learning</a></li>
+<li><a href="#org06768c4">3.1.1. Video: Welcome</a></li>
+<li><a href="#org66d01c9">3.1.2. Video: What is Machine Learning</a></li>
+<li><a href="#orgf178b42">3.1.3. Reading: What is Machine Learning?</a></li>
+<li><a href="#org7e3106f">3.1.4. Video: Supervised Learning</a></li>
+<li><a href="#orga48a0d9">3.1.5. Video: Unsupervised Learning</a></li>
 </ul>
 </li>
-<li><a href="#org9942dff">3.2. Model and cost function</a>
+<li><a href="#org498c41c">3.2. Model and cost function</a>
 <ul>
-<li><a href="#org8f70146">3.2.1. Video: Model representation</a></li>
-<li><a href="#orga2d4977">3.2.2. Reading: Model representation</a></li>
-<li><a href="#orga4f1987">3.2.3. Video: Cost function</a></li>
-<li><a href="#orgc80eb53">3.2.4. Reading: Cost function</a></li>
-<li><a href="#org017bdae">3.2.5. Video: Cost function intuition I</a></li>
-<li><a href="#org2b1f881">3.2.6. Reading: Cost function intuition I</a></li>
-<li><a href="#org74eb9f7">3.2.7. Video: Cost function intuition II</a></li>
-<li><a href="#orgf8b2d01">3.2.8. Reading: Cost function intuition II</a></li>
+<li><a href="#org2fad495">3.2.1. Video: Model representation</a></li>
+<li><a href="#org809c711">3.2.2. Reading: Model representation</a></li>
+<li><a href="#org4bd5f14">3.2.3. Video: Cost function</a></li>
+<li><a href="#org49ca0fc">3.2.4. Reading: Cost function</a></li>
+<li><a href="#org46f1077">3.2.5. Video: Cost function intuition I</a></li>
+<li><a href="#orgd362c32">3.2.6. Reading: Cost function intuition I</a></li>
+<li><a href="#orgde25358">3.2.7. Video: Cost function intuition II</a></li>
+<li><a href="#org3e7afdb">3.2.8. Reading: Cost function intuition II</a></li>
 </ul>
 </li>
-<li><a href="#org2464634">3.3. Parameter learning</a>
+<li><a href="#org901e20a">3.3. Parameter learning</a>
 <ul>
-<li><a href="#org4c7abee">3.3.1. Video: Gradient descent</a></li>
-<li><a href="#org10a70e8">3.3.2. Reading: Gradient descent</a></li>
-<li><a href="#orgd4faae5">3.3.3. Video: Gradient descent intuition</a></li>
-<li><a href="#orge80a553">3.3.4. Reading: Gradient descent intuition</a></li>
-<li><a href="#orgbf68024">3.3.5. Video: Gradient descent for linear regression</a></li>
-<li><a href="#orgb58bd05">3.3.6. Reading: Gradient descent for linear regression</a></li>
+<li><a href="#org8830a11">3.3.1. Video: Gradient descent</a></li>
+<li><a href="#orge166b6d">3.3.2. Reading: Gradient descent</a></li>
+<li><a href="#orged08855">3.3.3. Video: Gradient descent intuition</a></li>
+<li><a href="#org795d77b">3.3.4. Reading: Gradient descent intuition</a></li>
+<li><a href="#orgd4e77f5">3.3.5. Video: Gradient descent for linear regression</a></li>
+<li><a href="#org835e7bf">3.3.6. Reading: Gradient descent for linear regression</a></li>
 </ul>
 </li>
-<li><a href="#org834564e">3.4. Linear Algebra review</a>
+<li><a href="#org462edb7">3.4. Linear Algebra review</a>
 <ul>
-<li><a href="#org9e8ff66">3.4.1. Video: Matrix vector multiplication</a></li>
-<li><a href="#orgcf65abe">3.4.2. Video: Matrix matrix multiplication</a></li>
-<li><a href="#org9d3927a">3.4.3. Video: Inverse and transpose</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orgf34eae2">4. Semana 2</a>
-<ul>
-<li><a href="#orgabcd017">4.1. Environment setup instructions</a></li>
-<li><a href="#org0eaeb00">4.2. Multivariate linear regression</a>
-<ul>
-<li><a href="#org27bac9b">4.2.1. Video: Multivariate linear regression</a></li>
-<li><a href="#org8ff8001">4.2.2. Reading: multiple features</a></li>
-<li><a href="#org54fd62f">4.2.3. Video: Gradient descent for multiple features</a></li>
-<li><a href="#orga1531ee">4.2.4. Reading: Gradient descent for multiple features</a></li>
-<li><a href="#orgf8f30bd">4.2.5. Video: Gradient descent in practice I - Feature scaling</a></li>
-<li><a href="#orgaf60a90">4.2.6. Reading: Gradient descent in practice I - Feature scaling</a></li>
-<li><a href="#orgfcdf73c">4.2.7. Video: Gradient descent in practice II - Learning rate</a></li>
-<li><a href="#org343e0b7">4.2.8. Reading: Gradient descent in practice II - Learning rate</a></li>
-<li><a href="#org2665dbf">4.2.9. Video: Features and polynomial regression</a></li>
-<li><a href="#orgfa9d4a0">4.2.10. Reading: Features and polynomial regression</a></li>
-</ul>
-</li>
-<li><a href="#orga46b3b0">4.3. Computing parameters analitically</a>
-<ul>
-<li><a href="#org95206d9">4.3.1. Video: Normal equation</a></li>
-<li><a href="#orga985580">4.3.2. Reading: Normal equation</a></li>
-<li><a href="#org60d986f">4.3.3. Video: Normal equation noninvertibility</a></li>
-<li><a href="#org16ca437">4.3.4. Reading: Normal equation noninvertibility</a></li>
-</ul>
-</li>
-<li><a href="#org12eec47">4.4. Submitting programming assignments</a></li>
-<li><a href="#org86ea3ba">4.5. Review</a></li>
-<li><a href="#org9699f61">4.6. Octave/Matlab tutorial</a></li>
-<li><a href="#org79fdb8c">4.7. Review</a>
-<ul>
-<li><a href="#org0824463">4.7.1. Programming assignment 1: linear regression</a></li>
+<li><a href="#org09741e5">3.4.1. Video: Matrix vector multiplication</a></li>
+<li><a href="#org8d6176d">3.4.2. Video: Matrix matrix multiplication</a></li>
+<li><a href="#org58ab187">3.4.3. Video: Inverse and transpose</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org40d4a1e">5. Semana 3</a>
+<li><a href="#org396c326">4. Semana 2</a>
 <ul>
-<li><a href="#orga23fc64">5.1. Classification and representation</a>
+<li><a href="#org63d65b3">4.1. Environment setup instructions</a></li>
+<li><a href="#orgc8479a1">4.2. Multivariate linear regression</a>
 <ul>
-<li><a href="#org0e4f0a8">5.1.1. Classification</a></li>
-<li><a href="#org89b529d">5.1.2. Hypothesis representation</a></li>
-<li><a href="#org15dce15">5.1.3. Decision boundary</a></li>
+<li><a href="#org1c465ef">4.2.1. Video: Multivariate linear regression</a></li>
+<li><a href="#org94840b7">4.2.2. Reading: multiple features</a></li>
+<li><a href="#orgf862e2a">4.2.3. Video: Gradient descent for multiple features</a></li>
+<li><a href="#org8ee8ccb">4.2.4. Reading: Gradient descent for multiple features</a></li>
+<li><a href="#org1b2477b">4.2.5. Video: Gradient descent in practice I - Feature scaling</a></li>
+<li><a href="#orgce0e13e">4.2.6. Reading: Gradient descent in practice I - Feature scaling</a></li>
+<li><a href="#orgb0ab831">4.2.7. Video: Gradient descent in practice II - Learning rate</a></li>
+<li><a href="#orgdd4537e">4.2.8. Reading: Gradient descent in practice II - Learning rate</a></li>
+<li><a href="#org201296c">4.2.9. Video: Features and polynomial regression</a></li>
+<li><a href="#org3e75ba2">4.2.10. Reading: Features and polynomial regression</a></li>
 </ul>
 </li>
-<li><a href="#org678af35">5.2. Logistic regression model</a>
+<li><a href="#org96c18aa">4.3. Computing parameters analitically</a>
 <ul>
-<li><a href="#org51ba83c">5.2.1. Cost function</a></li>
-<li><a href="#org8a5518c">5.2.2. Simplified cost function and gradient descent</a></li>
-<li><a href="#org1448193">5.2.3. Advanced optimization</a></li>
+<li><a href="#org68c8b61">4.3.1. Video: Normal equation</a></li>
+<li><a href="#org75a7eb3">4.3.2. Reading: Normal equation</a></li>
+<li><a href="#orge5cc6f3">4.3.3. Video: Normal equation noninvertibility</a></li>
+<li><a href="#org6bc0c2b">4.3.4. Reading: Normal equation noninvertibility</a></li>
 </ul>
 </li>
-<li><a href="#org51b2706">5.3. Multiclass classification</a>
+<li><a href="#orgd556eaf">4.4. Submitting programming assignments</a></li>
+<li><a href="#orgbe1c194">4.5. Review</a></li>
+<li><a href="#org4bf7448">4.6. Octave/Matlab tutorial</a></li>
+<li><a href="#orga22173b">4.7. Review</a>
 <ul>
-<li><a href="#org5fe8389">5.3.1. Multiclass classification: one vs all</a></li>
-</ul>
-</li>
-<li><a href="#org725eaf4">5.4. Solving the problem of overfitting</a>
-<ul>
-<li><a href="#org9c7b6d0">5.4.1. The problem of overfitting</a></li>
-<li><a href="#org443a09b">5.4.2. Cost function</a></li>
-<li><a href="#org476d040">5.4.3. Regularized linear regression</a></li>
-<li><a href="#org20e77bc">5.4.4. Regularized logistic regression</a></li>
-</ul>
-</li>
-<li><a href="#org52c484f">5.5. Review</a>
-<ul>
-<li><a href="#org5cddbb0">5.5.1. Quiz: Regularization</a></li>
-<li><a href="#org705c46a">5.5.2. Programming assignment: logistic regression</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orgbfff26b">6. Semana 4</a>
-<ul>
-<li><a href="#org52dca6d">6.1. Motivations</a>
-<ul>
-<li><a href="#orgca46247">6.1.1. Non-linear hypotheses</a></li>
-<li><a href="#orgf8915ed">6.1.2. Neurons and the brain</a></li>
-</ul>
-</li>
-<li><a href="#org9db42a8">6.2. Neural networks</a>
-<ul>
-<li><a href="#orgeb5c30b">6.2.1. Model representation I</a></li>
-<li><a href="#org4e9c8f3">6.2.2. Model representation II</a></li>
-</ul>
-</li>
-<li><a href="#orgad2a193">6.3. Applications</a>
-<ul>
-<li><a href="#org3b5a8d5">6.3.1. Examples and intuitions I</a></li>
-<li><a href="#orgdb96324">6.3.2. Examples and intuitions II</a></li>
-<li><a href="#org9d267df">6.3.3. Multiclass classification</a></li>
-</ul>
-</li>
-<li><a href="#org104ca1b">6.4. Review</a>
-<ul>
-<li><a href="#org99984ab">6.4.1. Quiz: Neural networks: representation</a></li>
-<li><a href="#org6ba1068">6.4.2. Programming assignment: multi-class classificatin and neural networks</a></li>
+<li><a href="#org4a0c5e0">4.7.1. Programming assignment 1: linear regression</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgd309680">7. Semana 5</a>
+<li><a href="#org1888898">5. Semana 3</a>
 <ul>
-<li><a href="#orgfd193dd">7.1. Cost function and backpropagation</a>
+<li><a href="#orgaf06763">5.1. Classification and representation</a>
 <ul>
-<li><a href="#org073a54c">7.1.1. Cost function</a></li>
-<li><a href="#org640fc10">7.1.2. Backpropagation algorithm</a></li>
-<li><a href="#org957829e">7.1.3. Backpropagation intuition</a></li>
+<li><a href="#orgcde320c">5.1.1. Classification</a></li>
+<li><a href="#orgeee3572">5.1.2. Hypothesis representation</a></li>
+<li><a href="#orgd42cd4a">5.1.3. Decision boundary</a></li>
 </ul>
 </li>
-<li><a href="#org4018518">7.2. Backpropagation in practice</a>
+<li><a href="#org8f8ea9f">5.2. Logistic regression model</a>
 <ul>
-<li><a href="#org4b7934a">7.2.1. Implementation note: unrolling parameters</a></li>
-<li><a href="#org33d4eb9">7.2.2. Gradient checking</a></li>
-<li><a href="#org09ba374">7.2.3. Random initialization</a></li>
-<li><a href="#org5865fc2">7.2.4. Putting it together</a></li>
+<li><a href="#orge6d62ba">5.2.1. Cost function</a></li>
+<li><a href="#org9f465dd">5.2.2. Simplified cost function and gradient descent</a></li>
+<li><a href="#orga4bb674">5.2.3. Advanced optimization</a></li>
 </ul>
 </li>
-<li><a href="#orgd30dbc0">7.3. Applications of neural networks</a>
+<li><a href="#org9f887ad">5.3. Multiclass classification</a>
 <ul>
-<li><a href="#org0dd1c08">7.3.1. Autonomous driving</a></li>
+<li><a href="#org5bf7abf">5.3.1. Multiclass classification: one vs all</a></li>
 </ul>
 </li>
-<li><a href="#org0827db9">7.4. Review</a>
+<li><a href="#org702a4e8">5.4. Solving the problem of overfitting</a>
 <ul>
-<li><a href="#org6f88a7d">7.4.1. Quiz: Neural networks: learning</a></li>
-<li><a href="#org87e30e9">7.4.2. Programming assignment: neural network learning</a></li>
+<li><a href="#orgc46067d">5.4.1. The problem of overfitting</a></li>
+<li><a href="#org15e7217">5.4.2. Cost function</a></li>
+<li><a href="#orgb118534">5.4.3. Regularized linear regression</a></li>
+<li><a href="#orgca24673">5.4.4. Regularized logistic regression</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#org45be4d7">8. Semana 6</a>
+<li><a href="#orge6fe0ec">5.5. Review</a>
 <ul>
-<li><a href="#org3645f02">8.1. Evaluating a learning algorithm</a>
-<ul>
-<li><a href="#org3f27625">8.1.1. Deciding what to try next</a></li>
-<li><a href="#org0589006">8.1.2. Evaluating a hypothesis</a></li>
-<li><a href="#org7a79131">8.1.3. Model selection and train/validation/test sets</a></li>
-</ul>
-</li>
-<li><a href="#orgff9a378">8.2. Bias vs variance</a>
-<ul>
-<li><a href="#orgd9fae4d">8.2.1. Diagnosing bias vs variance</a></li>
-<li><a href="#orgacc8931">8.2.2. Regularization and bias/variance</a></li>
-<li><a href="#org6d19384">8.2.3. Learning curves</a></li>
-<li><a href="#orgb70bdca">8.2.4. Deciding what to do next revisited</a></li>
-</ul>
-</li>
-<li><a href="#org5e28bae">8.3. Review</a>
-<ul>
-<li><a href="#org9a2af20">8.3.1. Quiz: advice for applying machine learning</a></li>
-<li><a href="#org4485df8">8.3.2. Programming assignment: regularized linear regression and bias/variance</a></li>
-</ul>
-</li>
-<li><a href="#orgb77756f">8.4. Building a spam classifier</a>
-<ul>
-<li><a href="#org989a625">8.4.1. Prioritizing what to work on</a></li>
-<li><a href="#org263f48c">8.4.2. Error analysis</a></li>
-</ul>
-</li>
-<li><a href="#org0e6bd1e">8.5. Handling skewed data</a>
-<ul>
-<li><a href="#org0447c60">8.5.1. Error metrics for skewed classes</a></li>
-<li><a href="#org4c595ca">8.5.2. Trading off precision and recall</a></li>
-</ul>
-</li>
-<li><a href="#org43ee577">8.6. Using large datasets</a>
-<ul>
-<li><a href="#orgf3a7e7f">8.6.1. Data for machine learning</a></li>
-</ul>
-</li>
-<li><a href="#orgc9494d0">8.7. Review</a>
-<ul>
-<li><a href="#org519ed9d">8.7.1. Quiz: machine learning system design</a></li>
+<li><a href="#orgc8c1bb1">5.5.1. Quiz: Regularization</a></li>
+<li><a href="#org1137978">5.5.2. Programming assignment: logistic regression</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orga84d785">9. Semana 7</a>
+<li><a href="#org251ed46">6. Semana 4</a>
 <ul>
-<li><a href="#orga863220">9.1. Large margin classification</a>
+<li><a href="#orgf50b4e8">6.1. Motivations</a>
 <ul>
-<li><a href="#orgc98148c">9.1.1. Optimization objective</a></li>
-<li><a href="#orgd987a2d">9.1.2. Large margin intuition</a></li>
-<li><a href="#orgcf5d416">9.1.3. Mathematics behind large margin classification</a></li>
+<li><a href="#orgd044ed5">6.1.1. Non-linear hypotheses</a></li>
+<li><a href="#org4a69931">6.1.2. Neurons and the brain</a></li>
 </ul>
 </li>
-<li><a href="#orgf5ac17b">9.2. Kernels</a>
+<li><a href="#org7be1d68">6.2. Neural networks</a>
 <ul>
-<li><a href="#org14a906f">9.2.1. Kernels I</a></li>
-<li><a href="#orgabbbecb">9.2.2. Kernels II</a></li>
+<li><a href="#org482356f">6.2.1. Model representation I</a></li>
+<li><a href="#orgd8a9d45">6.2.2. Model representation II</a></li>
 </ul>
 </li>
-<li><a href="#org8094e35">9.3. SVMs in practice</a>
+<li><a href="#org46a24bf">6.3. Applications</a>
 <ul>
-<li><a href="#orga958d8b">9.3.1. Using an SVM</a></li>
+<li><a href="#org84c4c37">6.3.1. Examples and intuitions I</a></li>
+<li><a href="#orgd4485e7">6.3.2. Examples and intuitions II</a></li>
+<li><a href="#org0161bc3">6.3.3. Multiclass classification</a></li>
 </ul>
 </li>
-<li><a href="#orga903be2">9.4. Review</a>
+<li><a href="#org5790999">6.4. Review</a>
 <ul>
-<li><a href="#orgc8edb4f">9.4.1. Quiz: support vector machines</a></li>
-<li><a href="#org7d49f3c">9.4.2. Programming assignment SVMs</a></li>
-</ul>
-</li>
-<li><a href="#orgcaf1045">9.5. Otras cosas</a>
-<ul>
-<li><a href="#orgc7a1cda">9.5.1. https://www.youtube.com/watch?v=3liCbRZPrZA SVM with polynomial kernel visualization</a></li>
-<li><a href="#org1942c87">9.5.2. https://ranvir.xyz/blog/svm-support-vector-machines-in-machine-learning/</a></li>
+<li><a href="#org89524f3">6.4.1. Quiz: Neural networks: representation</a></li>
+<li><a href="#orgd94704f">6.4.2. Programming assignment: multi-class classificatin and neural networks</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org37b3647">10. Semana 8: Unsupervised learning</a>
+<li><a href="#orgba71cdc">7. Semana 5</a>
 <ul>
-<li><a href="#org4df7862">10.1. Clustering</a>
+<li><a href="#org8649540">7.1. Cost function and backpropagation</a>
 <ul>
-<li><a href="#orgf6da2d7">10.1.1. Unsupervised learning: introduction</a></li>
-<li><a href="#org269645b">10.1.2. K-means algorithm</a></li>
-<li><a href="#orgaec798c">10.1.3. Optimization objective</a></li>
-<li><a href="#org211b789">10.1.4. Random initialization</a></li>
-<li><a href="#org91f91ec">10.1.5. Choosing the number of clusters</a></li>
+<li><a href="#org07a6fb6">7.1.1. Cost function</a></li>
+<li><a href="#org10087d0">7.1.2. Backpropagation algorithm</a></li>
+<li><a href="#orgc7712bd">7.1.3. Backpropagation intuition</a></li>
 </ul>
 </li>
-<li><a href="#org24ab0bb">10.2. Review</a>
+<li><a href="#orga438022">7.2. Backpropagation in practice</a>
 <ul>
-<li><a href="#orgb018cf8">10.2.1. Quiz: Unsuperised learning</a></li>
+<li><a href="#orgf3c1c98">7.2.1. Implementation note: unrolling parameters</a></li>
+<li><a href="#org9667220">7.2.2. Gradient checking</a></li>
+<li><a href="#orgd0e6c6d">7.2.3. Random initialization</a></li>
+<li><a href="#org555959d">7.2.4. Putting it together</a></li>
 </ul>
 </li>
-<li><a href="#org43ef0ed">10.3. Dimensionality reduction</a>
+<li><a href="#org3276b5e">7.3. Applications of neural networks</a>
 <ul>
-<li><a href="#org9e58ba7">10.3.1. Motivation</a></li>
-<li><a href="#org5a7a331">10.3.2. Principal component analysis</a></li>
-<li><a href="#org3ed21a2">10.3.3. Appliying PCA</a></li>
-<li><a href="#org05644a2">10.3.4. Review</a></li>
+<li><a href="#orgdbc5ba3">7.3.1. Autonomous driving</a></li>
+</ul>
+</li>
+<li><a href="#org44d1177">7.4. Review</a>
+<ul>
+<li><a href="#orgdbb3a69">7.4.1. Quiz: Neural networks: learning</a></li>
+<li><a href="#org65dc3e5">7.4.2. Programming assignment: neural network learning</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgb67627d">8. Semana 6</a>
+<ul>
+<li><a href="#orga5ac24d">8.1. Evaluating a learning algorithm</a>
+<ul>
+<li><a href="#org812850b">8.1.1. Deciding what to try next</a></li>
+<li><a href="#org7f037df">8.1.2. Evaluating a hypothesis</a></li>
+<li><a href="#orgfdd169d">8.1.3. Model selection and train/validation/test sets</a></li>
+</ul>
+</li>
+<li><a href="#org8d32c36">8.2. Bias vs variance</a>
+<ul>
+<li><a href="#orgdde2331">8.2.1. Diagnosing bias vs variance</a></li>
+<li><a href="#orgf6c87eb">8.2.2. Regularization and bias/variance</a></li>
+<li><a href="#orge0f3137">8.2.3. Learning curves</a></li>
+<li><a href="#orgb8fe3dd">8.2.4. Deciding what to do next revisited</a></li>
+</ul>
+</li>
+<li><a href="#orgf85d278">8.3. Review</a>
+<ul>
+<li><a href="#org79008e8">8.3.1. Quiz: advice for applying machine learning</a></li>
+<li><a href="#org57c6bd0">8.3.2. Programming assignment: regularized linear regression and bias/variance</a></li>
+</ul>
+</li>
+<li><a href="#org359eb83">8.4. Building a spam classifier</a>
+<ul>
+<li><a href="#org84e2549">8.4.1. Prioritizing what to work on</a></li>
+<li><a href="#orgec5d536">8.4.2. Error analysis</a></li>
+</ul>
+</li>
+<li><a href="#org8b3944e">8.5. Handling skewed data</a>
+<ul>
+<li><a href="#org94263ea">8.5.1. Error metrics for skewed classes</a></li>
+<li><a href="#orgcaaf269">8.5.2. Trading off precision and recall</a></li>
+</ul>
+</li>
+<li><a href="#orgfa8c9c9">8.6. Using large datasets</a>
+<ul>
+<li><a href="#org1c37f1a">8.6.1. Data for machine learning</a></li>
+</ul>
+</li>
+<li><a href="#org14153d0">8.7. Review</a>
+<ul>
+<li><a href="#orgd6b4296">8.7.1. Quiz: machine learning system design</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgbdd545e">9. Semana 7</a>
+<ul>
+<li><a href="#org1ba13e3">9.1. Large margin classification</a>
+<ul>
+<li><a href="#orgf76a529">9.1.1. Optimization objective</a></li>
+<li><a href="#org666456c">9.1.2. Large margin intuition</a></li>
+<li><a href="#orge94fba5">9.1.3. Mathematics behind large margin classification</a></li>
+</ul>
+</li>
+<li><a href="#org211edc0">9.2. Kernels</a>
+<ul>
+<li><a href="#org4aa5aec">9.2.1. Kernels I</a></li>
+<li><a href="#org6c22dba">9.2.2. Kernels II</a></li>
+</ul>
+</li>
+<li><a href="#orgd8ade6b">9.3. SVMs in practice</a>
+<ul>
+<li><a href="#org96f4526">9.3.1. Using an SVM</a></li>
+</ul>
+</li>
+<li><a href="#orgdb55442">9.4. Review</a>
+<ul>
+<li><a href="#orgec0f652">9.4.1. Quiz: support vector machines</a></li>
+<li><a href="#org326bc8e">9.4.2. Programming assignment SVMs</a></li>
+</ul>
+</li>
+<li><a href="#org78fbc2e">9.5. Otras cosas</a>
+<ul>
+<li><a href="#orga300225">9.5.1. https://www.youtube.com/watch?v=3liCbRZPrZA SVM with polynomial kernel visualization</a></li>
+<li><a href="#org8368c30">9.5.2. https://ranvir.xyz/blog/svm-support-vector-machines-in-machine-learning/</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org5dd854e">10. Semana 8: Unsupervised learning</a>
+<ul>
+<li><a href="#org53499fe">10.1. Clustering</a>
+<ul>
+<li><a href="#org5c9af28">10.1.1. Unsupervised learning: introduction</a></li>
+<li><a href="#org4d2ac42">10.1.2. K-means algorithm</a></li>
+<li><a href="#orgb97814b">10.1.3. Optimization objective</a></li>
+<li><a href="#org9991dcf">10.1.4. Random initialization</a></li>
+<li><a href="#org72be918">10.1.5. Choosing the number of clusters</a></li>
+</ul>
+</li>
+<li><a href="#org7cf1dc5">10.2. Review</a>
+<ul>
+<li><a href="#orge753b74">10.2.1. Quiz: Unsuperised learning</a></li>
+</ul>
+</li>
+<li><a href="#orga2f4227">10.3. Dimensionality reduction</a>
+<ul>
+<li><a href="#org6e5ad56">10.3.1. Motivation</a></li>
+<li><a href="#orgdf506f7">10.3.2. Principal component analysis</a></li>
+<li><a href="#orge069ffb">10.3.3. Appliying PCA</a></li>
+<li><a href="#org727ee07">10.3.4. Review</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org7524c82">11. Semana 9: Anomaly detection &amp; Recommender systems</a>
+<ul>
+<li><a href="#orge39b455">11.1. Anomaly detection</a>
+<ul>
+<li><a href="#org70cc19d">11.1.1. Density estimation</a></li>
+<li><a href="#orgbe0358c">11.1.2. Building an anomaly detection system</a></li>
+<li><a href="#orgebebcaa">11.1.3. Multivariate gaussian distribution</a></li>
+<li><a href="#org89c2cef">11.1.4. Review</a></li>
+</ul>
+</li>
+<li><a href="#org204c500">11.2. Recommender systems</a>
+<ul>
+<li><a href="#org54ea548">11.2.1. Predicting movie ratings</a></li>
+<li><a href="#org96a59fa">11.2.2. Collaborative filtering</a></li>
+<li><a href="#org65167f5">11.2.3. Low rank matrix factorization</a></li>
+<li><a href="#org3949a8f">11.2.4. Review</a></li>
 </ul>
 </li>
 </ul>
@@ -562,8 +582,8 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div id="outline-container-org234a3e1" class="outline-2">
-<h2 id="org234a3e1"><span class="section-number-2">1</span> Info</h2>
+<div id="outline-container-orge60be12" class="outline-2">
+<h2 id="orge60be12"><span class="section-number-2">1</span> Info</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li><a href="https://www.coursera.org/learn/machine-learning">https://www.coursera.org/learn/machine-learning</a></li>
@@ -577,8 +597,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org452b340" class="outline-2">
-<h2 id="org452b340"><span class="section-number-2">2</span> Ideas</h2>
+<div id="outline-container-org85e196a" class="outline-2">
+<h2 id="org85e196a"><span class="section-number-2">2</span> Ideas</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Ideas mías a lo largo del curso.
@@ -590,21 +610,23 @@ Ideas mías a lo largo del curso.
 </ol>
 </div>
 
-<div id="outline-container-org373d390" class="outline-3">
-<h3 id="org373d390"><span class="section-number-3">2.1</span> Enlaces</h3>
+<div id="outline-container-orgdc486bd" class="outline-3">
+<h3 id="orgdc486bd"><span class="section-number-3">2.1</span> Enlaces</h3>
 <div class="outline-text-3" id="text-2-1">
 <ol class="org-ol">
 <li><a href="http://www.deeplearningbook.org/">http://www.deeplearningbook.org/</a></li>
 <li><a href="http://ufldl.stanford.edu/tutorial/">http://ufldl.stanford.edu/tutorial/</a>  Deep Learning Tutorial</li>
 <li><a href="https://developers.google.com/machine-learning/crash-course">https://developers.google.com/machine-learning/crash-course</a></li>
 <li><a href="https://deeplearning.mit.edu/">https://deeplearning.mit.edu/</a></li>
+<li><a href="http://cs229.stanford.edu">http://cs229.stanford.edu</a></li>
 </ol>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org6ca9971" class="outline-2">
-<h2 id="org6ca9971"><span class="section-number-2">3</span> Semana 1</h2>
+
+<div id="outline-container-orgfe02473" class="outline-2">
+<h2 id="orgfe02473"><span class="section-number-2">3</span> Semana 1</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Intro, regresión lineal, repaso de Álgebra.
@@ -616,16 +638,16 @@ Intro, regresión lineal, repaso de Álgebra.
 </ul>
 </div>
 
-<div id="outline-container-org02ba02f" class="outline-3">
-<h3 id="org02ba02f"><span class="section-number-3">3.1</span> Introduction</h3>
+<div id="outline-container-org5afdce5" class="outline-3">
+<h3 id="org5afdce5"><span class="section-number-3">3.1</span> Introduction</h3>
 <div class="outline-text-3" id="text-3-1">
 </div>
-<div id="outline-container-org06d1059" class="outline-4">
-<h4 id="org06d1059"><span class="section-number-4">3.1.1</span> Video: Welcome</h4>
+<div id="outline-container-org06768c4" class="outline-4">
+<h4 id="org06768c4"><span class="section-number-4">3.1.1</span> Video: Welcome</h4>
 </div>
 
-<div id="outline-container-org4700a82" class="outline-4">
-<h4 id="org4700a82"><span class="section-number-4">3.1.2</span> Video: What is Machine Learning</h4>
+<div id="outline-container-org66d01c9" class="outline-4">
+<h4 id="org66d01c9"><span class="section-number-4">3.1.2</span> Video: What is Machine Learning</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <ul class="org-ul">
 <li>Los algoritmos más importantes son el aprendizaje supervisado y el aprendizaje no supervisado. Es esta además la clasificación más general de algoritmos.
@@ -639,12 +661,12 @@ Intro, regresión lineal, repaso de Álgebra.
 </div>
 </div>
 
-<div id="outline-container-orga1cf8a1" class="outline-4">
-<h4 id="orga1cf8a1"><span class="section-number-4">3.1.3</span> Reading: What is Machine Learning?</h4>
+<div id="outline-container-orgf178b42" class="outline-4">
+<h4 id="orgf178b42"><span class="section-number-4">3.1.3</span> Reading: What is Machine Learning?</h4>
 </div>
 
-<div id="outline-container-orgd8082e6" class="outline-4">
-<h4 id="orgd8082e6"><span class="section-number-4">3.1.4</span> Video: Supervised Learning</h4>
+<div id="outline-container-org7e3106f" class="outline-4">
+<h4 id="org7e3106f"><span class="section-number-4">3.1.4</span> Video: Supervised Learning</h4>
 <div class="outline-text-4" id="text-3-1-4">
 <ul class="org-ul">
 <li>En el aprendizaje supervisado, le mostramos al programa ejemplos de entradas y sus correspondientes salidas/respuestas correctas. Ya sabemos cómo son las respuestas corectas; tenemos la idea de que hay una relación entre las entradas y las salidas. Dado un conjunto de entradas y salidas, intentamos obtener un modelo que permita predecir/inferir las salidas a nuevos datos de entrada.</li>
@@ -658,14 +680,14 @@ Intro, regresión lineal, repaso de Álgebra.
 </div>
 
 <ol class="org-ol">
-<li><a id="orgb69a2df"></a><span class="todo TODO">TODO</span> Leer <a href="https://stats.stackexchange.com/questions/22381/why-not-approach-classification-through-regression">https://stats.stackexchange.com/questions/22381/why-not-approach-classification-through-regression</a><br /></li>
+<li><a id="orgc2d5226"></a><span class="todo TODO">TODO</span> Leer <a href="https://stats.stackexchange.com/questions/22381/why-not-approach-classification-through-regression">https://stats.stackexchange.com/questions/22381/why-not-approach-classification-through-regression</a><br /></li>
 
-<li><a id="org6620547"></a><span class="todo TODO">TODO</span> Leer <a href="https://datascience.stackexchange.com/questions/25298/how-to-know-when-to-treat-a-problem-as-a-classification-task-or-a-regression-tas">https://datascience.stackexchange.com/questions/25298/how-to-know-when-to-treat-a-problem-as-a-classification-task-or-a-regression-tas</a><br /></li>
+<li><a id="orgf860979"></a><span class="todo TODO">TODO</span> Leer <a href="https://datascience.stackexchange.com/questions/25298/how-to-know-when-to-treat-a-problem-as-a-classification-task-or-a-regression-tas">https://datascience.stackexchange.com/questions/25298/how-to-know-when-to-treat-a-problem-as-a-classification-task-or-a-regression-tas</a><br /></li>
 </ol>
 </div>
 
-<div id="outline-container-org4bc174c" class="outline-4">
-<h4 id="org4bc174c"><span class="section-number-4">3.1.5</span> Video: Unsupervised Learning</h4>
+<div id="outline-container-orga48a0d9" class="outline-4">
+<h4 id="orga48a0d9"><span class="section-number-4">3.1.5</span> Video: Unsupervised Learning</h4>
 <div class="outline-text-4" id="text-3-1-5">
 <ul class="org-ul">
 <li>En el aprendizaje no supervisado, le damos datos al programa con la intención de encontrar estructuras subyacentes, patrones.</li>
@@ -676,16 +698,16 @@ Intro, regresión lineal, repaso de Álgebra.
 </div>
 </div>
 
-<div id="outline-container-org9942dff" class="outline-3">
-<h3 id="org9942dff"><span class="section-number-3">3.2</span> Model and cost function</h3>
+<div id="outline-container-org498c41c" class="outline-3">
+<h3 id="org498c41c"><span class="section-number-3">3.2</span> Model and cost function</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Vemos la regresión lineal como primer algoritmo de aprendizaje supervisado.
 </p>
 </div>
 
-<div id="outline-container-org8f70146" class="outline-4">
-<h4 id="org8f70146"><span class="section-number-4">3.2.1</span> Video: Model representation</h4>
+<div id="outline-container-org2fad495" class="outline-4">
+<h4 id="org2fad495"><span class="section-number-4">3.2.1</span> Video: Model representation</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <p>
 Un poco de nomenclatura:
@@ -708,8 +730,8 @@ Un poco de nomenclatura:
 </div>
 </div>
 
-<div id="outline-container-orga2d4977" class="outline-4">
-<h4 id="orga2d4977"><span class="section-number-4">3.2.2</span> Reading: Model representation</h4>
+<div id="outline-container-org809c711" class="outline-4">
+<h4 id="org809c711"><span class="section-number-4">3.2.2</span> Reading: Model representation</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <ul class="org-ul">
 <li>\(X\): el espacio de los valores de entrada.</li>
@@ -719,8 +741,8 @@ Un poco de nomenclatura:
 </div>
 </div>
 
-<div id="outline-container-orga4f1987" class="outline-4">
-<h4 id="orga4f1987"><span class="section-number-4">3.2.3</span> Video: Cost function</h4>
+<div id="outline-container-org4bd5f14" class="outline-4">
+<h4 id="org4bd5f14"><span class="section-number-4">3.2.3</span> Video: Cost function</h4>
 <div class="outline-text-4" id="text-3-2-3">
 <p>
 Formalizamos el problema del aprendizaje como la minimización de una función de costo \(J(\vec{\theta})\). La función de costo habitual y recomendada para problemas de regresión lineal es el <b>error cuadrático medio</b> (<a href="https://en.wikipedia.org/wiki/Mean_squared_error"><i>Mean Squared Error</i></a> o <i>Mean Squared Deviation</i>).
@@ -767,24 +789,24 @@ El producto implica la sumatoria y el cuadrado elemento a elemento.
 </div>
 </div>
 
-<div id="outline-container-orgc80eb53" class="outline-4">
-<h4 id="orgc80eb53"><span class="section-number-4">3.2.4</span> Reading: Cost function</h4>
+<div id="outline-container-org49ca0fc" class="outline-4">
+<h4 id="org49ca0fc"><span class="section-number-4">3.2.4</span> Reading: Cost function</h4>
 </div>
 
-<div id="outline-container-org017bdae" class="outline-4">
-<h4 id="org017bdae"><span class="section-number-4">3.2.5</span> Video: Cost function intuition I</h4>
+<div id="outline-container-org46f1077" class="outline-4">
+<h4 id="org46f1077"><span class="section-number-4">3.2.5</span> Video: Cost function intuition I</h4>
 </div>
 
-<div id="outline-container-org2b1f881" class="outline-4">
-<h4 id="org2b1f881"><span class="section-number-4">3.2.6</span> Reading: Cost function intuition I</h4>
+<div id="outline-container-orgd362c32" class="outline-4">
+<h4 id="orgd362c32"><span class="section-number-4">3.2.6</span> Reading: Cost function intuition I</h4>
 </div>
 
-<div id="outline-container-org74eb9f7" class="outline-4">
-<h4 id="org74eb9f7"><span class="section-number-4">3.2.7</span> Video: Cost function intuition II</h4>
+<div id="outline-container-orgde25358" class="outline-4">
+<h4 id="orgde25358"><span class="section-number-4">3.2.7</span> Video: Cost function intuition II</h4>
 </div>
 
-<div id="outline-container-orgf8b2d01" class="outline-4">
-<h4 id="orgf8b2d01"><span class="section-number-4">3.2.8</span> Reading: Cost function intuition II</h4>
+<div id="outline-container-org3e7afdb" class="outline-4">
+<h4 id="org3e7afdb"><span class="section-number-4">3.2.8</span> Reading: Cost function intuition II</h4>
 <div class="outline-text-4" id="text-3-2-8">
 <p>
 De <a href="https://es.wikipedia.org/wiki/Isol%C3%ADnea">isolíneas / curvas de nivel</a>.
@@ -794,12 +816,12 @@ De <a href="https://es.wikipedia.org/wiki/Isol%C3%ADnea">isolíneas / curvas de 
 </div>
 
 
-<div id="outline-container-org2464634" class="outline-3">
-<h3 id="org2464634"><span class="section-number-3">3.3</span> Parameter learning</h3>
+<div id="outline-container-org901e20a" class="outline-3">
+<h3 id="org901e20a"><span class="section-number-3">3.3</span> Parameter learning</h3>
 <div class="outline-text-3" id="text-3-3">
 </div>
-<div id="outline-container-org4c7abee" class="outline-4">
-<h4 id="org4c7abee"><span class="section-number-4">3.3.1</span> Video: Gradient descent</h4>
+<div id="outline-container-org8830a11" class="outline-4">
+<h4 id="org8830a11"><span class="section-number-4">3.3.1</span> Video: Gradient descent</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <p>
 El descenso por el gradiente es un algoritmo de optimización que vamos a usar (entre otras cosas) para minimizar la función de costo.
@@ -856,12 +878,12 @@ Cuando la función de costo es el error cuadrático medio (<i>MSE</i>), la fórm
 </div>
 </div>
 
-<div id="outline-container-org10a70e8" class="outline-4">
-<h4 id="org10a70e8"><span class="section-number-4">3.3.2</span> Reading: Gradient descent</h4>
+<div id="outline-container-orge166b6d" class="outline-4">
+<h4 id="orge166b6d"><span class="section-number-4">3.3.2</span> Reading: Gradient descent</h4>
 </div>
 
-<div id="outline-container-orgd4faae5" class="outline-4">
-<h4 id="orgd4faae5"><span class="section-number-4">3.3.3</span> Video: Gradient descent intuition</h4>
+<div id="outline-container-orged08855" class="outline-4">
+<h4 id="orged08855"><span class="section-number-4">3.3.3</span> Video: Gradient descent intuition</h4>
 <div class="outline-text-4" id="text-3-3-3">
 <ul class="org-ul">
 <li>Si \(\alpha\) es muy grande, el algoritmo puede oscilar o incluso diverger.</li>
@@ -871,12 +893,12 @@ Cuando la función de costo es el error cuadrático medio (<i>MSE</i>), la fórm
 </div>
 </div>
 
-<div id="outline-container-orge80a553" class="outline-4">
-<h4 id="orge80a553"><span class="section-number-4">3.3.4</span> Reading: Gradient descent intuition</h4>
+<div id="outline-container-org795d77b" class="outline-4">
+<h4 id="org795d77b"><span class="section-number-4">3.3.4</span> Reading: Gradient descent intuition</h4>
 </div>
 
-<div id="outline-container-orgbf68024" class="outline-4">
-<h4 id="orgbf68024"><span class="section-number-4">3.3.5</span> Video: Gradient descent for linear regression</h4>
+<div id="outline-container-orgd4e77f5" class="outline-4">
+<h4 id="orgd4e77f5"><span class="section-number-4">3.3.5</span> Video: Gradient descent for linear regression</h4>
 <div class="outline-text-4" id="text-3-3-5">
 <p>
 Dice Andrew cerca del minuto 4:40:
@@ -932,28 +954,28 @@ En realidad todo lo que vimos es descenso por el gradiente por lotes, o <b><i>ba
 
 
 <ol class="org-ol">
-<li><a id="org692604f"></a><span class="todo TODO">TODO</span> Leer más de <a href="https://en.wikipedia.org/wiki/Linear_regression">regresión lineal</a><br /></li>
+<li><a id="orgcbf71f5"></a><span class="todo TODO">TODO</span> Leer más de <a href="https://en.wikipedia.org/wiki/Linear_regression">regresión lineal</a><br /></li>
 </ol>
 
 
 
-<li><a id="org0ddb5d5"></a>Regresión lineal<br /></li>
+<li><a id="org319b9e6"></a>Regresión lineal<br /></li>
 </ol>
 </div>
 
 
 
-<div id="outline-container-orgb58bd05" class="outline-4">
-<h4 id="orgb58bd05"><span class="section-number-4">3.3.6</span> Reading: Gradient descent for linear regression</h4>
+<div id="outline-container-org835e7bf" class="outline-4">
+<h4 id="org835e7bf"><span class="section-number-4">3.3.6</span> Reading: Gradient descent for linear regression</h4>
 </div>
 </div>
 
-<div id="outline-container-org834564e" class="outline-3">
-<h3 id="org834564e"><span class="section-number-3">3.4</span> Linear Algebra review</h3>
+<div id="outline-container-org462edb7" class="outline-3">
+<h3 id="org462edb7"><span class="section-number-3">3.4</span> Linear Algebra review</h3>
 <div class="outline-text-3" id="text-3-4">
 </div>
-<div id="outline-container-org9e8ff66" class="outline-4">
-<h4 id="org9e8ff66"><span class="section-number-4">3.4.1</span> Video: Matrix vector multiplication</h4>
+<div id="outline-container-org09741e5" class="outline-4">
+<h4 id="org09741e5"><span class="section-number-4">3.4.1</span> Video: Matrix vector multiplication</h4>
 <div class="outline-text-4" id="text-3-4-1">
 <ul class="org-ul">
 <li>Más adelante vamos a ver por qué es mejor vectorizar calculos en lugar de iterar.</li>
@@ -965,8 +987,8 @@ En realidad todo lo que vimos es descenso por el gradiente por lotes, o <b><i>ba
 </div>
 </div>
 
-<div id="outline-container-orgcf65abe" class="outline-4">
-<h4 id="orgcf65abe"><span class="section-number-4">3.4.2</span> Video: Matrix matrix multiplication</h4>
+<div id="outline-container-org8d6176d" class="outline-4">
+<h4 id="org8d6176d"><span class="section-number-4">3.4.2</span> Video: Matrix matrix multiplication</h4>
 <div class="outline-text-4" id="text-3-4-2">
 <ul class="org-ul">
 <li>Acá hace el mismo truco pero para hacer varias predicciones a la vez: usa varios modelos y varias entradas.</li>
@@ -974,8 +996,8 @@ En realidad todo lo que vimos es descenso por el gradiente por lotes, o <b><i>ba
 </div>
 </div>
 
-<div id="outline-container-org9d3927a" class="outline-4">
-<h4 id="org9d3927a"><span class="section-number-4">3.4.3</span> Video: Inverse and transpose</h4>
+<div id="outline-container-org58ab187" class="outline-4">
+<h4 id="org58ab187"><span class="section-number-4">3.4.3</span> Video: Inverse and transpose</h4>
 <div class="outline-text-4" id="text-3-4-3">
 <p>
 Interesante:
@@ -997,20 +1019,20 @@ But the intuition if you want is that you can think of matrices as not have an i
 </div>
 </div>
 
-<div id="outline-container-orgf34eae2" class="outline-2">
-<h2 id="orgf34eae2"><span class="section-number-2">4</span> Semana 2</h2>
+<div id="outline-container-org396c326" class="outline-2">
+<h2 id="org396c326"><span class="section-number-2">4</span> Semana 2</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgabcd017" class="outline-3">
-<h3 id="orgabcd017"><span class="section-number-3">4.1</span> Environment setup instructions</h3>
+<div id="outline-container-org63d65b3" class="outline-3">
+<h3 id="org63d65b3"><span class="section-number-3">4.1</span> Environment setup instructions</h3>
 </div>
 
-<div id="outline-container-org0eaeb00" class="outline-3">
-<h3 id="org0eaeb00"><span class="section-number-3">4.2</span> Multivariate linear regression</h3>
+<div id="outline-container-orgc8479a1" class="outline-3">
+<h3 id="orgc8479a1"><span class="section-number-3">4.2</span> Multivariate linear regression</h3>
 <div class="outline-text-3" id="text-4-2">
 </div>
-<div id="outline-container-org27bac9b" class="outline-4">
-<h4 id="org27bac9b"><span class="section-number-4">4.2.1</span> Video: Multivariate linear regression</h4>
+<div id="outline-container-org1c465ef" class="outline-4">
+<h4 id="org1c465ef"><span class="section-number-4">4.2.1</span> Video: Multivariate linear regression</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <p>
 En la regresión lineal multivariable o regresión lineal múltiple, tenemos varios valores de entrada o descriptores. Para tener una notación más compacta y conveniente, vamos a definir:
@@ -1038,7 +1060,7 @@ Y luego \[ \vec{h_\theta}(\vec{x}) = \vec{\theta}^T \cdot \vec{x}  = \vec{x}^T \
 <hr />
 
 <p>
-<i>En <a href="#org95206d9">4.3.1</a> se introduce notación matricial que luego en el ejercicio 1 usamos para expresar todo de forma vectorizada. Dejo todo acá para más completitud</i>.
+<i>En <a href="#org68c8b61">4.3.1</a> se introduce notación matricial que luego en el ejercicio 1 usamos para expresar todo de forma vectorizada. Dejo todo acá para más completitud</i>.
 </p>
 
 <p>
@@ -1049,12 +1071,12 @@ Y luego \[ \vec{h_\theta}(\vec{x}) = \vec{\theta}^T \cdot \vec{x}  = \vec{x}^T \
 </div>
 </div>
 
-<div id="outline-container-org8ff8001" class="outline-4">
-<h4 id="org8ff8001"><span class="section-number-4">4.2.2</span> Reading: multiple features</h4>
+<div id="outline-container-org94840b7" class="outline-4">
+<h4 id="org94840b7"><span class="section-number-4">4.2.2</span> Reading: multiple features</h4>
 </div>
 
-<div id="outline-container-org54fd62f" class="outline-4">
-<h4 id="org54fd62f"><span class="section-number-4">4.2.3</span> Video: Gradient descent for multiple features</h4>
+<div id="outline-container-orgf862e2a" class="outline-4">
+<h4 id="orgf862e2a"><span class="section-number-4">4.2.3</span> Video: Gradient descent for multiple features</h4>
 <div class="outline-text-4" id="text-4-2-3">
 <p>
 La regla de actualización era:
@@ -1098,16 +1120,16 @@ Y para cuando la función de costo es el error cuadrático medio (MSE), queda (p
 </div>
 
 <ol class="org-ol">
-<li><a id="org759a632"></a><span class="todo TODO">TODO</span> EL ERROR ES MAYPR CUANDO HAY CORRELACIÓN ENTRE DESCRIPTORES Y PARÁMETROS.<br /></li>
+<li><a id="orgb19c4d0"></a><span class="todo TODO">TODO</span> EL ERROR ES MAYPR CUANDO HAY CORRELACIÓN ENTRE DESCRIPTORES Y PARÁMETROS.<br /></li>
 </ol>
 </div>
 
-<div id="outline-container-orga1531ee" class="outline-4">
-<h4 id="orga1531ee"><span class="section-number-4">4.2.4</span> Reading: Gradient descent for multiple features</h4>
+<div id="outline-container-org8ee8ccb" class="outline-4">
+<h4 id="org8ee8ccb"><span class="section-number-4">4.2.4</span> Reading: Gradient descent for multiple features</h4>
 </div>
 
-<div id="outline-container-orgf8f30bd" class="outline-4">
-<h4 id="orgf8f30bd"><span class="section-number-4">4.2.5</span> Video: Gradient descent in practice I - Feature scaling</h4>
+<div id="outline-container-org1b2477b" class="outline-4">
+<h4 id="org1b2477b"><span class="section-number-4">4.2.5</span> Video: Gradient descent in practice I - Feature scaling</h4>
 <div class="outline-text-4" id="text-4-2-5">
 <ul class="org-ul">
 <li>Al parecer, el algoritmo de descenso por el gradiente converge <b>bastante más rápidamente</b> si los descriptores están en el mismo orden de magnitud.
@@ -1120,12 +1142,12 @@ Y para cuando la función de costo es el error cuadrático medio (MSE), queda (p
 </div>
 
 <ol class="org-ol">
-<li><a id="orgebed73d"></a>Más de feature scaling y mean normalization<br />
+<li><a id="org80bef98"></a>Más de feature scaling y mean normalization<br />
 <div class="outline-text-5" id="text-4-2-5-1">
 <p>
 De la ecuación de actualización de los parámetros de la ecuación de hipótesis
 infiero que el vector se mueve <span class="underline">más rápidamente</span> en dirección de los parámetros
-más grandes. Sin embargo en <a href="#orgaf60a90">4.2.6</a> dice:
+más grandes. Sin embargo en <a href="#orgce0e13e">4.2.6</a> dice:
 </p>
 
 <blockquote>
@@ -1136,7 +1158,7 @@ This is because θ will descend quickly on small ranges and slowly on large rang
 </div>
 
 <ol class="org-ol">
-<li><a id="org4ad6b8f"></a><span class="done DONE">DONE</span> Averiguar más de esto. ¿Por qué se hace? ¿Tienen que ser de la misma magnitud o ser chicos?<br />
+<li><a id="org5c0d958"></a><span class="done DONE">DONE</span> Averiguar más de esto. ¿Por qué se hace? ¿Tienen que ser de la misma magnitud o ser chicos?<br />
 <div class="outline-text-7" id="text-4-2-5-1-0-1">
 <ul class="org-ul">
 <li>Ver <a href="https://www.robertoreif.com/blog/2017/12/21/importance-of-feature-scaling-in-data-modeling-part-2">https://www.robertoreif.com/blog/2017/12/21/importance-of-feature-scaling-in-data-modeling-part-2</a></li>
@@ -1156,24 +1178,24 @@ En regresión lineal (quizás puedo generalizarlo a cualquiera) <b>los parámetr
 </p>
 
 <p>
-¡Lo que dice en <a href="#orgaf60a90">4.2.6</a> está mal expresado entonces!
+¡Lo que dice en <a href="#orgce0e13e">4.2.6</a> está mal expresado entonces!
 </p>
 </div>
 </li>
 
-<li><a id="org6afbaf2"></a><span class="todo TODO">TODO</span> Corregir <a href="https://math.stackexchange.com/questions/2341704/feature-scalings-effect-on-gradient-descent">https://math.stackexchange.com/questions/2341704/feature-scalings-effect-on-gradient-descent</a><br /></li>
+<li><a id="orge471605"></a><span class="todo TODO">TODO</span> Corregir <a href="https://math.stackexchange.com/questions/2341704/feature-scalings-effect-on-gradient-descent">https://math.stackexchange.com/questions/2341704/feature-scalings-effect-on-gradient-descent</a><br /></li>
 </ol>
 </li>
 </ol>
 </div>
 
-<div id="outline-container-orgaf60a90" class="outline-4">
-<h4 id="orgaf60a90"><span class="section-number-4">4.2.6</span> Reading: Gradient descent in practice I - Feature scaling</h4>
+<div id="outline-container-orgce0e13e" class="outline-4">
+<h4 id="orgce0e13e"><span class="section-number-4">4.2.6</span> Reading: Gradient descent in practice I - Feature scaling</h4>
 </div>
 
 
-<div id="outline-container-orgfcdf73c" class="outline-4">
-<h4 id="orgfcdf73c"><span class="section-number-4">4.2.7</span> Video: Gradient descent in practice II - Learning rate</h4>
+<div id="outline-container-orgb0ab831" class="outline-4">
+<h4 id="orgb0ab831"><span class="section-number-4">4.2.7</span> Video: Gradient descent in practice II - Learning rate</h4>
 <div class="outline-text-4" id="text-4-2-7">
 <ul class="org-ul">
 <li>Si la función de costo \(J(\vec{\theta})\) diverge u oscila, entonces mi tasa de aprendizaje \(\alpha\) es muy grande. Si es muy chica, converge lentamente.</li>
@@ -1184,17 +1206,17 @@ En regresión lineal (quizás puedo generalizarlo a cualquiera) <b>los parámetr
 </div>
 </div>
 
-<div id="outline-container-org343e0b7" class="outline-4">
-<h4 id="org343e0b7"><span class="section-number-4">4.2.8</span> Reading: Gradient descent in practice II - Learning rate</h4>
+<div id="outline-container-orgdd4537e" class="outline-4">
+<h4 id="orgdd4537e"><span class="section-number-4">4.2.8</span> Reading: Gradient descent in practice II - Learning rate</h4>
 </div>
 
 
-<div id="outline-container-org2665dbf" class="outline-4">
-<h4 id="org2665dbf"><span class="section-number-4">4.2.9</span> Video: Features and polynomial regression</h4>
+<div id="outline-container-org201296c" class="outline-4">
+<h4 id="org201296c"><span class="section-number-4">4.2.9</span> Video: Features and polynomial regression</h4>
 </div>
 
-<div id="outline-container-orgfa9d4a0" class="outline-4">
-<h4 id="orgfa9d4a0"><span class="section-number-4">4.2.10</span> Reading: Features and polynomial regression</h4>
+<div id="outline-container-org3e75ba2" class="outline-4">
+<h4 id="org3e75ba2"><span class="section-number-4">4.2.10</span> Reading: Features and polynomial regression</h4>
 <div class="outline-text-4" id="text-4-2-10">
 <ul class="org-ul">
 <li>La regresión lineal es ajustar un modelo lineal, de grado 1, una combinación lineal entre las entradas y parámetros.</li>
@@ -1206,12 +1228,12 @@ En regresión lineal (quizás puedo generalizarlo a cualquiera) <b>los parámetr
 </div>
 </div>
 
-<div id="outline-container-orga46b3b0" class="outline-3">
-<h3 id="orga46b3b0"><span class="section-number-3">4.3</span> Computing parameters analitically</h3>
+<div id="outline-container-org96c18aa" class="outline-3">
+<h3 id="org96c18aa"><span class="section-number-3">4.3</span> Computing parameters analitically</h3>
 <div class="outline-text-3" id="text-4-3">
 </div>
-<div id="outline-container-org95206d9" class="outline-4">
-<h4 id="org95206d9"><span class="section-number-4">4.3.1</span> Video: Normal equation</h4>
+<div id="outline-container-org68c8b61" class="outline-4">
+<h4 id="org68c8b61"><span class="section-number-4">4.3.1</span> Video: Normal equation</h4>
 <div class="outline-text-4" id="text-4-3-1">
 <ul class="org-ul">
 <li>Otra forma de optimizar la regresión lineal es resolverla analíticamente con el método de los <a href="https://en.wikipedia.org/wiki/Least_squares">mínimos cuadrados</a> <a href="https://en.wikipedia.org/wiki/Linear_least_squares">lineales</a> / ecuación normal. Esto da la solución óptima (que existe porque hemos dicho que para regresión lineal es un espacio de búsqueda cónvexo con un solo mínimo).</li>
@@ -1241,12 +1263,12 @@ En regresión lineal (quizás puedo generalizarlo a cualquiera) <b>los parámetr
 </div>
 </div>
 
-<div id="outline-container-orga985580" class="outline-4">
-<h4 id="orga985580"><span class="section-number-4">4.3.2</span> Reading: Normal equation</h4>
+<div id="outline-container-org75a7eb3" class="outline-4">
+<h4 id="org75a7eb3"><span class="section-number-4">4.3.2</span> Reading: Normal equation</h4>
 </div>
 
-<div id="outline-container-org60d986f" class="outline-4">
-<h4 id="org60d986f"><span class="section-number-4">4.3.3</span> Video: Normal equation noninvertibility</h4>
+<div id="outline-container-orge5cc6f3" class="outline-4">
+<h4 id="orge5cc6f3"><span class="section-number-4">4.3.3</span> Video: Normal equation noninvertibility</h4>
 <div class="outline-text-4" id="text-4-3-3">
 <p>
 Si \(( X^T \times X )\) no es invertible, entonces puede haber 2 problemas:
@@ -1266,22 +1288,22 @@ Si no es invertible naturalmente (es singular o degenerada) igual se puede inver
 </div>
 </div>
 
-<div id="outline-container-org16ca437" class="outline-4">
-<h4 id="org16ca437"><span class="section-number-4">4.3.4</span> Reading: Normal equation noninvertibility</h4>
+<div id="outline-container-org6bc0c2b" class="outline-4">
+<h4 id="org6bc0c2b"><span class="section-number-4">4.3.4</span> Reading: Normal equation noninvertibility</h4>
 </div>
 </div>
 
 
-<div id="outline-container-org12eec47" class="outline-3">
-<h3 id="org12eec47"><span class="section-number-3">4.4</span> Submitting programming assignments</h3>
+<div id="outline-container-orgd556eaf" class="outline-3">
+<h3 id="orgd556eaf"><span class="section-number-3">4.4</span> Submitting programming assignments</h3>
 </div>
 
-<div id="outline-container-org86ea3ba" class="outline-3">
-<h3 id="org86ea3ba"><span class="section-number-3">4.5</span> Review</h3>
+<div id="outline-container-orgbe1c194" class="outline-3">
+<h3 id="orgbe1c194"><span class="section-number-3">4.5</span> Review</h3>
 </div>
 
-<div id="outline-container-org9699f61" class="outline-3">
-<h3 id="org9699f61"><span class="section-number-3">4.6</span> Octave/Matlab tutorial</h3>
+<div id="outline-container-org4bf7448" class="outline-3">
+<h3 id="org4bf7448"><span class="section-number-3">4.6</span> Octave/Matlab tutorial</h3>
 <div class="outline-text-3" id="text-4-6">
 <div class="org-src-container">
 <pre class="src src-octave"><span style="color: #2aa1ae; background-color: #292e34;">% </span><span style="color: #2aa1ae; background-color: #292e34;">Para ver una matriz/vector como p&#237;xeles con color</span>
@@ -1296,12 +1318,12 @@ colormap gray
 </div>
 
 
-<div id="outline-container-org79fdb8c" class="outline-3">
-<h3 id="org79fdb8c"><span class="section-number-3">4.7</span> Review</h3>
+<div id="outline-container-orga22173b" class="outline-3">
+<h3 id="orga22173b"><span class="section-number-3">4.7</span> Review</h3>
 <div class="outline-text-3" id="text-4-7">
 </div>
-<div id="outline-container-org0824463" class="outline-4">
-<h4 id="org0824463"><span class="section-number-4">4.7.1</span> Programming assignment 1: linear regression</h4>
+<div id="outline-container-org4a0c5e0" class="outline-4">
+<h4 id="org4a0c5e0"><span class="section-number-4">4.7.1</span> Programming assignment 1: linear regression</h4>
 <div class="outline-text-4" id="text-4-7-1">
 <ul class="org-ul">
 <li>Mi gradient descent convergía pero no al mismo resultado exacto, y más rápida o lentamente. Me faltaba el factor \(1/m\).</li>
@@ -1345,16 +1367,16 @@ La original es más compacta:
 </div>
 </div>
 
-<div id="outline-container-org40d4a1e" class="outline-2">
-<h2 id="org40d4a1e"><span class="section-number-2">5</span> Semana 3</h2>
+<div id="outline-container-org1888898" class="outline-2">
+<h2 id="org1888898"><span class="section-number-2">5</span> Semana 3</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-orga23fc64" class="outline-3">
-<h3 id="orga23fc64"><span class="section-number-3">5.1</span> Classification and representation</h3>
+<div id="outline-container-orgaf06763" class="outline-3">
+<h3 id="orgaf06763"><span class="section-number-3">5.1</span> Classification and representation</h3>
 <div class="outline-text-3" id="text-5-1">
 </div>
-<div id="outline-container-org0e4f0a8" class="outline-4">
-<h4 id="org0e4f0a8"><span class="section-number-4">5.1.1</span> Classification</h4>
+<div id="outline-container-orgcde320c" class="outline-4">
+<h4 id="orgcde320c"><span class="section-number-4">5.1.1</span> Classification</h4>
 <div class="outline-text-4" id="text-5-1-1">
 <p>
 Vamos a ver la <b>regresión logística</b> que es un algoritmo de clasificación (aunque su nombre diga <i>regresión</i>).
@@ -1370,8 +1392,8 @@ Vamos a ver clasificación binaria. Definimos como \(0\) y \(1\) a las clases. T
 </div>
 </div>
 
-<div id="outline-container-org89b529d" class="outline-4">
-<h4 id="org89b529d"><span class="section-number-4">5.1.2</span> Hypothesis representation</h4>
+<div id="outline-container-orgeee3572" class="outline-4">
+<h4 id="orgeee3572"><span class="section-number-4">5.1.2</span> Hypothesis representation</h4>
 <div class="outline-text-4" id="text-5-1-2">
 <p>
 En clasificación binaria, los resultados observados sólo pueden tomar los valores \(0\) y \(1\), y por tanto nuestra función de hipótesis debería también sólo tomar esos valores.
@@ -1404,7 +1426,7 @@ Podemos interpretar los resultados como la probabilidad de que la hipótesis tom
 
 
 <ol class="org-ol">
-<li><a id="orgc2a4e8c"></a>La función logística o sigmoidea<br />
+<li><a id="org7db3c5b"></a>La función logística o sigmoidea<br />
 <div class="outline-text-5" id="text-5-1-2-1">
 <ul class="org-ul">
 <li>Se parece a la función cumulativa o función de distribución acumulada de una distribución normal/gaussiana.
@@ -1436,8 +1458,8 @@ Podemos interpretar los resultados como la probabilidad de que la hipótesis tom
 </ol>
 </div>
 
-<div id="outline-container-org15dce15" class="outline-4">
-<h4 id="org15dce15"><span class="section-number-4">5.1.3</span> Decision boundary</h4>
+<div id="outline-container-orgd42cd4a" class="outline-4">
+<h4 id="orgd42cd4a"><span class="section-number-4">5.1.3</span> Decision boundary</h4>
 <div class="outline-text-4" id="text-5-1-3">
 <p>
 La clasificación es discreta; para hacerla discreta necesitamos agregar un umbral a nuestra función de hipótesis. <i>No entiendo por qué pone el umbral como si fuese una cosa aparte de la función de hipótesis</i>. Entonces, para la regresión logística hacemos:
@@ -1464,12 +1486,12 @@ La función de entrada a la sigmoidea, \(z(\theta,x)\) define el umbral de decis
 </div>
 </div>
 
-<div id="outline-container-org678af35" class="outline-3">
-<h3 id="org678af35"><span class="section-number-3">5.2</span> Logistic regression model</h3>
+<div id="outline-container-org8f8ea9f" class="outline-3">
+<h3 id="org8f8ea9f"><span class="section-number-3">5.2</span> Logistic regression model</h3>
 <div class="outline-text-3" id="text-5-2">
 </div>
-<div id="outline-container-org51ba83c" class="outline-4">
-<h4 id="org51ba83c"><span class="section-number-4">5.2.1</span> Cost function</h4>
+<div id="outline-container-orge6d62ba" class="outline-4">
+<h4 id="orge6d62ba"><span class="section-number-4">5.2.1</span> Cost function</h4>
 <div class="outline-text-4" id="text-5-2-1">
 <p>
 Sea la función de costo \(J\) la media de una función de error:
@@ -1519,12 +1541,12 @@ En la sección siguiente Andrew dice que esta función de costo (en realidad su 
 </div>
 </div>
 
-<div id="outline-container-org8a5518c" class="outline-4">
-<h4 id="org8a5518c"><span class="section-number-4">5.2.2</span> Simplified cost function and gradient descent</h4>
+<div id="outline-container-org9f465dd" class="outline-4">
+<h4 id="org9f465dd"><span class="section-number-4">5.2.2</span> Simplified cost function and gradient descent</h4>
 <div class="outline-text-4" id="text-5-2-2">
 </div>
 <ol class="org-ol">
-<li><a id="orgcee04f6"></a>Forma simplificada<br />
+<li><a id="orgdba8cee"></a>Forma simplificada<br />
 <div class="outline-text-5" id="text-5-2-2-1">
 <p>
 Teníamos a la función de error para la regresión logística como:
@@ -1569,7 +1591,7 @@ La forma vectorizada/matricial es:
 </div>
 </li>
 
-<li><a id="orgc5f79a5"></a>Descenso por el gradiente<br />
+<li><a id="org2cb56be"></a>Descenso por el gradiente<br />
 <div class="outline-text-5" id="text-5-2-2-2">
 <p>
 Resulta que la derivada \(\delta J(\theta,x)/\delta \theta\), es la misma que la que obtuvimos usando el error cuadrático medio (<i>MSE</i>) como función de costo para regresión lineal, y entonces la formula de actualización de parámetros es la misma:
@@ -1591,8 +1613,8 @@ En forma vectorizada/matricial:
 </ol>
 </div>
 
-<div id="outline-container-org1448193" class="outline-4">
-<h4 id="org1448193"><span class="section-number-4">5.2.3</span> Advanced optimization</h4>
+<div id="outline-container-orga4bb674" class="outline-4">
+<h4 id="orga4bb674"><span class="section-number-4">5.2.3</span> Advanced optimization</h4>
 <div class="outline-text-4" id="text-5-2-3">
 <p>
 Hay algoritmos generales de optimización mejores (pero más complejos) que el descenso por el gradiente. Andrew nombra:
@@ -1610,12 +1632,12 @@ En Octave tenemos la función <code>fminunc</code> (de <i>function minimize unco
 </div>
 </div>
 
-<div id="outline-container-org51b2706" class="outline-3">
-<h3 id="org51b2706"><span class="section-number-3">5.3</span> Multiclass classification</h3>
+<div id="outline-container-org9f887ad" class="outline-3">
+<h3 id="org9f887ad"><span class="section-number-3">5.3</span> Multiclass classification</h3>
 <div class="outline-text-3" id="text-5-3">
 </div>
-<div id="outline-container-org5fe8389" class="outline-4">
-<h4 id="org5fe8389"><span class="section-number-4">5.3.1</span> Multiclass classification: one vs all</h4>
+<div id="outline-container-org5bf7abf" class="outline-4">
+<h4 id="org5bf7abf"><span class="section-number-4">5.3.1</span> Multiclass classification: one vs all</h4>
 <div class="outline-text-4" id="text-5-3-1">
 <p>
 Si tenemos \(n\) salidas discretas posibles, podemos modelar el problema con \(n\) clasificadores binarios, que toman una salida como caso positivo y el resto como negativo.
@@ -1632,12 +1654,12 @@ Nótese que esto también se cumple en los binarios cuando \(n=2\): podemos verl
 </div>
 </div>
 
-<div id="outline-container-org725eaf4" class="outline-3">
-<h3 id="org725eaf4"><span class="section-number-3">5.4</span> Solving the problem of overfitting</h3>
+<div id="outline-container-org702a4e8" class="outline-3">
+<h3 id="org702a4e8"><span class="section-number-3">5.4</span> Solving the problem of overfitting</h3>
 <div class="outline-text-3" id="text-5-4">
 </div>
-<div id="outline-container-org9c7b6d0" class="outline-4">
-<h4 id="org9c7b6d0"><span class="section-number-4">5.4.1</span> The problem of overfitting</h4>
+<div id="outline-container-orgc46067d" class="outline-4">
+<h4 id="orgc46067d"><span class="section-number-4">5.4.1</span> The problem of overfitting</h4>
 <div class="outline-text-4" id="text-5-4-1">
 <p>
 Empezamos a evaluar la bondad de ajuste de nuestros modelos.
@@ -1657,7 +1679,7 @@ En los ejemplos mostrados, el ajuste se incrementa con el grado de las funciones
 </div>
 
 <ol class="org-ol">
-<li><a id="org2f428c7"></a>Opciones para reducir el sobreajuste<br />
+<li><a id="orgcc34c74"></a>Opciones para reducir el sobreajuste<br />
 <div class="outline-text-5" id="text-5-4-1-1">
 <p>
 Las principales formas de reducir el sobreajuste:
@@ -1679,8 +1701,8 @@ Las principales formas de reducir el sobreajuste:
 </ol>
 </div>
 
-<div id="outline-container-org443a09b" class="outline-4">
-<h4 id="org443a09b"><span class="section-number-4">5.4.2</span> Cost function</h4>
+<div id="outline-container-org15e7217" class="outline-4">
+<h4 id="org15e7217"><span class="section-number-4">5.4.2</span> Cost function</h4>
 <div class="outline-text-4" id="text-5-4-2">
 <p>
 Introducimos un parámetro de regularización \(\lambda\) en la función de costo, que pondera la suma de los cuadrados de los parámetros \(\theta\).
@@ -1704,7 +1726,7 @@ Por ejemplo, para <i>MSE</i>:
 <ul class="org-ul">
 <li><i>Me parece que debe haber una razón más interesante, porque esta decisión hace que tengamos que calcular las funciones de costo de forma separada para \(\theta_0\)</i>.
 <ul class="org-ul">
-<li>En verdad es incorrecto pretender que el intercepto sea pequeño. Ver abajo en <a href="#org36d0d9b">5.4.2.0.0.1</a>.</li>
+<li>En verdad es incorrecto pretender que el intercepto sea pequeño. Ver abajo en <a href="#orgf5ee934">5.4.2.0.0.1</a>.</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -1720,7 +1742,7 @@ Más adelante vamos a ver formas de determinar el valor del parámetro de regula
 </div>
 
 <ol class="org-ol">
-<li><a id="org36d0d9b"></a><span class="done DONE">DONE</span> Buscar por qué no usamos \(\theta_0\)<br />
+<li><a id="orgf5ee934"></a><span class="done DONE">DONE</span> Buscar por qué no usamos \(\theta_0\)<br />
 <div class="outline-text-7" id="text-5-4-2-0-0-1">
 <p>
 El intercepto es nuestro factor de prejuicio que es independente de los descriptores. Es nuestra respuesta por defecto cuando no tenemos información, y no tiene por qué ser un valor chico. Por tanto no lo introducimos en el algoritmo de regularización.
@@ -1734,8 +1756,8 @@ Recordemos que el intercepto es una variable independiente, la ordenada al orige
 </ol>
 </div>
 
-<div id="outline-container-org476d040" class="outline-4">
-<h4 id="org476d040"><span class="section-number-4">5.4.3</span> Regularized linear regression</h4>
+<div id="outline-container-orgb118534" class="outline-4">
+<h4 id="orgb118534"><span class="section-number-4">5.4.3</span> Regularized linear regression</h4>
 <div class="outline-text-4" id="text-5-4-3">
 <p>
 La función de costo usando error cuadrático medio y regresión lineal nos queda
@@ -1771,7 +1793,7 @@ El factor \((1 - \frac{\alpha\lambda}{m})\) nos indica que en todas las actualiz
 </div>
 
 <ol class="org-ol">
-<li><a id="org4d5fa93"></a>Forma matricial/vectorizada<br />
+<li><a id="org9a2312b"></a>Forma matricial/vectorizada<br />
 <div class="outline-text-5" id="text-5-4-3-1">
 <p>
 La forma matricial/vectorizada queda
@@ -1798,7 +1820,7 @@ La actualización necesita 2 etapas: la primera es el cálculo normal sin regula
 </div>
 </li>
 
-<li><a id="org8bf6d3f"></a>La ecuación normal con regularización<br />
+<li><a id="org3b96aeb"></a>La ecuación normal con regularización<br />
 <div class="outline-text-5" id="text-5-4-3-2">
 <p>
 La ecuación normal era
@@ -1831,8 +1853,8 @@ Este termino de regularización <b>hace que esa matriz sea invertible aunque se 
 </ol>
 </div>
 
-<div id="outline-container-org20e77bc" class="outline-4">
-<h4 id="org20e77bc"><span class="section-number-4">5.4.4</span> Regularized logistic regression</h4>
+<div id="outline-container-orgca24673" class="outline-4">
+<h4 id="orgca24673"><span class="section-number-4">5.4.4</span> Regularized logistic regression</h4>
 <div class="outline-text-4" id="text-5-4-4">
 <p>
 La función de costo de la regresión logística con regularización queda:
@@ -1861,12 +1883,12 @@ La regla de actualización es igual que para regresión lineal con <i>MSE</i>, c
 
 
 
-<div id="outline-container-org52c484f" class="outline-3">
-<h3 id="org52c484f"><span class="section-number-3">5.5</span> Review</h3>
+<div id="outline-container-orge6fe0ec" class="outline-3">
+<h3 id="orge6fe0ec"><span class="section-number-3">5.5</span> Review</h3>
 <div class="outline-text-3" id="text-5-5">
 </div>
-<div id="outline-container-org5cddbb0" class="outline-4">
-<h4 id="org5cddbb0"><span class="section-number-4">5.5.1</span> Quiz: Regularization</h4>
+<div id="outline-container-orgc8c1bb1" class="outline-4">
+<h4 id="orgc8c1bb1"><span class="section-number-4">5.5.1</span> Quiz: Regularization</h4>
 <div class="outline-text-4" id="text-5-5-1">
 <ul class="org-ul">
 <li>Agregar nuevos descriptores nos da una hipótesis igual o mejor a la que tenemos antes de agregarlos, en los datos de entrenamiento/modelado.
@@ -1877,8 +1899,8 @@ La regla de actualización es igual que para regresión lineal con <i>MSE</i>, c
 </div>
 </div>
 
-<div id="outline-container-org705c46a" class="outline-4">
-<h4 id="org705c46a"><span class="section-number-4">5.5.2</span> Programming assignment: logistic regression</h4>
+<div id="outline-container-org1137978" class="outline-4">
+<h4 id="org1137978"><span class="section-number-4">5.5.2</span> Programming assignment: logistic regression</h4>
 <div class="outline-text-4" id="text-5-5-2">
 <ul class="org-ul">
 <li>Corregí algunas funciones vectorizadas de mis notas.</li>
@@ -1935,20 +1957,20 @@ grad<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">1</span>
 </div>
 </div>
 
-<div id="outline-container-orgbfff26b" class="outline-2">
-<h2 id="orgbfff26b"><span class="section-number-2">6</span> Semana 4</h2>
+<div id="outline-container-org251ed46" class="outline-2">
+<h2 id="org251ed46"><span class="section-number-2">6</span> Semana 4</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Empezamos a ver redes neuronales.
 </p>
 </div>
 
-<div id="outline-container-org52dca6d" class="outline-3">
-<h3 id="org52dca6d"><span class="section-number-3">6.1</span> Motivations</h3>
+<div id="outline-container-orgf50b4e8" class="outline-3">
+<h3 id="orgf50b4e8"><span class="section-number-3">6.1</span> Motivations</h3>
 <div class="outline-text-3" id="text-6-1">
 </div>
-<div id="outline-container-orgca46247" class="outline-4">
-<h4 id="orgca46247"><span class="section-number-4">6.1.1</span> Non-linear hypotheses</h4>
+<div id="outline-container-orgd044ed5" class="outline-4">
+<h4 id="orgd044ed5"><span class="section-number-4">6.1.1</span> Non-linear hypotheses</h4>
 <div class="outline-text-4" id="text-6-1-1">
 <p>
 Las redes neuronales son de los clasificadores más avanzados y usados hoy en día.
@@ -1965,8 +1987,8 @@ Hay muchos problemas que de entrada ya están definidos por muchos descriptores.
 </div>
 
 
-<div id="outline-container-orgf8915ed" class="outline-4">
-<h4 id="orgf8915ed"><span class="section-number-4">6.1.2</span> Neurons and the brain</h4>
+<div id="outline-container-org4a69931" class="outline-4">
+<h4 id="org4a69931"><span class="section-number-4">6.1.2</span> Neurons and the brain</h4>
 <div class="outline-text-4" id="text-6-1-2">
 <ul class="org-ul">
 <li><i>The "one learning algorithm" hypotesis</i>: el cerebro tiene el mismo algoritmo de aprendizaje siempre, y se adapta a cualquier entrada.</li>
@@ -1974,25 +1996,25 @@ Hay muchos problemas que de entrada ya están definidos por muchos descriptores.
 </div>
 
 <ol class="org-ol">
-<li><a id="org9a4af06"></a><span class="todo TODO">TODO</span> <a href="https://www.lesswrong.com/posts/9Yc7Pp7szcjPgPsjf/the-brain-as-a-universal-learning-machine">https://www.lesswrong.com/posts/9Yc7Pp7szcjPgPsjf/the-brain-as-a-universal-learning-machine</a><br /></li>
+<li><a id="org881829e"></a><span class="todo TODO">TODO</span> <a href="https://www.lesswrong.com/posts/9Yc7Pp7szcjPgPsjf/the-brain-as-a-universal-learning-machine">https://www.lesswrong.com/posts/9Yc7Pp7szcjPgPsjf/the-brain-as-a-universal-learning-machine</a><br /></li>
 
-<li><a id="org6c4337f"></a><span class="todo TODO">TODO</span> <a href="https://www.youtube.com/watch?v=AY4ajbu_G3k">https://www.youtube.com/watch?v=AY4ajbu_G3k</a><br /></li>
+<li><a id="org4567b12"></a><span class="todo TODO">TODO</span> <a href="https://www.youtube.com/watch?v=AY4ajbu_G3k">https://www.youtube.com/watch?v=AY4ajbu_G3k</a><br /></li>
 
-<li><a id="org57fdf78"></a><span class="todo TODO">TODO</span> <a href="https://www.youtube.com/watch?v=NKpuX_yzdYs">https://www.youtube.com/watch?v=NKpuX_yzdYs</a><br /></li>
+<li><a id="org4b13a7e"></a><span class="todo TODO">TODO</span> <a href="https://www.youtube.com/watch?v=NKpuX_yzdYs">https://www.youtube.com/watch?v=NKpuX_yzdYs</a><br /></li>
 
-<li><a id="org661e836"></a><span class="todo TODO">TODO</span> <a href="https://www.youtube.com/watch?v=zIwLWfaAg-8">https://www.youtube.com/watch?v=zIwLWfaAg-8</a><br /></li>
+<li><a id="orge9bfbb9"></a><span class="todo TODO">TODO</span> <a href="https://www.youtube.com/watch?v=zIwLWfaAg-8">https://www.youtube.com/watch?v=zIwLWfaAg-8</a><br /></li>
 
-<li><a id="orgdbbda1e"></a><span class="todo TODO">TODO</span> <a href="https://www.wired.com/2013/05/neuro-artificial-intelligence/">https://www.wired.com/2013/05/neuro-artificial-intelligence/</a><br /></li>
+<li><a id="org00450a8"></a><span class="todo TODO">TODO</span> <a href="https://www.wired.com/2013/05/neuro-artificial-intelligence/">https://www.wired.com/2013/05/neuro-artificial-intelligence/</a><br /></li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-org9db42a8" class="outline-3">
-<h3 id="org9db42a8"><span class="section-number-3">6.2</span> Neural networks</h3>
+<div id="outline-container-org7be1d68" class="outline-3">
+<h3 id="org7be1d68"><span class="section-number-3">6.2</span> Neural networks</h3>
 <div class="outline-text-3" id="text-6-2">
 </div>
-<div id="outline-container-orgeb5c30b" class="outline-4">
-<h4 id="orgeb5c30b"><span class="section-number-4">6.2.1</span> Model representation I</h4>
+<div id="outline-container-org482356f" class="outline-4">
+<h4 id="org482356f"><span class="section-number-4">6.2.1</span> Model representation I</h4>
 <div class="outline-text-4" id="text-6-2-1">
 <p>
 Está largo de escribir así que copio la imagen:
@@ -2026,8 +2048,8 @@ Algo de nomenclatura y convenciones:
 </div>
 </div>
 
-<div id="outline-container-org4e9c8f3" class="outline-4">
-<h4 id="org4e9c8f3"><span class="section-number-4">6.2.2</span> Model representation II</h4>
+<div id="outline-container-orgd8a9d45" class="outline-4">
+<h4 id="orgd8a9d45"><span class="section-number-4">6.2.2</span> Model representation II</h4>
 <div class="outline-text-4" id="text-6-2-2">
 <p>
 Este modelo básico de red neuronal es un conjunto de funciones logísticas encadenadas. La forma de conectar las neuronas (arquitectura) le va a permitir aprender funciones no lineales complejas.
@@ -2045,12 +2067,12 @@ En forma vectorizada y asumiendo la misma función de activación \(g^{(j)}\) pa
 </div>
 </div>
 
-<div id="outline-container-orgad2a193" class="outline-3">
-<h3 id="orgad2a193"><span class="section-number-3">6.3</span> Applications</h3>
+<div id="outline-container-org46a24bf" class="outline-3">
+<h3 id="org46a24bf"><span class="section-number-3">6.3</span> Applications</h3>
 <div class="outline-text-3" id="text-6-3">
 </div>
-<div id="outline-container-org3b5a8d5" class="outline-4">
-<h4 id="org3b5a8d5"><span class="section-number-4">6.3.1</span> Examples and intuitions I</h4>
+<div id="outline-container-org84c4c37" class="outline-4">
+<h4 id="org84c4c37"><span class="section-number-4">6.3.1</span> Examples and intuitions I</h4>
 <div class="outline-text-4" id="text-6-3-1">
 <p>
 Con una neurona de 3 entradas puedo calcular las funciones AND y OR.
@@ -2058,8 +2080,8 @@ Con una neurona de 3 entradas puedo calcular las funciones AND y OR.
 </div>
 </div>
 
-<div id="outline-container-orgdb96324" class="outline-4">
-<h4 id="orgdb96324"><span class="section-number-4">6.3.2</span> Examples and intuitions II</h4>
+<div id="outline-container-orgd4485e7" class="outline-4">
+<h4 id="orgd4485e7"><span class="section-number-4">6.3.2</span> Examples and intuitions II</h4>
 <div class="outline-text-4" id="text-6-3-2">
 <p>
 Ejemplo de XNOR.
@@ -2067,8 +2089,8 @@ Ejemplo de XNOR.
 </div>
 </div>
 
-<div id="outline-container-org9d267df" class="outline-4">
-<h4 id="org9d267df"><span class="section-number-4">6.3.3</span> Multiclass classification</h4>
+<div id="outline-container-org0161bc3" class="outline-4">
+<h4 id="org0161bc3"><span class="section-number-4">6.3.3</span> Multiclass classification</h4>
 <div class="outline-text-4" id="text-6-3-3">
 <p>
 Para clasificación multiclase solo tenemos que tener tantas salidas como clases. Luego, codificamos la salida como un vector "<i>one hot</i>", donde todos los elementos son \(0\) menos el de la salida correcta, que es \(1\).
@@ -2081,34 +2103,34 @@ Las salidas de la red \(\vec{\hat{y}} = h_\Theta(\vec{x})\) no son una distribuc
 </div>
 </div>
 
-<div id="outline-container-org104ca1b" class="outline-3">
-<h3 id="org104ca1b"><span class="section-number-3">6.4</span> Review</h3>
+<div id="outline-container-org5790999" class="outline-3">
+<h3 id="org5790999"><span class="section-number-3">6.4</span> Review</h3>
 <div class="outline-text-3" id="text-6-4">
 </div>
-<div id="outline-container-org99984ab" class="outline-4">
-<h4 id="org99984ab"><span class="section-number-4">6.4.1</span> Quiz: Neural networks: representation</h4>
+<div id="outline-container-org89524f3" class="outline-4">
+<h4 id="org89524f3"><span class="section-number-4">6.4.1</span> Quiz: Neural networks: representation</h4>
 </div>
 
-<div id="outline-container-org6ba1068" class="outline-4">
-<h4 id="org6ba1068"><span class="section-number-4">6.4.2</span> Programming assignment: multi-class classificatin and neural networks</h4>
+<div id="outline-container-orgd94704f" class="outline-4">
+<h4 id="orgd94704f"><span class="section-number-4">6.4.2</span> Programming assignment: multi-class classificatin and neural networks</h4>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgd309680" class="outline-2">
-<h2 id="orgd309680"><span class="section-number-2">7</span> Semana 5</h2>
+<div id="outline-container-orgba71cdc" class="outline-2">
+<h2 id="orgba71cdc"><span class="section-number-2">7</span> Semana 5</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 Vamos a ver el algoritmo de retropropagación o propagación hacia atrás (<i>backpropagation</i>) para el aprendizaje de redes neuronales.
 </p>
 </div>
 
-<div id="outline-container-orgfd193dd" class="outline-3">
-<h3 id="orgfd193dd"><span class="section-number-3">7.1</span> Cost function and backpropagation</h3>
+<div id="outline-container-org8649540" class="outline-3">
+<h3 id="org8649540"><span class="section-number-3">7.1</span> Cost function and backpropagation</h3>
 <div class="outline-text-3" id="text-7-1">
 </div>
-<div id="outline-container-org073a54c" class="outline-4">
-<h4 id="org073a54c"><span class="section-number-4">7.1.1</span> Cost function</h4>
+<div id="outline-container-org07a6fb6" class="outline-4">
+<h4 id="org07a6fb6"><span class="section-number-4">7.1.1</span> Cost function</h4>
 <div class="outline-text-4" id="text-7-1-1">
 <p>
 Para optimizar un conjunto de parámetros \(\Theta\) necesitamos primero definir una función de costo a minimizar.
@@ -2150,8 +2172,8 @@ La función de costo es una extensión de la regularizada que usábamos para reg
 </div>
 
 
-<div id="outline-container-org640fc10" class="outline-4">
-<h4 id="org640fc10"><span class="section-number-4">7.1.2</span> Backpropagation algorithm</h4>
+<div id="outline-container-org10087d0" class="outline-4">
+<h4 id="org10087d0"><span class="section-number-4">7.1.2</span> Backpropagation algorithm</h4>
 <div class="outline-text-4" id="text-7-1-2">
 <p>
 Esto está complicado así que nos lo dan sin demostraciones.
@@ -2220,8 +2242,8 @@ De forma vectorizada/matricial:
 
 
 
-<div id="outline-container-org957829e" class="outline-4">
-<h4 id="org957829e"><span class="section-number-4">7.1.3</span> Backpropagation intuition</h4>
+<div id="outline-container-orgc7712bd" class="outline-4">
+<h4 id="orgc7712bd"><span class="section-number-4">7.1.3</span> Backpropagation intuition</h4>
 <div class="outline-text-4" id="text-7-1-3">
 <p>
 Los términos \(\delta\) son los "errores" de predicción de cada unidad. Más técnicamente:
@@ -2238,12 +2260,12 @@ Así como cada \(z^{(l)}\) es una suma pesada de las entradas a esa unidad, cada
 </div>
 </div>
 
-<div id="outline-container-org4018518" class="outline-3">
-<h3 id="org4018518"><span class="section-number-3">7.2</span> Backpropagation in practice</h3>
+<div id="outline-container-orga438022" class="outline-3">
+<h3 id="orga438022"><span class="section-number-3">7.2</span> Backpropagation in practice</h3>
 <div class="outline-text-3" id="text-7-2">
 </div>
-<div id="outline-container-org4b7934a" class="outline-4">
-<h4 id="org4b7934a"><span class="section-number-4">7.2.1</span> Implementation note: unrolling parameters</h4>
+<div id="outline-container-orgf3c1c98" class="outline-4">
+<h4 id="orgf3c1c98"><span class="section-number-4">7.2.1</span> Implementation note: unrolling parameters</h4>
 <div class="outline-text-4" id="text-7-2-1">
 <p>
 Muchos algoritmos de optimización esperan vectores. Para trabajar con nuestras matrices \(\Theta\) de parámetros y \(D\) de gradientes, lo que hacemos es juntar todos los elementos y expresarlos como vector. Luego las reconstruimos en donde sea necesario.
@@ -2265,8 +2287,8 @@ Theta1 <span style="color: #4f97d7;">=</span> reshape<span style="color: #4f97d7
 </div>
 </div>
 
-<div id="outline-container-org33d4eb9" class="outline-4">
-<h4 id="org33d4eb9"><span class="section-number-4">7.2.2</span> Gradient checking</h4>
+<div id="outline-container-org9667220" class="outline-4">
+<h4 id="org9667220"><span class="section-number-4">7.2.2</span> Gradient checking</h4>
 <div class="outline-text-4" id="text-7-2-2">
 <p>
 Para verificar que nuestro algoritmo de retropropagación esté funcionando bien, podemos comparar los gradientes \(D\) calculados con unos calculados manualmente usando una aproximación de la derivada en el punto. Andrew sugiere usar una aproximación de doble lado:
@@ -2286,8 +2308,8 @@ Calculamos esto para cada uno de los parámetros \(\theta\) del vector desenroll
 </div>
 </div>
 
-<div id="outline-container-org09ba374" class="outline-4">
-<h4 id="org09ba374"><span class="section-number-4">7.2.3</span> Random initialization</h4>
+<div id="outline-container-orgd0e6c6d" class="outline-4">
+<h4 id="orgd0e6c6d"><span class="section-number-4">7.2.3</span> Random initialization</h4>
 <div class="outline-text-4" id="text-7-2-3">
 <p>
 Si inicializamos los parámetros \(\theta\) de las matrices \(\Theta\) todos con el mismo valor, en cada iteración de propagación hacia adelante terminamos con las mismas activaciones en cada unidad de una misma capa; y en cada iteración de propagación hacia atrás terminamos con los mismos errores \(\delta\). Esto implica que todas las unidades de una capa terminan calculando los mismos descriptores. Esto se llama el <b>problema de los caminos simétricos</b>. <i>Supongo que se da porque todas las unidades están conectadas de la misma manera, quizás no sería necesario si las unidades se conectaran de forma distinta</i>.
@@ -2299,8 +2321,8 @@ La forma de solucionar el problema es romper la simetría (<i>simmetry breaking<
 </div>
 </div>
 
-<div id="outline-container-org5865fc2" class="outline-4">
-<h4 id="org5865fc2"><span class="section-number-4">7.2.4</span> Putting it together</h4>
+<div id="outline-container-org555959d" class="outline-4">
+<h4 id="org555959d"><span class="section-number-4">7.2.4</span> Putting it together</h4>
 <div class="outline-text-4" id="text-7-2-4">
 <ul class="org-ul">
 <li>La arquitectura es el patrón de conexión entre las neuronas.
@@ -2315,12 +2337,12 @@ La forma de solucionar el problema es romper la simetría (<i>simmetry breaking<
 </div>
 </div>
 
-<div id="outline-container-orgd30dbc0" class="outline-3">
-<h3 id="orgd30dbc0"><span class="section-number-3">7.3</span> Applications of neural networks</h3>
+<div id="outline-container-org3276b5e" class="outline-3">
+<h3 id="org3276b5e"><span class="section-number-3">7.3</span> Applications of neural networks</h3>
 <div class="outline-text-3" id="text-7-3">
 </div>
-<div id="outline-container-org0dd1c08" class="outline-4">
-<h4 id="org0dd1c08"><span class="section-number-4">7.3.1</span> Autonomous driving</h4>
+<div id="outline-container-orgdbc5ba3" class="outline-4">
+<h4 id="orgdbc5ba3"><span class="section-number-4">7.3.1</span> Autonomous driving</h4>
 <div class="outline-text-4" id="text-7-3-1">
 <p>
 Jeep automanejado en 1992.
@@ -2329,16 +2351,16 @@ Jeep automanejado en 1992.
 </div>
 </div>
 
-<div id="outline-container-org0827db9" class="outline-3">
-<h3 id="org0827db9"><span class="section-number-3">7.4</span> Review</h3>
+<div id="outline-container-org44d1177" class="outline-3">
+<h3 id="org44d1177"><span class="section-number-3">7.4</span> Review</h3>
 <div class="outline-text-3" id="text-7-4">
 </div>
-<div id="outline-container-org6f88a7d" class="outline-4">
-<h4 id="org6f88a7d"><span class="section-number-4">7.4.1</span> Quiz: Neural networks: learning</h4>
+<div id="outline-container-orgdbb3a69" class="outline-4">
+<h4 id="orgdbb3a69"><span class="section-number-4">7.4.1</span> Quiz: Neural networks: learning</h4>
 </div>
 
-<div id="outline-container-org87e30e9" class="outline-4">
-<h4 id="org87e30e9"><span class="section-number-4">7.4.2</span> Programming assignment: neural network learning</h4>
+<div id="outline-container-org65dc3e5" class="outline-4">
+<h4 id="org65dc3e5"><span class="section-number-4">7.4.2</span> Programming assignment: neural network learning</h4>
 <div class="outline-text-4" id="text-7-4-2">
 <ul class="org-ul">
 <li>Usé una forma vectorizada de la función de costo, según algunas pistas que encontré en las notas del curso. En ellas usé la <i>traza</i> de una matriz, para trabajar con muchas salidas.</li>
@@ -2394,8 +2416,8 @@ D1 <span style="color: #4f97d7;">=</span> <span style="color: #4f97d7;">(</span>
 </div>
 </div>
 
-<div id="outline-container-org45be4d7" class="outline-2">
-<h2 id="org45be4d7"><span class="section-number-2">8</span> Semana 6</h2>
+<div id="outline-container-orgb67627d" class="outline-2">
+<h2 id="orgb67627d"><span class="section-number-2">8</span> Semana 6</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 En esta semana vamos a ver cómo evaluar nuestros modelos.
@@ -2417,12 +2439,12 @@ When you're applying machine learning to real problems, a solid grasp of this we
 </blockquote>
 </div>
 
-<div id="outline-container-org3645f02" class="outline-3">
-<h3 id="org3645f02"><span class="section-number-3">8.1</span> Evaluating a learning algorithm</h3>
+<div id="outline-container-orga5ac24d" class="outline-3">
+<h3 id="orga5ac24d"><span class="section-number-3">8.1</span> Evaluating a learning algorithm</h3>
 <div class="outline-text-3" id="text-8-1">
 </div>
-<div id="outline-container-org3f27625" class="outline-4">
-<h4 id="org3f27625"><span class="section-number-4">8.1.1</span> Deciding what to try next</h4>
+<div id="outline-container-org812850b" class="outline-4">
+<h4 id="org812850b"><span class="section-number-4">8.1.1</span> Deciding what to try next</h4>
 <div class="outline-text-4" id="text-8-1-1">
 <p>
 Algunas cosas que podemos cambiar para intentar mejorar nuestros algoritmos si no estamos satisfechos con los resultados:
@@ -2445,8 +2467,8 @@ Algunas de esas decisiones pueden ser muy costosas o largas. Vamos a ver herrami
 </div>
 </div>
 
-<div id="outline-container-org0589006" class="outline-4">
-<h4 id="org0589006"><span class="section-number-4">8.1.2</span> Evaluating a hypothesis</h4>
+<div id="outline-container-org7f037df" class="outline-4">
+<h4 id="org7f037df"><span class="section-number-4">8.1.2</span> Evaluating a hypothesis</h4>
 <div class="outline-text-4" id="text-8-1-2">
 <p>
 Dividimos el conjunto de datos en 2 subconjuntos de muestras aleatorias:
@@ -2480,8 +2502,8 @@ Tanto en la función de costo \(J_{validation}\) como en la \(J_{test}\) <span c
 </div>
 
 
-<div id="outline-container-org7a79131" class="outline-4">
-<h4 id="org7a79131"><span class="section-number-4">8.1.3</span> Model selection and train/validation/test sets</h4>
+<div id="outline-container-orgfdd169d" class="outline-4">
+<h4 id="orgfdd169d"><span class="section-number-4">8.1.3</span> Model selection and train/validation/test sets</h4>
 <div class="outline-text-4" id="text-8-1-3">
 <p>
 Andrew propone usar usar un tercer subconjunto, intermedio, sobre el cuál podemos evaluar <b>hiperparámetros</b> o parámetros de más alto nivel. Entonces:
@@ -2507,7 +2529,7 @@ Andrew propone usar usar un tercer subconjunto, intermedio, sobre el cuál podem
 </div>
 
 <ol class="org-ol">
-<li><a id="org0a2860c"></a>Discusión<br />
+<li><a id="org813afb8"></a>Discusión<br />
 <div class="outline-text-5" id="text-8-1-3-1">
 <p>
 No me queda claro por qué no podríamos ajustar parámetros e hiperparámetros en simultáneo. ¿Y con qué criterio distinguimos los unos de los otros?
@@ -2523,12 +2545,12 @@ No me queda claro por qué no podríamos ajustar parámetros e hiperparámetros 
 </div>
 
 
-<div id="outline-container-orgff9a378" class="outline-3">
-<h3 id="orgff9a378"><span class="section-number-3">8.2</span> Bias vs variance</h3>
+<div id="outline-container-org8d32c36" class="outline-3">
+<h3 id="org8d32c36"><span class="section-number-3">8.2</span> Bias vs variance</h3>
 <div class="outline-text-3" id="text-8-2">
 </div>
-<div id="outline-container-orgd9fae4d" class="outline-4">
-<h4 id="orgd9fae4d"><span class="section-number-4">8.2.1</span> Diagnosing bias vs variance</h4>
+<div id="outline-container-orgdde2331" class="outline-4">
+<h4 id="orgdde2331"><span class="section-number-4">8.2.1</span> Diagnosing bias vs variance</h4>
 <div class="outline-text-4" id="text-8-2-1">
 <p>
 Cuando tenemos mucho error en el conjunto de validación, hay una forma de saber si es error de sesgo alto o error de varianza alta:
@@ -2547,8 +2569,8 @@ Cuando tenemos mucho error en el conjunto de validación, hay una forma de saber
 </div>
 
 
-<div id="outline-container-orgacc8931" class="outline-4">
-<h4 id="orgacc8931"><span class="section-number-4">8.2.2</span> Regularization and bias/variance</h4>
+<div id="outline-container-orgf6c87eb" class="outline-4">
+<h4 id="orgf6c87eb"><span class="section-number-4">8.2.2</span> Regularization and bias/variance</h4>
 <div class="outline-text-4" id="text-8-2-2">
 <p>
 El comportamiento de las funciones de costo respecto a \(\lambda\) es espejado al que se observa según el grado del polinomio; esto es, \(J_train\) crece proporcionalmente a \(\lambda\).
@@ -2590,8 +2612,8 @@ A second solution is possible. You can create all possible combinations of the p
 </div>
 </div>
 
-<div id="outline-container-org6d19384" class="outline-4">
-<h4 id="org6d19384"><span class="section-number-4">8.2.3</span> Learning curves</h4>
+<div id="outline-container-orge0f3137" class="outline-4">
+<h4 id="orge0f3137"><span class="section-number-4">8.2.3</span> Learning curves</h4>
 <div class="outline-text-4" id="text-8-2-3">
 <p>
 Las gráficas de aprendizaje muestran la variación de los errores de entrenamiento y validación ante el cambio de cantidad de muestras de entrenamiento, para una complejidad de modelo fija.
@@ -2623,8 +2645,8 @@ Estaría bueno tener una gráfica de como varían esas curvas al cambiar la comp
 </div>
 </div>
 
-<div id="outline-container-orgb70bdca" class="outline-4">
-<h4 id="orgb70bdca"><span class="section-number-4">8.2.4</span> Deciding what to do next revisited</h4>
+<div id="outline-container-orgb8fe3dd" class="outline-4">
+<h4 id="orgb8fe3dd"><span class="section-number-4">8.2.4</span> Deciding what to do next revisited</h4>
 <div class="outline-text-4" id="text-8-2-4">
 <hr />
 
@@ -2635,29 +2657,29 @@ La regularización sirve para forzar la exploración de todo el espacio de pará
 </div>
 </div>
 
-<div id="outline-container-org5e28bae" class="outline-3">
-<h3 id="org5e28bae"><span class="section-number-3">8.3</span> Review</h3>
+<div id="outline-container-orgf85d278" class="outline-3">
+<h3 id="orgf85d278"><span class="section-number-3">8.3</span> Review</h3>
 <div class="outline-text-3" id="text-8-3">
 </div>
-<div id="outline-container-org9a2af20" class="outline-4">
-<h4 id="org9a2af20"><span class="section-number-4">8.3.1</span> Quiz: advice for applying machine learning</h4>
+<div id="outline-container-org79008e8" class="outline-4">
+<h4 id="org79008e8"><span class="section-number-4">8.3.1</span> Quiz: advice for applying machine learning</h4>
 </div>
 
-<div id="outline-container-org4485df8" class="outline-4">
-<h4 id="org4485df8"><span class="section-number-4">8.3.2</span> Programming assignment: regularized linear regression and bias/variance</h4>
+<div id="outline-container-org57c6bd0" class="outline-4">
+<h4 id="org57c6bd0"><span class="section-number-4">8.3.2</span> Programming assignment: regularized linear regression and bias/variance</h4>
 </div>
 </div>
 
-<div id="outline-container-orgb77756f" class="outline-3">
-<h3 id="orgb77756f"><span class="section-number-3">8.4</span> Building a spam classifier</h3>
+<div id="outline-container-org359eb83" class="outline-3">
+<h3 id="org359eb83"><span class="section-number-3">8.4</span> Building a spam classifier</h3>
 <div class="outline-text-3" id="text-8-4">
 </div>
-<div id="outline-container-org989a625" class="outline-4">
-<h4 id="org989a625"><span class="section-number-4">8.4.1</span> Prioritizing what to work on</h4>
+<div id="outline-container-org84e2549" class="outline-4">
+<h4 id="org84e2549"><span class="section-number-4">8.4.1</span> Prioritizing what to work on</h4>
 </div>
 
-<div id="outline-container-org263f48c" class="outline-4">
-<h4 id="org263f48c"><span class="section-number-4">8.4.2</span> Error analysis</h4>
+<div id="outline-container-orgec5d536" class="outline-4">
+<h4 id="orgec5d536"><span class="section-number-4">8.4.2</span> Error analysis</h4>
 <div class="outline-text-4" id="text-8-4-2">
 <ul class="org-ul">
 <li>Hacer una implementación rápida de un clasificador y sus pruebas, para tener información de en qué paso gastar tiempo a continuación. Esto es importante.</li>
@@ -2670,12 +2692,12 @@ La regularización sirve para forzar la exploración de todo el espacio de pará
 </div>
 </div>
 
-<div id="outline-container-org0e6bd1e" class="outline-3">
-<h3 id="org0e6bd1e"><span class="section-number-3">8.5</span> Handling skewed data</h3>
+<div id="outline-container-org8b3944e" class="outline-3">
+<h3 id="org8b3944e"><span class="section-number-3">8.5</span> Handling skewed data</h3>
 <div class="outline-text-3" id="text-8-5">
 </div>
-<div id="outline-container-org0447c60" class="outline-4">
-<h4 id="org0447c60"><span class="section-number-4">8.5.1</span> Error metrics for skewed classes</h4>
+<div id="outline-container-org94263ea" class="outline-4">
+<h4 id="org94263ea"><span class="section-number-4">8.5.1</span> Error metrics for skewed classes</h4>
 <div class="outline-text-4" id="text-8-5-1">
 <p>
 En clasificación (¿binaria?) en la distribución de las clases está muy sesgada (una de las clases es muy rara, tiene poca frecuencia), no es apropiado usar la precisión como métrica. Aquí corresponde analizar la precisión y la exhaustividad (<i>recall</i>).
@@ -2693,8 +2715,8 @@ Podemos variar el comportamiento del modelo al modificar el umbral de decisión 
 </div>
 </div>
 
-<div id="outline-container-org4c595ca" class="outline-4">
-<h4 id="org4c595ca"><span class="section-number-4">8.5.2</span> Trading off precision and recall</h4>
+<div id="outline-container-orgcaaf269" class="outline-4">
+<h4 id="orgcaaf269"><span class="section-number-4">8.5.2</span> Trading off precision and recall</h4>
 <div class="outline-text-4" id="text-8-5-2">
 <p>
 Una métrica que incluye la precisión y la exhaustividad es el Valor F (<i>F score</i>), que se define como la media armónica (ponderada) de la precisión y exhaustividad.
@@ -2716,12 +2738,12 @@ Una métrica que incluye la precisión y la exhaustividad es el Valor F (<i>F sc
 </div>
 
 
-<div id="outline-container-org43ee577" class="outline-3">
-<h3 id="org43ee577"><span class="section-number-3">8.6</span> Using large datasets</h3>
+<div id="outline-container-orgfa8c9c9" class="outline-3">
+<h3 id="orgfa8c9c9"><span class="section-number-3">8.6</span> Using large datasets</h3>
 <div class="outline-text-3" id="text-8-6">
 </div>
-<div id="outline-container-orgf3a7e7f" class="outline-4">
-<h4 id="orgf3a7e7f"><span class="section-number-4">8.6.1</span> Data for machine learning</h4>
+<div id="outline-container-org1c37f1a" class="outline-4">
+<h4 id="org1c37f1a"><span class="section-number-4">8.6.1</span> Data for machine learning</h4>
 <div class="outline-text-4" id="text-8-6-1">
 <p>
 Si tenemos
@@ -2743,30 +2765,30 @@ En la publicación <a href="https://www.microsoft.com/en-us/research/publication
 </div>
 </div>
 
-<div id="outline-container-orgc9494d0" class="outline-3">
-<h3 id="orgc9494d0"><span class="section-number-3">8.7</span> Review</h3>
+<div id="outline-container-org14153d0" class="outline-3">
+<h3 id="org14153d0"><span class="section-number-3">8.7</span> Review</h3>
 <div class="outline-text-3" id="text-8-7">
 </div>
-<div id="outline-container-org519ed9d" class="outline-4">
-<h4 id="org519ed9d"><span class="section-number-4">8.7.1</span> Quiz: machine learning system design</h4>
+<div id="outline-container-orgd6b4296" class="outline-4">
+<h4 id="orgd6b4296"><span class="section-number-4">8.7.1</span> Quiz: machine learning system design</h4>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orga84d785" class="outline-2">
-<h2 id="orga84d785"><span class="section-number-2">9</span> Semana 7</h2>
+<div id="outline-container-orgbdd545e" class="outline-2">
+<h2 id="orgbdd545e"><span class="section-number-2">9</span> Semana 7</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Vamos a ver <i>SVMs</i>: máquinas de vector soporte / máquinas de soporte vectorial.
 </p>
 </div>
 
-<div id="outline-container-orga863220" class="outline-3">
-<h3 id="orga863220"><span class="section-number-3">9.1</span> Large margin classification</h3>
+<div id="outline-container-org1ba13e3" class="outline-3">
+<h3 id="org1ba13e3"><span class="section-number-3">9.1</span> Large margin classification</h3>
 <div class="outline-text-3" id="text-9-1">
 </div>
-<div id="outline-container-orgc98148c" class="outline-4">
-<h4 id="orgc98148c"><span class="section-number-4">9.1.1</span> Optimization objective</h4>
+<div id="outline-container-orgf76a529" class="outline-4">
+<h4 id="orgf76a529"><span class="section-number-4">9.1.1</span> Optimization objective</h4>
 <div class="outline-text-4" id="text-9-1-1">
 <p>
 Vamos a ver un algoritmo de aprendizaje supervisado más: las máquinas de soporte vectorial. Primero definimos una función de costo a optimizar, que es similar a la que usamos para regresión logística.
@@ -2811,8 +2833,8 @@ Resulta además que la función de hipótesis es simplemente una combinación li
 </div>
 </div>
 
-<div id="outline-container-orgd987a2d" class="outline-4">
-<h4 id="orgd987a2d"><span class="section-number-4">9.1.2</span> Large margin intuition</h4>
+<div id="outline-container-org666456c" class="outline-4">
+<h4 id="org666456c"><span class="section-number-4">9.1.2</span> Large margin intuition</h4>
 <div class="outline-text-4" id="text-9-1-2">
 <p>
 La minimización nos da parámetros que definen una frontera óptima de separación entre clases. La frontera es óptima en términos de maximizar los márgenes, los espacios entre la frontera y los datos.
@@ -2824,15 +2846,15 @@ La minimización nos da parámetros que definen una frontera óptima de separaci
 </div>
 
 <ol class="org-ol">
-<li><a id="org8d8b9fb"></a><span class="done DONE">DONE</span> Revisar esto y abajo<br />
+<li><a id="orgc5fa7ac"></a><span class="done DONE">DONE</span> Revisar esto y abajo<br />
 <div class="outline-text-7" id="text-9-1-2-0-0-1">
 </div>
 </li>
 </ol>
 </div>
 
-<div id="outline-container-orgcf5d416" class="outline-4">
-<h4 id="orgcf5d416"><span class="section-number-4">9.1.3</span> Mathematics behind large margin classification</h4>
+<div id="outline-container-orge94fba5" class="outline-4">
+<h4 id="orge94fba5"><span class="section-number-4">9.1.3</span> Mathematics behind large margin classification</h4>
 <div class="outline-text-4" id="text-9-1-3">
 <p>
 No se entendió.
@@ -2845,18 +2867,18 @@ Ya lo entendí&#x2026; sirve para justificar la explicación del título anterio
 </div>
 </div>
 
-<div id="outline-container-orgf5ac17b" class="outline-3">
-<h3 id="orgf5ac17b"><span class="section-number-3">9.2</span> Kernels</h3>
+<div id="outline-container-org211edc0" class="outline-3">
+<h3 id="org211edc0"><span class="section-number-3">9.2</span> Kernels</h3>
 <div class="outline-text-3" id="text-9-2">
 </div>
-<div id="outline-container-org14a906f" class="outline-4">
-<h4 id="org14a906f"><span class="section-number-4">9.2.1</span> Kernels I</h4>
+<div id="outline-container-org4aa5aec" class="outline-4">
+<h4 id="org4aa5aec"><span class="section-number-4">9.2.1</span> Kernels I</h4>
 </div>
 
 
 
-<div id="outline-container-orgabbbecb" class="outline-4">
-<h4 id="orgabbbecb"><span class="section-number-4">9.2.2</span> Kernels II</h4>
+<div id="outline-container-org6c22dba" class="outline-4">
+<h4 id="org6c22dba"><span class="section-number-4">9.2.2</span> Kernels II</h4>
 <div class="outline-text-4" id="text-9-2-2">
 <p>
 En estos videos entendí un poco más y voy a intentar explicar todo acá.
@@ -2905,12 +2927,12 @@ Nótese que luego deberemos mapear cada entrada al espacio de distancias, y ahí
 </div>
 </div>
 
-<div id="outline-container-org8094e35" class="outline-3">
-<h3 id="org8094e35"><span class="section-number-3">9.3</span> SVMs in practice</h3>
+<div id="outline-container-orgd8ade6b" class="outline-3">
+<h3 id="orgd8ade6b"><span class="section-number-3">9.3</span> SVMs in practice</h3>
 <div class="outline-text-3" id="text-9-3">
 </div>
-<div id="outline-container-orga958d8b" class="outline-4">
-<h4 id="orga958d8b"><span class="section-number-4">9.3.1</span> Using an SVM</h4>
+<div id="outline-container-org96f4526" class="outline-4">
+<h4 id="org96f4526"><span class="section-number-4">9.3.1</span> Using an SVM</h4>
 <div class="outline-text-4" id="text-9-3-1">
 <p>
 Si bien hay más funciones de distancia o <i>kernels</i> normalmente se usan dos:
@@ -2941,7 +2963,7 @@ Los algoritmos pueden soportar multiclase. Si no, hacemos el clásico "uno contr
 </div>
 
 <ol class="org-ol">
-<li><a id="org5df3fe9"></a>Cuándo usar<br />
+<li><a id="org9cbb016"></a>Cuándo usar<br />
 <div class="outline-text-5" id="text-9-3-1-1">
 <p>
 Sean
@@ -2975,16 +2997,16 @@ Dice Andrew que en ambos casos también podríamos usar redes neuronales, pero e
 </div>
 </div>
 
-<div id="outline-container-orga903be2" class="outline-3">
-<h3 id="orga903be2"><span class="section-number-3">9.4</span> Review</h3>
+<div id="outline-container-orgdb55442" class="outline-3">
+<h3 id="orgdb55442"><span class="section-number-3">9.4</span> Review</h3>
 <div class="outline-text-3" id="text-9-4">
 </div>
-<div id="outline-container-orgc8edb4f" class="outline-4">
-<h4 id="orgc8edb4f"><span class="section-number-4">9.4.1</span> Quiz: support vector machines</h4>
+<div id="outline-container-orgec0f652" class="outline-4">
+<h4 id="orgec0f652"><span class="section-number-4">9.4.1</span> Quiz: support vector machines</h4>
 </div>
 
-<div id="outline-container-org7d49f3c" class="outline-4">
-<h4 id="org7d49f3c"><span class="section-number-4">9.4.2</span> Programming assignment SVMs</h4>
+<div id="outline-container-org326bc8e" class="outline-4">
+<h4 id="org326bc8e"><span class="section-number-4">9.4.2</span> Programming assignment SVMs</h4>
 <div class="outline-text-4" id="text-9-4-2">
 <p>
 Usé <code>containers.Map</code> para crear un mapeo, como los diccionarios de Python.
@@ -2993,12 +3015,12 @@ Usé <code>containers.Map</code> para crear un mapeo, como los diccionarios de P
 </div>
 </div>
 
-<div id="outline-container-orgcaf1045" class="outline-3">
-<h3 id="orgcaf1045"><span class="section-number-3">9.5</span> Otras cosas</h3>
+<div id="outline-container-org78fbc2e" class="outline-3">
+<h3 id="org78fbc2e"><span class="section-number-3">9.5</span> Otras cosas</h3>
 <div class="outline-text-3" id="text-9-5">
 </div>
-<div id="outline-container-orgc7a1cda" class="outline-4">
-<h4 id="orgc7a1cda"><span class="section-number-4">9.5.1</span> <a href="https://www.youtube.com/watch?v=3liCbRZPrZA">https://www.youtube.com/watch?v=3liCbRZPrZA</a> SVM with polynomial kernel visualization</h4>
+<div id="outline-container-orga300225" class="outline-4">
+<h4 id="orga300225"><span class="section-number-4">9.5.1</span> <a href="https://www.youtube.com/watch?v=3liCbRZPrZA">https://www.youtube.com/watch?v=3liCbRZPrZA</a> SVM with polynomial kernel visualization</h4>
 <div class="outline-text-4" id="text-9-5-1">
 <blockquote>
 <p>
@@ -3016,8 +3038,8 @@ But this is definitely a cool visualization of the value of feature spaces!
 </div>
 
 
-<div id="outline-container-org1942c87" class="outline-4">
-<h4 id="org1942c87"><span class="section-number-4">9.5.2</span> <a href="https://ranvir.xyz/blog/svm-support-vector-machines-in-machine-learning/">https://ranvir.xyz/blog/svm-support-vector-machines-in-machine-learning/</a></h4>
+<div id="outline-container-org8368c30" class="outline-4">
+<h4 id="org8368c30"><span class="section-number-4">9.5.2</span> <a href="https://ranvir.xyz/blog/svm-support-vector-machines-in-machine-learning/">https://ranvir.xyz/blog/svm-support-vector-machines-in-machine-learning/</a></h4>
 <div class="outline-text-4" id="text-9-5-2">
 <p>
 Discusión en <a href="https://news.ycombinator.com/item?id=23035120">https://news.ycombinator.com/item?id=23035120</a>
@@ -3035,8 +3057,8 @@ Discusión en <a href="https://news.ycombinator.com/item?id=23035120">https://ne
 </div>
 </div>
 
-<div id="outline-container-org37b3647" class="outline-2">
-<h2 id="org37b3647"><span class="section-number-2">10</span> Semana 8: Unsupervised learning</h2>
+<div id="outline-container-org5dd854e" class="outline-2">
+<h2 id="org5dd854e"><span class="section-number-2">10</span> Semana 8: Unsupervised learning</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 Vamos a ver algo de aprendizaje no supervisado. Acá no tenemos entradas y salidas etiquetadas; solo un conjunto de datos de entrada de los cuáles queremos entender la estructura subyacente.
@@ -3044,12 +3066,12 @@ También vemos algo de reducción de la dimensionalidad del problema.
 </p>
 </div>
 
-<div id="outline-container-org4df7862" class="outline-3">
-<h3 id="org4df7862"><span class="section-number-3">10.1</span> Clustering</h3>
+<div id="outline-container-org53499fe" class="outline-3">
+<h3 id="org53499fe"><span class="section-number-3">10.1</span> Clustering</h3>
 <div class="outline-text-3" id="text-10-1">
 </div>
-<div id="outline-container-orgf6da2d7" class="outline-4">
-<h4 id="orgf6da2d7"><span class="section-number-4">10.1.1</span> Unsupervised learning: introduction</h4>
+<div id="outline-container-org5c9af28" class="outline-4">
+<h4 id="org5c9af28"><span class="section-number-4">10.1.1</span> Unsupervised learning: introduction</h4>
 <div class="outline-text-4" id="text-10-1-1">
 <p>
 Buscamos ver si hay conjuntos de datos que presentan características similares, con las cuáles podríamos agruparlos.
@@ -3061,8 +3083,8 @@ También podemos usar algoritmos de agrupamiento cuando nosotros queremos agrupa
 </div>
 </div>
 
-<div id="outline-container-org269645b" class="outline-4">
-<h4 id="org269645b"><span class="section-number-4">10.1.2</span> K-means algorithm</h4>
+<div id="outline-container-org4d2ac42" class="outline-4">
+<h4 id="org4d2ac42"><span class="section-number-4">10.1.2</span> K-means algorithm</h4>
 <div class="outline-text-4" id="text-10-1-2">
 <p>
 <b>Acá trabajamos los ejemplos en sus \(n\) dimensiones originales; no agregamos el \(x_0=1\) que nos facilitaba trabajar con los interceptos.</b>
@@ -3099,8 +3121,8 @@ Si un grupo \(k\) no tiene ejemplos tras alguna iteración, lo podemos eliminar.
 </div>
 
 
-<div id="outline-container-orgaec798c" class="outline-4">
-<h4 id="orgaec798c"><span class="section-number-4">10.1.3</span> Optimization objective</h4>
+<div id="outline-container-orgb97814b" class="outline-4">
+<h4 id="orgb97814b"><span class="section-number-4">10.1.3</span> Optimization objective</h4>
 <div class="outline-text-4" id="text-10-1-3">
 <p>
 La función que estamos optimizando es:
@@ -3128,8 +3150,8 @@ La función de costo <span class="underline">debe</span> disminuir en cada itera
 </div>
 </div>
 
-<div id="outline-container-org211b789" class="outline-4">
-<h4 id="org211b789"><span class="section-number-4">10.1.4</span> Random initialization</h4>
+<div id="outline-container-org9991dcf" class="outline-4">
+<h4 id="org9991dcf"><span class="section-number-4">10.1.4</span> Random initialization</h4>
 <div class="outline-text-4" id="text-10-1-4">
 <p>
 La configuración óptima que encontremos al minimizar se ve influenciada por cómo inicializamos los centroides. La forma recomendada es asignarles la posición de un ejemplo cualquiera (distinto a cada uno).
@@ -3145,8 +3167,8 @@ Para buscar la solución global, ejecutamos el algoritmo muchas veces y nos qued
 </div>
 </div>
 
-<div id="outline-container-org91f91ec" class="outline-4">
-<h4 id="org91f91ec"><span class="section-number-4">10.1.5</span> Choosing the number of clusters</h4>
+<div id="outline-container-org72be918" class="outline-4">
+<h4 id="org72be918"><span class="section-number-4">10.1.5</span> Choosing the number of clusters</h4>
 <div class="outline-text-4" id="text-10-1-5">
 <p>
 <b>La función de costo debe disminuir a medida que incrementamos K</b>, llegando al mínimo cuando \(K=m\). Si no ocurre para un cierto \(K\), es que tuvimos un resultado de un mínimo local no bueno.
@@ -3163,25 +3185,25 @@ Una forma de elegir el número de grupos es con el "método del codo". Este cons
 </div>
 </div>
 
-<div id="outline-container-org24ab0bb" class="outline-3">
-<h3 id="org24ab0bb"><span class="section-number-3">10.2</span> Review</h3>
+<div id="outline-container-org7cf1dc5" class="outline-3">
+<h3 id="org7cf1dc5"><span class="section-number-3">10.2</span> Review</h3>
 <div class="outline-text-3" id="text-10-2">
 </div>
-<div id="outline-container-orgb018cf8" class="outline-4">
-<h4 id="orgb018cf8"><span class="section-number-4">10.2.1</span> Quiz: Unsuperised learning</h4>
+<div id="outline-container-orge753b74" class="outline-4">
+<h4 id="orge753b74"><span class="section-number-4">10.2.1</span> Quiz: Unsuperised learning</h4>
 </div>
 </div>
 
-<div id="outline-container-org43ef0ed" class="outline-3">
-<h3 id="org43ef0ed"><span class="section-number-3">10.3</span> Dimensionality reduction</h3>
+<div id="outline-container-orga2f4227" class="outline-3">
+<h3 id="orga2f4227"><span class="section-number-3">10.3</span> Dimensionality reduction</h3>
 <div class="outline-text-3" id="text-10-3">
 </div>
-<div id="outline-container-org9e58ba7" class="outline-4">
-<h4 id="org9e58ba7"><span class="section-number-4">10.3.1</span> Motivation</h4>
+<div id="outline-container-org6e5ad56" class="outline-4">
+<h4 id="org6e5ad56"><span class="section-number-4">10.3.1</span> Motivation</h4>
 <div class="outline-text-4" id="text-10-3-1">
 </div>
 <ol class="org-ol">
-<li><a id="orgff6655b"></a>Motivation I: Data compression<br />
+<li><a id="orgfc3ee2b"></a>Motivation I: Data compression<br />
 <div class="outline-text-5" id="text-10-3-1-1">
 <p>
 Otro tipo de aprendizaje no supervisado se usa para reducir la dimensionalidad de nuestro universo representado. Esto es, representar la misma información pero con menos descriptores. Esto nos va a permitir tener representaciones más compactas (menos memoria) y sobre todo, acelerar la búsqueda de soluciones.
@@ -3189,7 +3211,7 @@ Otro tipo de aprendizaje no supervisado se usa para reducir la dimensionalidad d
 </div>
 </li>
 
-<li><a id="org57b730d"></a>Motivation II Visualization<br />
+<li><a id="orgab7e4b1"></a>Motivation II Visualization<br />
 <div class="outline-text-5" id="text-10-3-1-2">
 <p>
 Otro aplicación de la reducción de dimensionalidad es para intentar visualizar nuestros datos. La visualización suele ayudarnos a entender los datos y proponer mejores soluciones.
@@ -3199,12 +3221,12 @@ Otro aplicación de la reducción de dimensionalidad es para intentar visualizar
 </ol>
 </div>
 
-<div id="outline-container-org5a7a331" class="outline-4">
-<h4 id="org5a7a331"><span class="section-number-4">10.3.2</span> Principal component analysis</h4>
+<div id="outline-container-orgdf506f7" class="outline-4">
+<h4 id="orgdf506f7"><span class="section-number-4">10.3.2</span> Principal component analysis</h4>
 <div class="outline-text-4" id="text-10-3-2">
 </div>
 <ol class="org-ol">
-<li><a id="orgb4a43e6"></a>Principal component analysis formulation<br />
+<li><a id="org4da93dd"></a>Principal component analysis formulation<br />
 <div class="outline-text-5" id="text-10-3-2-1">
 <p>
 <b>Acá trabajamos los ejemplos en sus \(n\) dimensiones originales; no agregamos el \(x_0=1\) que nos facilitaba trabajar con los interceptos.</b>
@@ -3216,7 +3238,7 @@ El algoritmo más usado para reducción dimensional es el llamado "Análisis de 
 </div>
 </li>
 
-<li><a id="org3f2ea1f"></a>Principal component analysis algorithm<br />
+<li><a id="orgc59be19"></a>Principal component analysis algorithm<br />
 <div class="outline-text-5" id="text-10-3-2-2">
 <p>
 No vamos a ver demostraciones, pero la cosa es más o menos así.
@@ -3259,19 +3281,19 @@ O para todos los ejemplos:
 </p>
 
 <p>
-\[ Z = U<sub>reducción</sub><sup>T</sup> X ]\
+\[ Z = X U_{reducción} \]
 </p>
 </div>
 </li>
 </ol>
 </div>
 
-<div id="outline-container-org3ed21a2" class="outline-4">
-<h4 id="org3ed21a2"><span class="section-number-4">10.3.3</span> Appliying PCA</h4>
+<div id="outline-container-orge069ffb" class="outline-4">
+<h4 id="orge069ffb"><span class="section-number-4">10.3.3</span> Appliying PCA</h4>
 <div class="outline-text-4" id="text-10-3-3">
 </div>
 <ol class="org-ol">
-<li><a id="orgf1e703b"></a>Reconstruction from compressed representation<br />
+<li><a id="org02d6b6b"></a>Reconstruction from compressed representation<br />
 <div class="outline-text-5" id="text-10-3-3-1">
 <p>
 Para volver del espacio \(R^k\) al \(R^n\), usamos la matriz \(U\) así:
@@ -3279,6 +3301,14 @@ Para volver del espacio \(R^k\) al \(R^n\), usamos la matriz \(U\) así:
 
 <p>
 \[  x_{aprox}^{(i)} = U_{reducción}  x^{(i)} \]
+</p>
+
+<p>
+O para todos los ejemplos:
+</p>
+
+<p>
+\[ X_aprox = X U_{reducción}^T \]
 </p>
 
 <ul class="org-ul">
@@ -3290,7 +3320,7 @@ Para volver del espacio \(R^k\) al \(R^n\), usamos la matriz \(U\) así:
 </div>
 </li>
 
-<li><a id="org22c2fb9"></a>Choosing the number of principal components<br />
+<li><a id="org78fe171"></a>Choosing the number of principal components<br />
 <div class="outline-text-5" id="text-10-3-3-2">
 <p>
 Sean
@@ -3345,7 +3375,7 @@ y fácilmente definimos el \(k\) que queremos.
 </li>
 
 
-<li><a id="org12fc638"></a>Advice for appliying PCA<br />
+<li><a id="org4ba0df5"></a>Advice for appliying PCA<br />
 <div class="outline-text-5" id="text-10-3-3-3">
 <p>
 Algunos consejos:
@@ -3360,14 +3390,160 @@ Algunos consejos:
 </ol>
 </div>
 
-<div id="outline-container-org05644a2" class="outline-4">
-<h4 id="org05644a2"><span class="section-number-4">10.3.4</span> Review</h4>
+<div id="outline-container-org727ee07" class="outline-4">
+<h4 id="org727ee07"><span class="section-number-4">10.3.4</span> Review</h4>
 <div class="outline-text-4" id="text-10-3-4">
 </div>
 <ol class="org-ol">
-<li><a id="org1a1ece8"></a>Quiz: principal component analysis<br /></li>
+<li><a id="org2948076"></a>Quiz: principal component analysis<br /></li>
 
-<li><a id="org2dafe19"></a>Programming assignment: K-means clustering and PCA<br /></li>
+<li><a id="orgcdd2880"></a>Programming assignment: K-means clustering and PCA<br /></li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7524c82" class="outline-2">
+<h2 id="org7524c82"><span class="section-number-2">11</span> Semana 9: Anomaly detection &amp; Recommender systems</h2>
+<div class="outline-text-2" id="text-11">
+</div>
+<div id="outline-container-orge39b455" class="outline-3">
+<h3 id="orge39b455"><span class="section-number-3">11.1</span> Anomaly detection</h3>
+<div class="outline-text-3" id="text-11-1">
+</div>
+<div id="outline-container-org70cc19d" class="outline-4">
+<h4 id="org70cc19d"><span class="section-number-4">11.1.1</span> Density estimation</h4>
+<div class="outline-text-4" id="text-11-1-1">
+</div>
+<ol class="org-ol">
+<li><a id="orgbc27618"></a>Problem motivation<br />
+<div class="outline-text-5" id="text-11-1-1-1">
+<p>
+En la detección de anomalías intentamos construir un modelo a partir de casos que consideramos comunes, para luego usarlo para detectar eventos no comunes.
+</p>
+</div>
+</li>
+
+<li><a id="org52cf9ae"></a>Gaussian distribution<br /></li>
+
+<li><a id="orgd10e426"></a>Algorithm<br />
+<div class="outline-text-5" id="text-11-1-1-3">
+<p>
+Suposiciones:
+</p>
+
+<ul class="org-ul">
+<li>Todos los descriptores están distribuidos normalmente.</li>
+<li>Los descriptores son independientes entre sí.</li>
+</ul>
+
+<p>
+Para cada descriptor \(x_j\) podemos estimar una distribución normal, calculando \(\mu_j\) y \(\sigma_j\):
+</p>
+
+<p>
+\[ x_j \sim \mathcal{N}(\mu_j , \sigma_j) \]
+</p>
+
+<p>
+La probabilidad de que un evento \(x\) esté en cierto punto será el producto de todas las probabilidades individuales:
+</p>
+
+<p>
+\[ P(x) = \prod_{j=1}^{m} P(x_j, \mu_j, \sigma_j)  \]
+</p>
+
+<p>
+Esto nos define una densidad de probabilidad en el hiperespacio \(\mathbb{R}^n\). Definimos un umbral \(\epsilon\) global (define un hiperplano) que clasificará entre anomalías o no anomalías; esto es, usamos el mismo umbral \(\epsilon\) para todos los descriptores.
+</p>
+
+<p>
+\[ x \quad \text{es anomalía si} \quad P(x_j) < \epsilon \ \forall j \]
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-orgbe0358c" class="outline-4">
+<h4 id="orgbe0358c"><span class="section-number-4">11.1.2</span> Building an anomaly detection system</h4>
+<div class="outline-text-4" id="text-11-1-2">
+</div>
+<ol class="org-ol">
+<li><a id="org417ad5c"></a>Developing and evaluating an anomaly detection system<br /></li>
+
+<li><a id="orgd9034b8"></a>Anomaly detection vs supervised learning<br /></li>
+
+<li><a id="orgde6ff8d"></a>Choosing what features to use<br /></li>
+</ol>
+</div>
+
+<div id="outline-container-orgebebcaa" class="outline-4">
+<h4 id="orgebebcaa"><span class="section-number-4">11.1.3</span> Multivariate gaussian distribution</h4>
+<div class="outline-text-4" id="text-11-1-3">
+</div>
+<ol class="org-ol">
+<li><a id="org2354c13"></a>Multivariate gaussian distribution<br /></li>
+
+<li><a id="org685cfa4"></a>Anomaly detection using the multivariate gaussian distribution<br /></li>
+</ol>
+</div>
+
+<div id="outline-container-org89c2cef" class="outline-4">
+<h4 id="org89c2cef"><span class="section-number-4">11.1.4</span> Review</h4>
+<div class="outline-text-4" id="text-11-1-4">
+</div>
+<ol class="org-ol">
+<li><a id="org15bab5d"></a>Quiz: anomaly detection<br /></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org204c500" class="outline-3">
+<h3 id="org204c500"><span class="section-number-3">11.2</span> Recommender systems</h3>
+<div class="outline-text-3" id="text-11-2">
+</div>
+<div id="outline-container-org54ea548" class="outline-4">
+<h4 id="org54ea548"><span class="section-number-4">11.2.1</span> Predicting movie ratings</h4>
+<div class="outline-text-4" id="text-11-2-1">
+</div>
+<ol class="org-ol">
+<li><a id="orgb610825"></a>Problem formulation<br /></li>
+
+<li><a id="org88aeb5b"></a>Content based recommendations<br /></li>
+</ol>
+</div>
+
+<div id="outline-container-org96a59fa" class="outline-4">
+<h4 id="org96a59fa"><span class="section-number-4">11.2.2</span> Collaborative filtering</h4>
+<div class="outline-text-4" id="text-11-2-2">
+</div>
+<ol class="org-ol">
+<li><a id="org713c88b"></a>Collaborative filtering<br /></li>
+
+<li><a id="orgfe2b3d9"></a>Collaborative filtering algorithm<br /></li>
+</ol>
+</div>
+
+<div id="outline-container-org65167f5" class="outline-4">
+<h4 id="org65167f5"><span class="section-number-4">11.2.3</span> Low rank matrix factorization</h4>
+<div class="outline-text-4" id="text-11-2-3">
+</div>
+<ol class="org-ol">
+<li><a id="org8d3bc6d"></a>Vectorization: low rank matrix factorization<br /></li>
+
+<li><a id="org1b287ae"></a>Implementational detail: mean normalization<br /></li>
+</ol>
+</div>
+
+<div id="outline-container-org3949a8f" class="outline-4">
+<h4 id="org3949a8f"><span class="section-number-4">11.2.4</span> Review</h4>
+<div class="outline-text-4" id="text-11-2-4">
+</div>
+<ol class="org-ol">
+<li><a id="org285da65"></a>Quiz: recommender systems<br /></li>
+
+<li><a id="org344f557"></a>Programming assignment: anomaly detection and recommender systems<br /></li>
 </ol>
 </div>
 </div>
@@ -3375,7 +3551,7 @@ Algunos consejos:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pablo Aguado</p>
-<p class="date">Created: 2020-05-24 dom 19:34</p>
+<p class="date">Created: 2020-05-26 mar 22:33</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -28,6 +28,7 @@ Ideas mías a lo largo del curso.
 4. https://deeplearning.mit.edu/
 5. http://cs229.stanford.edu
 
+
 * Semana 1
 
 Intro, regresión lineal, repaso de Álgebra.
@@ -1500,4 +1501,80 @@ Algunos consejos:
 **** Quiz: principal component analysis
 
 **** Programming assignment: K-means clustering and PCA
+
+* Semana 9: Anomaly detection & Recommender systems
+
+
+** Anomaly detection
+
+*** Density estimation
+
+**** Problem motivation
+
+En la detección de anomalías intentamos construir un modelo a partir de casos que consideramos comunes, para luego usarlo para detectar eventos no comunes.
+
+**** Gaussian distribution
+
+**** Algorithm
+
+Suposiciones:
+
+- Todos los descriptores están distribuidos normalmente.
+- Los descriptores son independientes entre sí.
+
+Para cada descriptor $x_j$ podemos estimar una distribución normal, calculando $\mu_j$ y $\sigma_j$:
+
+\[ x_j \sim \mathcal{N}(\mu_j , \sigma_j) \]
+
+La probabilidad de que un evento $x$ esté en cierto punto será el producto de todas las probabilidades individuales:
+
+\[ P(x) = \prod_{j=1}^{m} P(x_j, \mu_j, \sigma_j)  \]
+
+Esto nos define una densidad de probabilidad en el hiperespacio $\mathbb{R}^n$. Definimos un umbral $\epsilon$ global (define un hiperplano) que clasificará entre anomalías o no anomalías; esto es, usamos el mismo umbral $\epsilon$ para todos los descriptores.
+
+\[ x \quad \text{es anomalía si} \quad P(x_j) < \epsilon \ \forall j \]
+
+*** Building an anomaly detection system
+
+**** Developing and evaluating an anomaly detection system
+
+**** Anomaly detection vs supervised learning
+
+**** Choosing what features to use
+
+*** Multivariate gaussian distribution
+
+**** Multivariate gaussian distribution
+
+**** Anomaly detection using the multivariate gaussian distribution
+
+*** Review
+
+**** Quiz: anomaly detection
+
+** Recommender systems
+
+*** Predicting movie ratings
+
+**** Problem formulation
+
+**** Content based recommendations
+
+*** Collaborative filtering
+
+**** Collaborative filtering
+
+**** Collaborative filtering algorithm
+
+*** Low rank matrix factorization
+
+**** Vectorization: low rank matrix factorization
+
+**** Implementational detail: mean normalization
+
+*** Review
+
+**** Quiz: recommender systems
+
+**** Programming assignment: anomaly detection and recommender systems
 
