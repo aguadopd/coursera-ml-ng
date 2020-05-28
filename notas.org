@@ -1532,21 +1532,84 @@ La probabilidad de que un evento $x$ esté en cierto punto será el producto de 
 
 Esto nos define una densidad de probabilidad en el hiperespacio $\mathbb{R}^n$. Definimos un umbral $\epsilon$ global (define un hiperplano) que clasificará entre anomalías o no anomalías; esto es, usamos el mismo umbral $\epsilon$ para todos los descriptores.
 
-\[ x \quad \text{es anomalía si} \quad P(x_j) < \epsilon \ \forall j \]
+\[ x \ \text{es anomalía si} \  P(x_j) < \epsilon \ \text{para cualquier} \  j \]
 
 *** Building an anomaly detection system
 
 **** Developing and evaluating an anomaly detection system
 
+Usamos datos etiquetados para entrenar un clasificador.
+- "Entrenamos"/definimos las funciones de densidad de probabilidad a partir de ejemplos normales, no problemáticos.
+- Ajustamos hiperparámetros (qué descriptores usamos, $\epsilon$, ...) en el conjunto de validación cruzada, que sí tiene datos anómalos.
+- Evaluamos en el conjunto de prueba, que sí tiene datos anómalos.
+
+Como los datos suelen estar muy sesgados, no podemos usar la precisión como métrica.
+
+¿Por qué es esto distinto a una clasificación normal?
+
 **** Anomaly detection vs supervised learning
 
+La diferencia entre un algoritmo de detección de anomalías y un algoritmo clasificador de aprendizaje supervisado es que en los primeros sólo modelamos un caso (el normal), mientras en que en los segundos estamos modelando todo el universo, todas nuestras clases.
+
+| Detección de anomalías                                                                                       | Aprendizaje supervisado                                                                                 |
+|--------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------|
+| - Tenemos muy pocos datos de anomalías. Andrew habla de 1 a 20 ejemplos.                                     | - Tenemos bastantes ejemplos de las anomalías.                                                          |
+| - Las anomalías futuras que nuestro algoritmo quizás ni siquiera estaban en nuestros datos de entrenamiento. | - Los ejemplos que encontremos y queremos clasificar serán similares a aquellos con los que entrenamos. |
+|                                                                                                              |                                                                                                         |
+| - Detección de fraude.                                                                                       | - Clasificación de email en spam y no spam.                                                             |
+| - Defectos de fabricación.                                                                                   | - Detección de cáncer.                                                                                  |
+| - Defectos de funcionamiento.                                                                                |                                                                                                         |
+
+
 **** Choosing what features to use
+
+***** Aproximar a gaussiana
+
+Estamos modelando distribuciones gaussianas. Debemos observar cuál es la distribución real de nuestros descriptores, y si alguna no es gaussiana, es recomendable que la aproximemos, aplicando alguna transformación a ese descriptor. Si no lo hacemos es probable que igualmente funcione, pero es mejor si todo es gaussiano.
+- ¿Será equivalente modelar con las distribuciones que más se aproximen a cada descriptor?
+
+***** Análisis de errores
+
+Podemos analizar los errores de clasificación para idear o buscar nuevos descriptores que nos permitan discriminar esos casos.
+
+***** Diseño de descriptores
+
+Podemos crear nuevos descriptores que relacionen otros que ya tenemos; por ejemplo, productos o divisiones entre descriptores. Deberíamos pensar en qué cosas se vuelven extremas en los posibles casos anómalos.
+
+- Esto no es necesario si usamos una distribución gaussiana multivariable.
 
 *** Multivariate gaussian distribution
 
 **** Multivariate gaussian distribution
 
+Nuestra suposición en los modelos anteriores era que los descriptores estaban distribuidos normalmente y además eran independientes. Estos modelos son limitados y fallan en capturar anomalías, por ejemplo cuando los descriptores están correlacionados.
+
+Podemos construir un modelo más complejo con una gaussiana multivariable, con todos los descriptores. Seguimos asumiendo que las distribuciones originales son gaussianas.
+
 **** Anomaly detection using the multivariate gaussian distribution
+
+***** Estimación y uso
+
+Ahora tenemos un vector de medias y una matriz de covarianza:
+
+\[ \vec{\mu} = \frac{1}{m} \sum_{i=1}^m \vec{x}^{(i)}  \]
+
+\[ \Sigma =  \frac{1}{m} \sum_{i=1}^{m} (\vec{x}^{(i)} - \vec{\mu})^T  ( \vec{x}^{(i)} - \vec{\mu})  \]
+
+La estimación es:
+
+\[ P(\vec{x}, \vec{\mu}, \Sigma) = \frac{1}{(2\pi)^{n/2} |\Sigma|^{1/2}} \exp\left( -\frac{1}{2} ( \vec{x}- \vec{\mu})^T \Sigma^{-1} ( \vec{x}- \vec{\mu})  \right) \]
+
+***** Comentarios
+
+El modelo original (producto de gaussianas) es un caso especial de una distribución gaussiana multivariable, cuando las variables no están correlacionadas. Esto implica que la matriz de covarianza es diagonal y que la distribución resultante se desarrolla a lo largo de los ejes, no está rotada.
+
+Si usamos una distribución gaussiana multivariable no es necesario que construyamos descriptores que capturen relaciones entre lso descriptores, porque ya están implícitas en el modelo.
+
+Dice Andrew que el modelo original es computacionalmente más barato y que escala mejor cuando tenemos muchos datos, especialmente porque hay que invertir una matriz. Yo digo que lo de la matriz es una excusa, porque se puede precalcular, no es necesario andar invirtiéndola para cada predicción.
+
+En el modelo original teníamos $2n$ parámetros a estimar, mientras que en este tenemos $n^2 + n$. Por lo tanto necesitamos más datos para una buena regresión.
+
 
 *** Review
 
