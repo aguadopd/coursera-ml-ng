@@ -54,8 +54,13 @@ Notas y ejercicios de mi paso por el curso de *Machine Learning* de Andrew Ng en
 | [2020-05-25 lun] | 01:10 | S8. Programming assignment: K-means clustering and PCA.                      |   |       |
 | [2020-05-26 mar] | 01:00 | S9. Density estimation.                                                      |   |       |
 | [2020-05-27 mié] | 02:00 | S9. Anomaly detection. Multivariate gaussian.                                |   |       |
+| [2020-05-30 sáb] | 03:00 | S9. Predicting movie ratings. Collaborative filtering.                       |   |       |
+| [2020-06-02 mar] | 01:30 | S9. Programming assignment: anomaly detection and recommender systems.       |   |       |
+| [2020-06-03 mié] | 00:30 | S9. Programming assignment: anomaly detection and recommender systems.       |   |       |
+| [2020-06-03 mié] | 00:10 | S10. Learning with large datasets.                                           |   |       |
+| [2020-06-04 jue] | 00:30 | S10. Stochastic gradient descent.                                            |   |       |
 |------------------+-------+------------------------------------------------------------------------------+---+-------|
-|                  | 70:45 |                                                                              |   |       |
+|                  | 76:25 |                                                                              |   |       |
 #+TBLFM: $2=vsum(@2..@-1);U
 
 

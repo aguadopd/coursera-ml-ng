@@ -1159,7 +1159,7 @@ La regularización sirve para forzar la exploración de todo el espacio de pará
 
 *** Error metrics for skewed classes
 
-En clasificación (¿binaria?) en la distribución de las clases está muy sesgada (una de las clases es muy rara, tiene poca frecuencia), no es apropiado usar la precisión como métrica. Aquí corresponde analizar la precisión y la exhaustividad (/recall/).
+En clasificación (¿binaria?) en la distribución de las clases está muy sesgada (una de las clases es muy rara, tiene poca frecuencia), no es apropiado usar la precisión como métrica. Aquí corresponde analizar la precisión y la exhaustividad o recuperación (/recall/).
 
 [[./imgs/007- precisionrecall.svg.png]]
 
@@ -1169,9 +1169,9 @@ Podemos variar el comportamiento del modelo al modificar el umbral de decisión 
 
 Una métrica que incluye la precisión y la exhaustividad es el Valor F (/F score/), que se define como la media armónica (ponderada) de la precisión y exhaustividad.
 
-\[ F_\beta = (1 + \beta^2) \frac{precision \cdot recall}{(\beta^2 \cdot precision) + recall}  \]
+\[ F_\beta = (1 + \beta^2) \frac{precision \cdot recall}{(\beta^2 \cdot precision) + recall}  \
 
-$\beta$ es cuántas veces es la exhaustividad más importante que la precisión. Normalmente se usa $\beta = 1$, obteniendo la métrica $F_1$ que pondera de igual manera la precisión y la exhaustividad.
+$\beta$ es cuántas veces es la recuperación más importante que la precisión. Normalmente se usa $\beta = 1$, obteniendo la métrica $F_1$ que pondera de igual manera la precisión y la exhaustividad.
 
 \[ F_\beta \in [0, 1] \]
 
@@ -1615,29 +1615,138 @@ En el modelo original teníamos $2n$ parámetros a estimar, mientras que en este
 
 **** Quiz: anomaly detection
 
+Si tenemos información suficiente sobre ambas clases (en un problema binario), entonces un algoritmo de aprendizaje supervisado va a andar mejor que uno de detección de anomalía que solamente tiene información sobre una parte del universo.
+
 ** Recommender systems
 
 *** Predicting movie ratings
 
 **** Problem formulation
 
+Sea un sistema para recomendación de películas, en un servicio de streaming, por ejemplo.
+
+- $n_u$: número de usuarios.
+- $n_m$: número de películas.
+- $r(i,j) \in [0,1]$: si el usuario $j$ ha puntuado la película $i$.
+- $y(i,j) \in [0,\dots,5]$: el puntaje del usuario $j$ para la película $i$, si es que $r(i,j)=1$.
+
+Queremos predecir cuál sería su puntuación para películas que no han visto. Es un problema de regresión.
+
 **** Content based recommendations
+
+El enfoque de recomendación basada en contenido es simplemente tomar todo como un problema de regresión lineal.
+
+- Los descriptores son ponderaciones qué tanto entra una película en una categoría arbitraria (0,9 de romance, 0,5 de acción, 0,1 de aventura...)
+- Los parámetros a aprender representan los gustos o afinidad del usuario con cada categoría.
+- Se optimizan todos los usuarios y todas las películas simultáneamente. Para cada usuario sólo se contemplan las películas que ya ha puntuado.
+  - No usan el factor $1/m$ en las cuentas. Imagino que es una extraña convención. Igual todo converge a lo mismo.
+
+El problema de este enfoque es que necesitamos de esa descripción de las variables de entrada. Es difícil de definir, subjetiva. Hay que establecer cuáles son los descriptores a usar, y después establecer valores para cada ejemplo.
 
 *** Collaborative filtering
 
 **** Collaborative filtering
 
+
 **** Collaborative filtering algorithm
+
+Intento acá resumir lo de este video y el anterior.
+
+Descripción del universo:
+- Descriptores de los usuarios: cuánto le gusta cada temática de una película. Descriptor numérico.
+- Descriptores de las películas: cuánto de cada temática tiene una película. Descriptor numérico.
+- Las temáticas de los usuarios y las películas son las mismas. Romance, acción, aventura, miedo, etcétera.
+
+Estamos haciendo múltiples regresiones lineales en simultéaneo. También podría modelarse como un modelo más complejo, que incluye a todos en la misma fórmula. El objetivo final es recomendarle películas al usuario, que podrían gustarle en función de sus gustos.
+
+- Podemos intentar hacer una regresión lineal de cada usuario, para intentar describir sus gustos a partir de las películas que ha puntuado, sabiendo de antemano cómo son esas películas. La dificultad es saber cómo son las películas. Al final evaluamos películas según usuarios.
+- Podemos intentar hacer una regresión lineal de cada película, para intentar describir sus temáticas ha partir de los usuarios que las han puntuado, sabiendo de antemano qué temáticas le gustan a esos usuarios. La dificultad es saber cómo son los usuarios; podemos preguntarles. Al final evaluamos usuarios según películas.
+
+
+*No termino de entender qué estamos solucionando*, pero una cosa que Andrew propone es que podríamos iterar entre los casos previamente mencionados, buscando optimizar todo:
+1. Partimos de lo que el usuario nos dijo que le gusta.
+2. Estimamos cómo son las películas, en función de cómo es el usuario y cómo las puntuó.
+3. Estimamos qué le gusta al usuario, en función de cómo son las películas y cómo las puntuó.
+4. Repetimos hasta la convergencia.
+
+Y ahora viene una parte *polémica*, que creo que hace al filtrado colaborativo: podríamos empezar con valores aleatorios de lo que le gusta al usuario, e igual convergemos a un buen modelo.
+
+El filtrado colaborativo es más polémico: comenzamos con valores aleatorios (chicos) tanto para descriptores de las películas como para los de los usuarios, y optimizamos todo junto. Lo de los valores aleatorios es como cuando estábamos en redes neuronales, para romper la simetría.
+
+Cuestiones de implementación:
+- No usa $\theta_0=1$; no se estima un sesgo. Asumo que es lo mismo que hacer $\theta_0 = 0$.
+- Se inicia todo con valores aleatorios chicos.
+
+No explica mucho, pero para que todo esto funcione necesitamos:
+- Que cada usuario puntúe más de una película.
+- Que las películas sean puntuadas por más de un usuario.
+
+
+|                           | 1                                                      | 2                                                      | 3                                                                               |
+|---------------------------+--------------------------------------------------------+--------------------------------------------------------+---------------------------------------------------------------------------------|
+| Datos de entrada: $x$     | ¿Cómo es esta película?                                | ¿Qué le gusta a este usuario?                          | Suposiciones aleatorias de cómo es esta película y qué le gusta a este usuario. |
+| Parámetros a estimar: $\theta$ | ¿Qué le gusta a este usuario?                          | ¿Cómo es esta película?                                | ¿Cómo es esta película? ¿Qué le gusta a este usuario?                           |
+| Datos de entrada: $y$     | Puntuación de las películas por parte de los usuarios. | Puntuación de las películas por parte de los usuarios. | Puntuación de las películas por parte de los usuarios.                          |
+
+*/Queda como tema a revisar.../*
 
 *** Low rank matrix factorization
 
 **** Vectorization: low rank matrix factorization
 
+Creo que esto estuvo muy tirado de los pelos, falto de formalismo matemático. No voy a anotar nada sobre /low rank matrix factorization/. Andrew también habló de cómo saber qué películas son similares a una dada, y es cuestión de ver las que son más cercanas, vectorialmente hablando.
+
 **** Implementational detail: mean normalization
+
+¿Qué hacemos con un usuario nuevo, que no ha visto ninguna película y del cuál no sabemos nada?
+
+El algoritmo previamente planteado le iba a asignar un vector nulo a los gustos de ese usuario, puesto que no incluye el primer término en la optimización, y el segundo va a tender a ceros.
+
+Una alternativa es asignarle el valor de la media de los usuarios. Andrew presentó una forma que creo complicada. Algorítmicamente equivale a incluir el sesgo $\theta_9$ en el el modelo, pero fijarlo en la media de todos los usuarios.
+
+Quizás el algoritmo de Andrew es el correcto para la forma en que está planteado el modelo. Implica restarle a todos los ejemplos la media, y entonces esos que convergen a 0 en realidad están convergiendo a la media.
 
 *** Review
 
 **** Quiz: recommender systems
 
 **** Programming assignment: anomaly detection and recommender systems
+
+* Semana 10: Large scale machine learning
+
+** Gradient descent with large datasets
+
+*** Learning with large datasets
+
+Los cálculos se hacen muy lentos si usamos los algoritmos previamente aprendidos en conjuntos muy grandes de datos. Vamos a ver formas de hacerlos viables.
+
+¿Por qué no usar pocos datos? Vimos anteriormente que en general cualquier modelo suficientemente expresivo va a mejorar con más datos. Podemos verlo en las gráficas de costo (en validación y evaluación) vs cantidad de datos.
+
+*** Stochastic gradient descent
+
+El algoritmo de descenso por el gradiente que elaboramos anteriormente avanza en cada iteración según el error medio *de todos los ejemplos*. Esto implica calcular los errores para todos los ejemplos, y esto se se complica cuando tenemos muchos datos.
+- A este algoritmo se le llama /batch gradient descent/ o descenso por el gradiente por lote (completo). No es un buen nombre.
+
+Una posible alternativa es usar _solo algunos ejemplos_ en cada iteración.
+- A esto se le llama /mini-batch gradient descent/; creo que una buena traducción sería descenso por el gradiente por lotes.
+
+En el límite, usamos sólo un ejemplo en cada iteración. Si elegimos ese ejemplo aleatoriamente, tenemos el /stochastic gradient descent/, o descenso por el gradiente estocástico.
+
+En la implementación propuesta por Andrew para regresión lineal:
+
+1. Ordenamos aleatoriamente los datos, si no están ya así. En general es bueno hacerlo para evitar cualquier ordenamiento existente.
+2. Repetimos hasta la convergencia:
+   1. Calcular costo/error del siguiente ejemplo.
+   2. Actualizar parámetros
+
+\[ \theta_j := \theta_j - \alpha (h(\theta,x^{(i)}) - y^{(i)}) x_j^{(i)}   \]
+
+
+*** Mini-batch gradient descent
+
+*** Stochastic gradient descent convergence
+
+** Advanced topics
+
+** Review
 
