@@ -1744,9 +1744,36 @@ En la implementación propuesta por Andrew para regresión lineal:
 
 *** Mini-batch gradient descent
 
+Explicado en el punto anterior, es cuando usamos $b < m$ ejemplos en cada iteración del descenso por el gradiente, y avanzando de a $b$ ejemplos. A $b$ se le llama /mini-batch size/.
+
+Esta opción puede ser más rápida que el descenso estocástico porque al tener más de un ejemplo podemos vectorizar las operaciones.
+
 *** Stochastic gradient descent convergence
+
+Con tantos datos, es costoso calcular el costo total al finalizar cada iteración. Por lo tanto, acudimos a la alternativa de calcular el costo en función de la cantidad de iteraciones haciendo cálculos parciales del costo, y no usando todos los ejemplos. Usamos una ventana móvil de $t$ elementos que se desplaza de a $t$ elementos.
+
+En el descenso por el gradiente estocástico o por lotes, podemos ir guardando los costos unitarios (o de lote) que vamos usando para optimizar los parámetros. Luego calculamos el promedio de estos $t$ costos que hemos ido guardando, y los graficamos.
+
+En las gráficas, como siempre, podemos ir viendo la tasa de convergencia y ajustar parámetros (como $\alpha$) en función de eso. Si la gráfica es muy ruidosa, podemos incrementar el tamaño $t$ de la ventana.
+
+Andrew menciona que el descenso por el gradiente estocástico o el por lotes no necesariamente se estabilizan en el mínimo global, por no estar usando todos los ejemplos. Una alternativa es ir reduciendo $\alpha$ según las iteraciones, pero suele implicar agregar más parámetros para tocar, y por eso no se usa tanto. Además, en general cualquier resultado cerca del mínimo es aceptable.
+- Yo haría que $\alpha$ sea inversamente proporcional a la variación relativa del costo.
 
 ** Advanced topics
 
+*** Online learning
+
+Esto implica usar un conjunto móvil de datos de entrenamiento, sea $1$ o $d$. Sirve cuando tenemos un flujo interesante de datos, y reemplaza a hacer un reentrenamiento periódico, por ejemplo.
+
+- Se adapta a los cambios en las entradas, a los gustos de los usuarios.
+
+*** Map reduce and data parallelism
+
+No me termina de quedar claro el nombre, pero Map-reduce es una técnica de paralelización de cálculos, aplicable a ciertos algoritmos. Aquí es dividir un cálculo sobre todo el conjunto de datos, en $d$ partes que se procesan en paralelo, para luego agrupar los resultados parciales.
+
+Lo podemos aplicar en el descenso por el gradiente con RMS para regresión lineal, o en regresión logística, o en /backpropagation/, etcétera.
+
+
 ** Review
+
 
