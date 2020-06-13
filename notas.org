@@ -27,7 +27,7 @@
 #+html_link_home:
 #+html_link_up:
 #+html_mathjax:
-#+html_head: <style type="text/css">body{ max-width:55rem; margin:auto}</style>
+#+html_head: <style type="text/css">body{ max-width:55rem; margin:auto; line-height:1.5}</style>
 #+html_head_extra:
 #+subtitle:
 #+infojs_opt:
@@ -249,7 +249,7 @@ En realidad todo lo que vimos es descenso por el gradiente por lotes, o */batch 
 *** Matrix vector multiplication
 
 - Más adelante vamos a ver por qué es mejor vectorizar calculos en lugar de iterar.
-- Hace un truco interesante que es incluir a la ordenada al origen dentro del vector de parámetros ---en realidad está bien, es un parámetr calculado---, y luego introduce una columna de \(1\)s en la matriz de entradas.
+- Hace un truco interesante que es incluir a la ordenada al origen dentro del vector de parámetros ---en realidad está bien, es un parámetro calculado---, y luego introduce una columna de \(1\)s en la matriz de entradas.
   - La alternativa es sumar la columna aparte. $A*X + B$
 
 *** Matrix matrix multiplication
