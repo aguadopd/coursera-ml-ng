@@ -1,9 +1,23 @@
 #+STARTUP: align shrink indent
 
-Notas y ejercicios de mi paso por el curso de *Machine Learning* de Andrew Ng en Coursera. https://www.coursera.org/learn/machine-learning
+**[[https://aguadopd.github.io/coursera-ml-ng/][VER NOTAS EN HTML AQUÍ]]**
+
+Notas y ejercicios de mi paso por el curso de *Machine Learning* de Andrew Ng en Coursera. https://www.coursera.org/learn/machine-learning . Hago estas notas durante el curso para facilitar mi aprendizaje. Las comparto por si llegan a ser útiles para otros; seguramente serán útiles para mi yo del futuro. Las hago en español porque en internet suele haber menos contenido técnico en español que en inglés, y el idioma es una barrera para el aprendizaje.
+
+
+El código fuente de estas notas está (/al menos hoy/) en https://github.com/aguadopd/coursera-ml-ng . Probablemente suba mis ejercicios a este repositorio también, pero deberé encriptarlos para no violar el código de honor.
+
+Escribí todo en [[https://orgmode.org/][Org-mode]] en [[https://www.gnu.org/software/emacs/][Emacs]] ([[https://www.spacemacs.org/][Spacemacs]]). Estoy experimentando con esto. Exporté todo a HTML y hoy vive en línea gracias al hosting gratuito de https://pages.github.com/ .
+
+El curso me pareció una buena introducción a algunos temas principales del /machine learning/. No ahondó en formalismos matemáticos, y quizás faltaron cuestiones prácticas de implementación. Aún así, vimos la esencia detrás de los algoritmos y tuvimos ejercicios varios en Octave/Matlab, para poner en práctica lo que ibamos aprendiendo.
+
+Realizado durante el 2020, año de la ¿primera? gran cuarentena por el COVID-19. Lo hice con algunos amigos de ZA: [[https://github.com/aelkin/ml-ng-course][Alan]], Rodri, y Rocío que nos acompañó un buen trecho.
+
+Compartido bajo [[https://creativecommons.org/licenses/by/4.0/legalcode][CC BY 4.0]]
 
 * Log simple
 
+/El tiempo sugerido oficialmente para el curso es de 6 horas por semana. Yo, sin embargo, nececesité aproximadamente 7 horas por semana (media absoluta). En realidad, las primeras semanas me llevaron casi 10 horas cada una, mientras que las últimas fueron más rápidas/.
 
 | Fecha            | Horas | Actividad                                                                    |   | Notas |
 |                  |       | <20>                                                                         |   |       |
@@ -17,7 +31,7 @@ Notas y ejercicios de mi paso por el curso de *Machine Learning* de Andrew Ng en
 | [2020-04-09 jue] | 01:00 | S2: Octave/Matlab tutorial.                                                  |   |       |
 | [2020-04-11 sáb] | 04:00 | S2: Programming assignment: linear regression.                               |   |       |
 | [2020-04-14 mar] | 02:00 | S2: Completo notas.                                                          |   |       |
-| [2020-04-16 jue] | 02:00 | S3. Classification and representation.                                       |   |       |
+| [2020-04-16 jue] | 02:00  | S3. Classification and representation.                                       |   |       |
 | [2020-04-17 vie] | 02:00 | S3. Classification and representation. Decision boundary.                    |   |       |
 | [2020-04-17 vie] | 00:40 | S2. Pienso en Feature scaling.                                               |   |       |
 | [2020-04-17 vie] | 00:20 | S3. Logistic regression model.                                               |   |       |
@@ -67,9 +81,4 @@ Notas y ejercicios de mi paso por el curso de *Machine Learning* de Andrew Ng en
 |                  | 79:40 |                                                                              |   |       |
 #+TBLFM: $2=vsum(@2..@-1);U
 
-
-
----------------
-
-Compartido bajo [[https://creativecommons.org/licenses/by/4.0/legalcode][CC BY 4.0]]
 

@@ -44,10 +44,10 @@
 #+keywords:
 #+subtitle: Pablo Aguado - 2020
 #+latex_compiler: pdflatex
-#+date: \today
 
-
-
+--------------
+#+include: ./README.org
+-------------
 
 
 * Info
