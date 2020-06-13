@@ -4,6 +4,51 @@
 
 #+STARTUP: indent content align entitiespretty
 
+# Opciones generales de exportación
+
+#+options: ':nil *:t -:t ::t <:t H:5 \n:nil ^:t arch:headline author:t
+#+options: broken-links:nil c:nil creator:nil d:(not "LOGBOOK") date:t e:t
+#+options: email:nil f:t inline:t num:t p:nil pri:nil prop:nil stat:t tags:t
+#+options: tasks:t tex:t timestamp:t title:t toc:5 todo:t |:t
+#+language: es
+#+select_tags: export
+#+exclude_tags: noexport
+#+creator: Emacs 26.3 (Org mode 9.3.6)
+
+
+# Para exportar a HTML
+
+#+options: html-link-use-abs-url:nil html-postamble:auto html-preamble:t
+#+options: html-scripts:t html-style:t html5-fancy:nil tex:t
+#+html_doctype: xhtml-strict
+#+html_container: div
+#+description:
+#+keywords:
+#+html_link_home:
+#+html_link_up:
+#+html_mathjax:
+#+html_head: <style type="text/css">body{ max-width:55rem; margin:auto}</style>
+#+html_head_extra:
+#+subtitle:
+#+infojs_opt:
+#+creator: <a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.3.6)
+#+latex_header:
+
+# Para PDF / latex
+
+#+latex_class: article
+#+latex_class_options:
+#+latex_header:
+#+latex_header_extra:
+#+description:
+#+keywords:
+#+subtitle: Pablo Aguado - 2020
+#+latex_compiler: pdflatex
+#+date: \today
+
+
+
+
 
 * Info
 
@@ -260,7 +305,7 @@ Y luego \[ \vec{h_\theta}(\vec{x}) = \vec{\theta}^T \cdot \vec{x}  = \vec{x}^T \
 
 /En [[*Video: Normal equation]] se introduce notación matricial que luego en el ejercicio 1 usamos para expresar todo de forma vectorizada. Dejo todo acá para más completitud/.
 
-\[ \hat{Y}(\theta,X) = X \theta  ]\
+\[ \hat{Y}(\theta,X) = X \theta  \]
 
 ------
 
@@ -1776,4 +1821,55 @@ Lo podemos aplicar en el descenso por el gradiente con RMS para regresión linea
 
 ** Review
 
+* Week 11: Application example: photo OCR
+
+** Problem description and pipeline
+
+Divide el problema completo en varias etapas. Cada una se puede atacar con ML por separado.
+
+** Sliding windows
+
+1. Ventana deslizante para encontrar caracteres.
+2. Expansión en la imagen binaria de probabilidades, y posterior filtrado morfológico para quedarnos con los que tienen relación de aspecto de texto horizontal.
+3. Ventana deslizante para encontrar espacios entre caracteres, y así separar letras.
+4. Clasificador para asignar letras.
+
+** Getting lots of data and artificial data
+
+Hemos visto que una de las mejores formas de mejorar el desempeño de un sistema de aprendizaje automático es obteniendo más datos de entrenamiento ─asumiendo un sistema con bajo sesgo, alta varianza─. Algunas formas:
+
+1. Sintetizar datos desde 0. Deben parecerse a los reales.
+2. Modificar ejemplos que ya tenemos, para crear otros a partir de ellos. Las distorsiones realizadas deben ser tales que los resultados sean posibles de encontrar en la realidad. Para el ejemplo de las letras, Andrew dice que un poco de ruido aleatorio gaussiano probablemente no mejore nada.
+   - A esto se le llama /data augmentation/.
+3. ¡Obtener más datos! Muchas veces es más fácil de lo que se supone, y esto mejora mucho los resultados.
+4. Delegar/externalizar la creación de datos o el etiquetado. Por ejemplo, con Amazon Mechanical Turk.
+
+** Ceiling analysis: what part of the pipeline to work on next
+
+El análisis de techo es una técnica que nos permite decidir en qué etapa del sistema invertir tiempo y esfuerzo.
+
+La idea es analizar el beneficio marginal que tiene el sistema completo, al suponer que el sistema funciona perfectamente hasta cada una de las etapas. Hay que tener una métrica de desempeño del sistema completo.
+
+#+begin_quote
+It can help indicate that certain components of a system might not be worth a significant amount of work improving, because even if it had perfect performance its impact on the overall system may be small. 
+#+end_quote
+
+Puede ser difícil de armar y hay que tener verdades de referencia para cada entrada, pero es un esfuerzo que nos puede ahorrar mucho tiempo.
+
+Un ejemplo:
+
+| Componente                   | Precisión |   \Delta |
+|------------------------------+-----------+-----|
+| Sistema completo             |       72% |     |
+| Detección de texto           |       89% | 17% |
+| Segmentación de caracteres   |       90% |  1% |
+| Reconocimiento de caracteres |      100% | 10% |
+
+En este ejemplo, lo mejor sería mejorar la detección de texto.
+
+** Review
+
+
+
+** Conclusion
 
