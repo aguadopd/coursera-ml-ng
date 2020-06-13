@@ -74,7 +74,7 @@ Ideas mías a lo largo del curso.
 5. http://cs229.stanford.edu
 
 
-* Semana 1
+* Semana 1: Introduction
 
 Intro, regresión lineal, repaso de Álgebra.
 
@@ -82,9 +82,9 @@ Intro, regresión lineal, repaso de Álgebra.
 - [[https://www.coursera.org/learn/machine-learning/discussions/weeks/1/threads/hAp4LT1SEeaL_xIEq4QdBw][FAQ de la semana 1]]
 
 ** Introduction
-*** Video: Welcome
+*** Welcome
 
-*** Video: What is Machine Learning
+*** What is Machine Learning
 
 - Los algoritmos más importantes son el aprendizaje supervisado y el aprendizaje no supervisado. Es esta además la clasificación más general de algoritmos.
   - Otros son el aprendizaje por refuerzo y los sistemas de recomendación.
@@ -92,9 +92,7 @@ Intro, regresión lineal, repaso de Álgebra.
 - Sea una máquina que debe hacer una tarea T, con un desempeño P y que la exponemos a experiencias (instancias) E de esa tarea T. Se dice que la computadora aprende si su desempeño P en la tarea T /aumenta proporcionalmente a la cantidad de experiencias E/.
 - Otra definición de aprendizaje automático es la capacidad (de la computadora) de aprender a resolver problemas para los que no fue programada. ~
 
-*** Reading: What is Machine Learning?
-
-*** Video: Supervised Learning
+*** Supervised Learning
 
 - En el aprendizaje supervisado, le mostramos al programa ejemplos de entradas y sus correspondientes salidas/respuestas correctas. Ya sabemos cómo son las respuestas corectas; tenemos la idea de que hay una relación entre las entradas y las salidas. Dado un conjunto de entradas y salidas, intentamos obtener un modelo que permita predecir/inferir las salidas a nuevos datos de entrada.
 - Los problemas de aprendizaje supervisado se clasifican en problemas de regresión y de clasificación:
@@ -106,7 +104,7 @@ Intro, regresión lineal, repaso de Álgebra.
 
 ****** TODO Leer https://datascience.stackexchange.com/questions/25298/how-to-know-when-to-treat-a-problem-as-a-classification-task-or-a-regression-tas
 
-*** Video: Unsupervised Learning
+*** Unsupervised Learning
 
 - En el aprendizaje no supervisado, le damos datos al programa con la intención de encontrar estructuras subyacentes, patrones.
 - Un ejemplo típico es el /clustering/ o agrupamiento de datos.
@@ -116,7 +114,7 @@ Intro, regresión lineal, repaso de Álgebra.
 
 Vemos la regresión lineal como primer algoritmo de aprendizaje supervisado.
 
-*** Video: Model representation
+*** Model representation
 
 Un poco de nomenclatura:
 
@@ -126,16 +124,14 @@ Un poco de nomenclatura:
 - $h_\theta$: función de hipótesis, de estimación. Tiene parámetros $\vec{\theta}$. Entonces tenemos que \( \hat{y}^{(i)} = h_\theta(x^{(i)}) = h(x,\theta) \)
 - $x^{(i)}$: entrada $i$-ésima del vector de entradas, con índices empezando en 1.
   - $(x^{(i)},y^{(i)})$ es un ejemplo de entrenamiento.
-- Para regresión lineal de una variable tenemos entonces 
+- Para regresión lineal de una variable tenemos entonces
 \[ \hat{y}^{(i)} = h_\theta(x^{(i)}) = \theta_0 + \theta_1 * x^{(i)} \]
-
-*** Reading: Model representation
 
 - $X$: el espacio de los valores de entrada.
 - $Y$: el espacio de los valores de salida.
 - El objetivo del aprendizaje supervisado es encontrar una función $h: X \rightarrow Y$ que sea buena prediciendo salidas a partir de entradas.
- 
-*** Video: Cost function
+
+*** Cost function
 
 Formalizamos el problema del aprendizaje como la minimización de una función de costo $J(\vec{\theta})$. La función de costo habitual y recomendada para problemas de regresión lineal es el *error cuadrático medio* ([[https://en.wikipedia.org/wiki/Mean_squared_error][/Mean Squared Error/]] o /Mean Squared Deviation/).
 
@@ -162,22 +158,18 @@ El producto implica la sumatoria y el cuadrado elemento a elemento.
 
 ------
 
-*** Reading: Cost function
+*** Cost function
 
-*** Video: Cost function intuition I
+*** Cost function intuition I
 
-*** Reading: Cost function intuition I
-
-*** Video: Cost function intuition II
-
-*** Reading: Cost function intuition II
+*** Cost function intuition II
 
 De [[https://es.wikipedia.org/wiki/Isol%C3%ADnea][isolíneas / curvas de nivel]].
 
 
 ** Parameter learning
 
-*** Video: Gradient descent
+*** Gradient descent
 
 El descenso por el gradiente es un algoritmo de optimización que vamos a usar (entre otras cosas) para minimizar la función de costo.
 
@@ -208,17 +200,13 @@ Cuando la función de costo es el error cuadrático medio (/MSE/), la fórmula d
 
 - [[https://www.youtube.com/watch?v=WnqQrPNYz5Q][Un video de /gradient descent/ sugerido en las notas del curso]].
 
-*** Reading: Gradient descent
-
-*** Video: Gradient descent intuition
+*** Gradient descent intuition
 
 - Si $\alpha$ es muy grande, el algoritmo puede oscilar o incluso diverger.
 - Si $\alpha$ es muy chica, puede tardar mucho en converger.
 - Con $\alpha$ fija, los "pasos" que da el algoritmo son cada vez más chicos a medida que la función de costo se aproxima a un mínimo local.
 
-*** Reading: Gradient descent intuition
-
-*** Video: Gradient descent for linear regression
+*** Gradient descent for linear regression
 
 Dice Andrew cerca del minuto 4:40:
 
@@ -256,21 +244,19 @@ En realidad todo lo que vimos es descenso por el gradiente por lotes, o */batch 
 
 
 
-*** Reading: Gradient descent for linear regression
-
 ** Linear Algebra review
 
-*** Video: Matrix vector multiplication
+*** Matrix vector multiplication
 
 - Más adelante vamos a ver por qué es mejor vectorizar calculos en lugar de iterar.
 - Hace un truco interesante que es incluir a la ordenada al origen dentro del vector de parámetros ---en realidad está bien, es un parámetr calculado---, y luego introduce una columna de \(1\)s en la matriz de entradas.
   - La alternativa es sumar la columna aparte. $A*X + B$
 
-*** Video: Matrix matrix multiplication
+*** Matrix matrix multiplication
 
 - Acá hace el mismo truco pero para hacer varias predicciones a la vez: usa varios modelos y varias entradas.
 
-*** Video: Inverse and transpose
+*** Inverse and transpose
 
 Interesante:
 #+BEGIN_QUOTE
@@ -280,13 +266,13 @@ But the intuition if you want is that you can think of matrices as not have an i
 - Las matrices que no tienen inversa son matrices /singulares/ o /degeneradas/.
   - Asumo que se refiere a matrices cuadradas, que podrían tener inversa.
 
-* Semana 2
+* Semana 2: Linear regression with multiple variables
 
 ** Environment setup instructions
 
 ** Multivariate linear regression
 
-*** Video: Multivariate linear regression
+*** Multivariate linear regression
 
 En la regresión lineal multivariable o regresión lineal múltiple, tenemos varios valores de entrada o descriptores. Para tener una notación más compacta y conveniente, vamos a definir:
 - $\theta_0=1$ ;
@@ -303,15 +289,15 @@ Y luego \[ \vec{h_\theta}(\vec{x}) = \vec{\theta}^T \cdot \vec{x}  = \vec{x}^T \
 
 ------
 
-/En [[*Video: Normal equation]] se introduce notación matricial que luego en el ejercicio 1 usamos para expresar todo de forma vectorizada. Dejo todo acá para más completitud/.
+/En [[*Normal equation]] se introduce notación matricial que luego en el ejercicio 1 usamos para expresar todo de forma vectorizada. Dejo todo acá para más completitud/.
 
 \[ \hat{Y}(\theta,X) = X \theta  \]
 
 ------
 
-*** Reading: multiple features
+*** Multiple features
 
-*** Video: Gradient descent for multiple features
+*** Gradient descent for multiple features
 
 La regla de actualización era:
 
@@ -337,9 +323,9 @@ Y para cuando la función de costo es el error cuadrático medio (MSE), queda (p
 
 **** TODO EL ERROR ES MAYPR CUANDO HAY CORRELACIÓN ENTRE DESCRIPTORES Y PARÁMETROS.
 
-*** Reading: Gradient descent for multiple features
+*** Gradient descent for multiple features
 
-*** Video: Gradient descent in practice I - Feature scaling
+*** Gradient descent in practice I - Feature scaling
 
 - Al parecer, el algoritmo de descenso por el gradiente converge *bastante más rápidamente* si los descriptores están en el mismo orden de magnitud.
   - Andrew propone que estén /más o menos/ en el rango $-3 < x_j < 3$ y duda si $-\frac{1}{3} < x < \frac{1}{3}$
@@ -350,7 +336,7 @@ Y para cuando la función de costo es el error cuadrático medio (MSE), queda (p
 
 De la ecuación de actualización de los parámetros de la ecuación de hipótesis
 infiero que el vector se mueve _más rápidamente_ en dirección de los parámetros
-más grandes. Sin embargo en [[*Reading: Gradient descent in practice I - Feature scaling]] dice:
+más grandes. Sin embargo en [[*Gradient descent in practice I - Feature scaling]] dice:
 
 #+begin_quote
 This is because θ will descend quickly on small ranges and slowly on large ranges, and so will oscillate inefficiently down to the optimum when the variables are very uneven.
@@ -368,26 +354,19 @@ En regresión lineal (quizás puedo generalizarlo a cualquiera) *los parámetros
 
 _Se podría solucionar también con learning rates diferenciados: más grandes para los descriptores de más rango, más chicos para los de menos rango._
 
-¡Lo que dice en [[*Reading: Gradient descent in practice I - Feature scaling]] está mal expresado entonces!
+¡Lo que dice en [[*Gradient descent in practice I - Feature scaling]] está mal expresado entonces!
 
 ****** TODO Corregir https://math.stackexchange.com/questions/2341704/feature-scalings-effect-on-gradient-descent
 
-*** Reading: Gradient descent in practice I - Feature scaling
 
-
-*** Video: Gradient descent in practice II - Learning rate
+*** Gradient descent in practice II - Learning rate
 
 - Si la función de costo $J(\vec{\theta})$ diverge u oscila, entonces mi tasa de aprendizaje $\alpha$ es muy grande. Si es muy chica, converge lentamente.
 - Puedo verlo graficando la función de costo.
 - Elegir el valor de $\alpha$ es, a priori, por prueba y error. */¿Habrá heurísticas para determinar un buen valor inicial?/*
 - La condición de convergencia también suele depender del problema. Andrew habla de valores absolutos... */¿por qué no usar un $\epsilon$ relativo?/*
 
-*** Reading: Gradient descent in practice II - Learning rate
-
-
-*** Video: Features and polynomial regression
-
-*** Reading: Features and polynomial regression
+*** Features and polynomial regression
 
 - La regresión lineal es ajustar un modelo lineal, de grado 1, una combinación lineal entre las entradas y parámetros.
 - Podemos ajustar modelos no lineales como hipótesis si codificamos estas no linealidades dentro de los descriptores. Por ejemplo, para el caso de la estimación de precios de casas, un posible descriptor podría ser el cuadrado del área, y ahí estamos incluyendo algo cuadrático en el modelo.
@@ -396,7 +375,7 @@ _Se podría solucionar también con learning rates diferenciados: más grandes p
 
 ** Computing parameters analitically
 
-*** Video: Normal equation
+*** Normal equation
 
 - Otra forma de optimizar la regresión lineal es resolverla analíticamente con el método de los [[https://en.wikipedia.org/wiki/Least_squares][mínimos cuadrados]] [[https://en.wikipedia.org/wiki/Linear_least_squares][lineales]] / ecuación normal. Esto da la solución óptima (que existe porque hemos dicho que para regresión lineal es un espacio de búsqueda cónvexo con un solo mínimo).
 
@@ -414,9 +393,7 @@ _Se podría solucionar también con learning rates diferenciados: más grandes p
 
   - La regresión por mínimos cuadrados asume muchas cosas que no necesariamente siempre se cumplen. Ver la [[https://en.wikipedia.org/wiki/Robust_regression][regresión robusta]] como alternativa.
 
-*** Reading: Normal equation
-
-*** Video: Normal equation noninvertibility
+*** Normal equation noninvertibility
 
 Si $( X^T \times X )$ no es invertible, entonces puede haber 2 problemas:
 
@@ -425,9 +402,6 @@ Si $( X^T \times X )$ no es invertible, entonces puede haber 2 problemas:
 2. Algunos descriptores están muy correlacionados / son linealmente dependientes.
 
 Si no es invertible naturalmente (es singular o degenerada) igual se puede invertir con la pseudoinversa. Igual esto no sería problema si hubiésemos usado la pseudoinversa desde un principio en lugar de estar haciéndolo manualmente. Y, nuevamente, seguro hay métodos más robustos (aunque no hay que dejar de hacer análisis de la información con la que contamos).
-
-*** Reading: Normal equation noninvertibility
-
 
 ** Submitting programming assignments
 
@@ -474,7 +448,7 @@ La original es más compacta:
 
 \[ \theta_{n \times 1}[i+1] = \theta_{n \times 1}[i] - \frac{\alpha}{m} X_{m \times n}^T (X_{m \times n} \theta_{n \times 1} - Y_{m \times 1} )_{m \times 1} \]
 
-* Semana 3
+* Semana 3: Logistic regression & Regularization
 
 ** Classification and representation
 
@@ -818,7 +792,7 @@ La regla de actualización es igual que para regresión lineal con /MSE/, calcul
   grad(1) = grad0;
 #+end_src
 
-* Semana 4
+* Semana 4: Neural networks: representation
 
 Empezamos a ver redes neuronales.
 
@@ -898,7 +872,7 @@ Las salidas de la red $\vec{\hat{y}} = h_\Theta(\vec{x})$ no son una distribuci�
 
 *** Programming assignment: multi-class classificatin and neural networks
 
-* Semana 5
+* Semana 5: Neural networks: learning
 
 Vamos a ver el algoritmo de retropropagación o propagación hacia atrás (/backpropagation/) para el aprendizaje de redes neuronales.
 
@@ -1062,7 +1036,7 @@ Sin regularización:
   D1 = (1/m) * Delta1 + (lambda/m) * [zeros(size(Theta1,1),1), Theta1(:,2:end)];
 #+end_src
 
-* Semana 6
+* Semana 6: Advice for applying Machine Learning
 
 En esta semana vamos a ver cómo evaluar nuestros modelos.
 
@@ -1238,7 +1212,7 @@ En la publicación [[https://www.microsoft.com/en-us/research/publication/mitiga
 
 *** Quiz: machine learning system design
 
-* Semana 7
+* Semana 7: Support Vector Machines
 
 Vamos a ver /SVMs/: máquinas de vector soporte / máquinas de soporte vectorial.
 

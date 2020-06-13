@@ -13,11 +13,12 @@ El curso me pareció una buena introducción a algunos temas principales del /ma
 
 Realizado durante el 2020, año de la ¿primera? gran cuarentena por el COVID-19. Lo hice con algunos amigos de ZA: [[https://github.com/aelkin/ml-ng-course][Alan]], Rodri, y Rocío que nos acompañó un buen trecho.
 
-Compartido bajo [[https://creativecommons.org/licenses/by/4.0/legalcode][CC BY 4.0]]
+Compartido todo bajo [[https://creativecommons.org/licenses/by/4.0/legalcode][CC BY 4.0]]
 
 * Log simple
 
 /El tiempo sugerido oficialmente para el curso es de 6 horas por semana. Yo, sin embargo, nececesité aproximadamente 7 horas por semana (media absoluta). En realidad, las primeras semanas me llevaron casi 10 horas cada una, mientras que las últimas fueron más rápidas/.
+/Este es el tiempo durante el curso. Luego le dedicaré más tiempo a repasar y completar algunas cosas que me quedaron pendientes. No sé si las registre acá/.
 
 | Fecha            | Horas | Actividad                                                                    |   | Notas |
 |                  |       | <20>                                                                         |   |       |
@@ -31,7 +32,7 @@ Compartido bajo [[https://creativecommons.org/licenses/by/4.0/legalcode][CC BY 4
 | [2020-04-09 jue] | 01:00 | S2: Octave/Matlab tutorial.                                                  |   |       |
 | [2020-04-11 sáb] | 04:00 | S2: Programming assignment: linear regression.                               |   |       |
 | [2020-04-14 mar] | 02:00 | S2: Completo notas.                                                          |   |       |
-| [2020-04-16 jue] | 02:00  | S3. Classification and representation.                                       |   |       |
+| [2020-04-16 jue] | 02:00 | S3. Classification and representation.                                       |   |       |
 | [2020-04-17 vie] | 02:00 | S3. Classification and representation. Decision boundary.                    |   |       |
 | [2020-04-17 vie] | 00:40 | S2. Pienso en Feature scaling.                                               |   |       |
 | [2020-04-17 vie] | 00:20 | S3. Logistic regression model.                                               |   |       |
@@ -77,8 +78,9 @@ Compartido bajo [[https://creativecommons.org/licenses/by/4.0/legalcode][CC BY 4
 | [2020-06-06 sáb] | 00:45 | S10. Map reduce and data parallelism. Review.                                |   |       |
 | [2020-06-08 lun] | 00:30 | S11. OCR. Sliding windows.                                                   |   |       |
 | [2020-06-10 mié] | 01:20 | S11. Getting lots of data. Ceiling analysis. Quiz. Conclusion.               |   |       |
+| [2020-06-12 vie] | 01:30 | Formateo y puesta en línea.                                                  |   |       |
 |------------------+-------+------------------------------------------------------------------------------+---+-------|
-|                  | 79:40 |                                                                              |   |       |
+|                  | 81:10 |                                                                              |   |       |
 #+TBLFM: $2=vsum(@2..@-1);U
 
 
